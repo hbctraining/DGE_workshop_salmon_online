@@ -4,17 +4,19 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:30 | Workshop Introduction | Radhika |
-| 10:30 - 11:15 | [Introduction to R and RStudio](../lessons/01_introR-R-and-RStudio.md) | Radhika |
-| 11:15 - 11:30 | Overview of self-learning materials and homework submission |  Mary |
+| 10:00 - 10:30 | Workshop Introduction |  |
+| 10:30 - 11:15 | Intro to DGE / setting up DGE analysis |  |
+| 11:15 - 11:30 | R Refresher |  |
 
 ### Self-Learning Part 1
-1. [R Syntax and Data Structure](https://hbctraining.github.io/Intro-to-R-flipped/lessons/02_introR-syntax-and-data-structures.html)
-1. [Functions and Arguments](../lessons/03_introR-functions-and-arguments.md)
+1. RNA-seq counts distribution
+1. Count normalization
+1. Theory of PCA / StatQuest
+1. Theory of hierarchical clustering
 
 ### Assignment #1
-* All exercises from above lessons have been put together in [html format](../homework/day1_hw_exercises.md) (web access) and [R script format](../homework/day1_hw_exercises.R) (download for local access).
-* Add your solutions to the exercises in the downloaded `.R` file and **upload the saved file** to [Dropbox](https://www.dropbox.com/request/fu2sxxovlihR2WMxoNJP) on **Wednesday before the next class**.
+* R script
+* Dropbox link
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
 
@@ -24,22 +26,21 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:20 | Questions about self-learning lessons | Mary |
+| 10:00 - 10:20 | Questions about self-learning lessons |  |
 | 10:20 - 11:00 | In-class exercises |  |
-| 11:00 - 11:30 | [Packages and libraries](../lessons/04_introR_packages.md) | Jihe |
-| 11:30 - 12:00 | [Data Wrangling: Subsetting Vectors and Factors](../lessons/05_introR-data-wrangling.md) | Radhika |
+| 11:00 - 11:30 | Design formulas  |  |
+| 11:30 - 12:00 | Hypothesis testing |  |
 
 ### Self-Learning Part 2
-1. [Reading in and inspecting data](../lessons/06_reading_and_data_inspection.md)
-1. [Data wrangling: data frames, matrices and lists](../lessons/07_introR-data-wrangling2.md)
-1. [The %in% operator](../lessons/08_identifying-matching-elements.md)
-1. [Reordering and matching](../lessons/09_reordering-to-match-datasets.md)
-1. [Setting up a data frame to plot (+ the `map()` function)](../lessons/10_setting_up_to_plot.md)
+1. Description of steps for DESeq2
+1. Wald test results
+1. Visualization
+
 
 ### Assignment #2
-* All exercises from above lessons have been put together in [R script format](../homework/day2_hw_exercises.R).
-* Add your solutions to the exercises in the downloaded `.R` file and **upload the saved file** to [Dropbox](https://www.dropbox.com/request/ozN5bDDPYhrFgDkN9jJn) on **Monday before the next class**.
-* [Email us](mailto:hbctraining@hsph.harvard.edu)  about questions regarding the homework that you need answered before the next class.
+* R script
+* Dropbox link
+* [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
 
 ---
@@ -50,19 +51,17 @@
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 10:20 | Questions about self-learning lessons |  |
 | 10:20 - 11:15 | In-class exercises |  |
-| 11:15 - 12:00 | [Plotting with the ggplot2 package](../lessons/11_ggplot2.md) | Radhika |
+| 11:15 - 12:00 | LRT until time course analysis |  |
 
 ### Self-Learning Part 3
-1. [Using custom functions for consistent plots](../lessons/11b_Custom_Functions_ggplot2.md)
-1. [Generating a boxplot with ggplot2](../lessons/12_boxplot_exercise.md)
-1. [Writing to file and exporting plots](../lessons/13_exporting_data_and_plots.md)
-1. [Finding help](../lessons/14_finding_help.md)
-1. [Tidyverse](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/intro_tidyverse.html)
+1. Time course analysis
+1. Gene annotation
+1. Functional analysis
 
 ### Assignment #3
-* **Create an R script with comments and exercise solutions** similar to the R scripts we provided previously.
-* **Upload the R script files from above** to [Dropbox](https://www.dropbox.com/request/zrl94pV9RdEubnLE3IUF) on **Wednesday before the next class**.
-* [Email us](mailto:hbctraining@hsph.harvard.edu)  about questions regarding the homework that you need answered before the next class.
+* R script
+* Dropbox link
+* [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
 
 ---
@@ -74,17 +73,15 @@
 | 10:00 - 10:20 | Questions about self-learning lessons |  |
 | 10:20 - 11:15 | In-class exercises |  |
 | 11:15 - 11:45 | Discussion, Q & A |  |
-| 11:45 - 12:00 | [Wrap Up](../lectures/R_nanocourse_wrapup_online.pdf) | Radhika |
+| 11:45 - 12:00 | [Wrap Up](../lectures/R_nanocourse_wrapup_online.pdf) |  |
 
 ### Final Exercises
-* [Exercises](https://hbctraining.github.io/Intro-to-R/homework/Intro_to_R_hw.html) and [Answer Key](https://hbctraining.github.io/Intro-to-R/homework/Intro_to_R_key.html)
+* Exercises
 
-## Building on the basic R knowledge
-* [DGE workshop](https://hbctraining.github.io/DGE_workshop_salmon/)
+## Building on this workshop
 * [Single-cell RNA-seq workshop](https://hbctraining.github.io/scRNA-seq/)
 * [RMarkdown](https://hbctraining.github.io/Training-modules/Rmarkdown/)
-* [Functional analysis](https://hbctraining.github.io/Training-modules/DGE-functional-analysis/)
-* [More ggplot2](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
+* [Ggplot2 for functional analysis](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
 
 ## Resources
 * [Online learning resources](https://hbctraining.github.io/bioinformatics_online/lists/online_trainings.html)
