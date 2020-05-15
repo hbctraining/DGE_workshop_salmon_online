@@ -1,7 +1,7 @@
 ---
-title: "Set up and overview for gene-level differential expression analysis"
+title: "Gene-level differential expression analysis"
 author: "Meeta Mistry, Radhika Khetani, Mary Piper"
-date: "May 12, 2017"
+date: "May 15, 2020"
 ---
 
 [GEO]: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE51443 "Gene Expression Omnibus"
@@ -11,13 +11,18 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Explain the experiment and its objectives
-* Describe how to set up an RNA-seq project in R 
-* Describe the RNA-seq and the differential gene expression analysis workflow
-* Explain why negative binomial distribution is used to model RNA-seq count data
+* Understand differential gene expression and what we are trying to achieve
+* Explore the characteristics of RNA-seq count data
+* Evaluate the mean-variance relationship in relation to the negative binomial model
 
 
-## Differential gene expression analysis overview
+## Differential gene expression analysis
+
+Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of genomic function. 
+
+The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform (usually Illumina). The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, quantifying reads that overlap transcripts,
+
+
 
 So what does this count data actually represent? The count data used for differential expression analysis represents the number of sequence reads that originated from a particular gene. The higher the number of counts, the more reads associated with that gene, and the assumption that there was a higher level of expression of that gene in the sample. 
 
