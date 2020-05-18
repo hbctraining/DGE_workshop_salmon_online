@@ -9,11 +9,11 @@
 | 11:15 - 11:30 | R Refresher |  |
 
 ### Self-Learning Part 1
-1. Experimental design and workflow to counts
+1. Experimental design
+1. Workflow (raw data to counts)
 1. RNA-seq counts distribution
 1. Count normalization
-1. Theory of PCA / StatQuest
-1. Theory of hierarchical clustering
+1. Sample-level QC (PCA and hierarchical clustering)
 
 ### Assignment #1
 * R script
