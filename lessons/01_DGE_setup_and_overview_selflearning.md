@@ -34,7 +34,7 @@ The higher the number of counts indicates more reads are associated with that ge
 
 ## Characteristics of RNA-seq count data
 
-To get an idea about how RNA-seq counts are distributed, let's plot the counts for a single sample, 'Mov10_oe_1':
+To get an idea about how RNA-seq counts are distributed, let's plot a histogram of the counts for a single sample, 'Mov10_oe_1':
 
 ```r
 ggplot(data) +
@@ -53,8 +53,9 @@ This plot illustrates some **common features** of RNA-seq count data:
 * a long right tail due to the lack of any upper limit for expression
 * large dynamic range
 
-> **NOTE:** The log intensities of the microarray data approximate a normal distribution. However, due to the different properties of the of RNA-seq count data, such as integer counts instead of continuous measurements and non-normally distributed data, the normal distribution does not accurately model RNA-seq counts [[1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3541212/)].
+We can look at the shape of the histogram and note that the data is not normally distributed, for RNA-seq data it never will be. Moreover, the underlying data, as we observed earlier, is integer counts instead rather than continuous measurements. We need to take these characteristics into account when deciding on what statistical model to use.
 
+## Modeling count data
 
 With differential expression analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)
 - case vs. control
@@ -76,10 +77,6 @@ Even though the mean expression levels between sample groups may appear to be qu
 <img src="../img/de_norm_counts_var.png" width="400">
 
 
-### RNA-seq count distribution
-
-
-### Modeling count data
 
 Count data in general can be modeled with various distributions:
 
