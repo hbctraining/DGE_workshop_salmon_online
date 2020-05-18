@@ -9,6 +9,7 @@
 | 11:15 - 11:30 | R Refresher |  |
 
 ### Self-Learning Part 1
+1. Experimental design and workflow to counts
 1. RNA-seq counts distribution
 1. Count normalization
 1. Theory of PCA / StatQuest
