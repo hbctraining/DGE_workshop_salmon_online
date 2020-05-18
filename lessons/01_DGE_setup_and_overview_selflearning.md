@@ -20,13 +20,41 @@ Approximate time: 60 minutes
 
 Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of genomic function. 
 
-The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform (usually Illumina). The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, quantifying reads that overlap transcripts,
+The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform. The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, and quantifying reads that overlap transcripts to generate a count matrix. **This count matrix will be the starting point for our analysis in the workshop**.
 
+## Count matrix
 
+When we start our differential gene expression analysis we begin with a matrix summarizing the gene-level expression in each sample of your dataset. The rows in the matrix correspond to genes, and the columns correspond to samples. In each position of the matrix you will have a whole number representing the total number of sequence reads that originated from a particular gene in a sample.
 
-So what does this count data actually represent? The count data used for differential expression analysis represents the number of sequence reads that originated from a particular gene. The higher the number of counts, the more reads associated with that gene, and the assumption that there was a higher level of expression of that gene in the sample. 
-
+<p align="center">
 <img src="../img/deseq_counts_overview.png" width="600">
+</p>
+
+The higher the number of counts indicates more reads are associated with that gene and suggests a higher level of expression of that gene. However, this is not necessarily true and we will delve deeper into this later in this lesson and in the course.
+
+## Characteristics of RNA-seq count data
+
+To get an idea about how RNA-seq counts are distributed, let's plot the counts for a single sample, 'Mov10_oe_1':
+
+```r
+ggplot(data) +
+  geom_histogram(aes(x = Mov10_oe_1), stat = "bin", bins = 200) +
+  xlab("Raw expression counts") +
+  ylab("Number of genes")
+```
+
+<p align="center">
+<img src="../img/deseq_counts_distribution.png" width="400">
+</p>
+
+This plot illustrates some **common features** of RNA-seq count data:
+
+* a low number of counts associated with a large proportion of genes
+* a long right tail due to the lack of any upper limit for expression
+* large dynamic range
+
+> **NOTE:** The log intensities of the microarray data approximate a normal distribution. However, due to the different properties of the of RNA-seq count data, such as integer counts instead of continuous measurements and non-normally distributed data, the normal distribution does not accurately model RNA-seq counts [[1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3541212/)].
+
 
 With differential expression analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)
 - case vs. control
@@ -50,26 +78,6 @@ Even though the mean expression levels between sample groups may appear to be qu
 
 ### RNA-seq count distribution
 
-To test for significance, we need **an appropriate statistical model** that accurately performs normalization (to account for differences in sequencing depth, etc.) and variance modeling (to account for few numbers of replicates and large dynamic expression range).
-
-To determine the appropriate statistical model, we **need information about the distribution of counts**. To get an idea about how RNA-seq counts are distributed, let's plot the counts for a single sample, 'Mov10_oe_1':
-
-```r
-ggplot(data) +
-  geom_histogram(aes(x = Mov10_oe_1), stat = "bin", bins = 200) +
-  xlab("Raw expression counts") +
-  ylab("Number of genes")
-```
-
-<img src="../img/deseq_counts_distribution.png" width="400">
-
-This plot illustrates some **common features** of RNA-seq count data:
-
-* a low number of counts associated with a large proportion of genes
-* a long right tail due to the lack of any upper limit for expression
-* large dynamic range
-
-> **NOTE:** The log intensities of the microarray data approximate a normal distribution. However, due to the different properties of the of RNA-seq count data, such as integer counts instead of continuous measurements and non-normally distributed data, the normal distribution does not accurately model RNA-seq counts [[1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3541212/)].
 
 ### Modeling count data
 
