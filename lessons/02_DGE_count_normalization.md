@@ -45,7 +45,7 @@ The main "uninteresting" factors often considered during normalization are:
 Several common normalization methods have been developed to account for these differences:
 	
 | Normalization method | Description | Accounted factors | Recommendations for use |
-| ---- | ---- | ---- | ---- |
+| :----: | :----: | :----: | :----: |
 | **CPM** (counts per million) | counts scaled by total number of reads | sequencing depth | gene count comparisons between replicates of the same sample group; **NOT for within sample comparisons or DE analysis**  |
 | **TPM** (transcripts per kilobase million) | counts per length of transcript (kb) per million reads mapped | sequencing depth and gene length | gene count comparisons within a sample or between samples of the same sample group; **NOT for DE analysis** |
 | **RPKM/FPKM** (reads/fragments per kilobase of exon per million reads/fragments mapped) | similar to TPM | sequencing depth and gene length | gene count comparisons between genes within a sample; **NOT for between sample comparisons or DE analysis** |
