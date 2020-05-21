@@ -63,7 +63,10 @@ Generally single-end sequencing is sufficient unless it is expected that the rea
 
 Illumina sequencing technology uses a sequencing-by-synthesis approach which is described in the figure below. 
 
-In this step, the DNA fragments in the cDNA library are denatured and applied to the glass flow cell. These denatured fragments bind to the complementary oligos that are already covalently bound to the flow cell lanes, resulting in attachment.
+The DNA fragments in the cDNA library are denatured and hybrodized to the glass flow cell through means of adapters. Each fragment is then massively and clonally amplified, forming clusters of double-stranded DNA. This step is necessary to ensure
+that the sequencing signal will be strong enough to be detected unambiguously for each base of each fragment.
+
+The sequencing of the fragment ends is based on fluorophore labelled dNTPs with reversible terminator elements that will become incorporated and excited by a laser one at a time. Base calling algorithms determine the sequence of each cluster based on signal intensoty levels.
 
 <img src="../img/illumina_sequencing_process.png" width="600">
 
