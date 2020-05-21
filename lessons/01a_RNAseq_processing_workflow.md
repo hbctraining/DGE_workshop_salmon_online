@@ -66,13 +66,20 @@ Illumina sequencing technology uses a sequencing-by-synthesis approach which is 
 The DNA fragments in the cDNA library are denatured and hybrodized to the glass flow cell through means of adapters. Each fragment is then massively and clonally amplified, forming clusters of double-stranded DNA. This step is necessary to ensure
 that the sequencing signal will be strong enough to be detected unambiguously for each base of each fragment.
 
-The sequencing of the fragment ends is based on fluorophore labelled dNTPs with reversible terminator elements that will become incorporated and excited by a laser one at a time. Base calling algorithms determine the sequence of each cluster based on signal intensoty levels.
+The sequencing of the fragment ends is based on fluorophore labelled dNTPs with reversible terminator elements that will become incorporated and excited by a laser one at a time. Base calling algorithms determine the sequence of each cluster based on signal intensity levels.
 
 <img src="../img/illumina_sequencing_process.png" width="600">
 
 If you want to explore sequencing by synthesis in more depth, we recommend this really nice animation [available on Illumina's YouTube channel](https://www.youtube.com/watch?v=fCd6B5HRaZ8).
 
 ### 3. Quality control of raw sequencing data
+
+The raw reads obtained from the sequencer are stored as **FASTQ files**. Each file represents all of the clusters on the flow cell corresponding to a single sample. Therefore the number of clusters represents the total number of reads per sample.
+
+
+
+Number of clusters ~= Number of reads
+Number of sequencing cycles = Length of reads
 
 ### 4. Mapping reads and quantification
 
