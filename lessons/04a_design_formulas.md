@@ -6,6 +6,11 @@ date: "Wednesday, May 27th, 2020"
 
 Approximate time: 60 minutes
 
+## Learning Objectives 
+
+* Executing the differential expression analysis workflow with DESeq2
+* Constructing design formulas appropriate for a given experimental design
+
 # Differential expression analysis with DESeq2
 
 The final step in the differential expression analysis workflow is **fitting the raw counts to the NB model and performing the statistical test** for differentially expressed genes. In this step we essentially want to determine whether the mean expression levels of different sample groups are significantly different.
