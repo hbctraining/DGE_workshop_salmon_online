@@ -65,7 +65,11 @@ Illumina sequencing technology uses a sequencing-by-synthesis approach which is 
 
 _**Cluster growth**_: The DNA fragments in the cDNA library are denatured and hybridized to the glass flow cell through means of adapters. Each fragment is then massively and clonally amplified, forming clusters of double-stranded DNA. This step is necessary to ensure that the sequencing signal will be strong enough to be detected unambiguously for each base of each fragment.
 
-_**Sequencing:**_ The sequencing of the fragment ends is based on fluorophore labelled dNTPs with reversible terminator elements that will become incorporated and excited by a laser one at a time. Base calling algorithms determine the sequence of each cluster based on signal intensity levels.
+* **Number of clusters ~= Number of reads**
+
+_**Sequencing:**_ The sequencing of the fragment ends is based on fluorophore labelled dNTPs with reversible terminator elements. Each cycle, a base is incorporated and excited by a laser one at a time. Base calling algorithms determine the sequence of bases of each cluster based on signal intensity levels.
+
+* **Number of sequencing cycles = Length of reads**
 
 <p align="center">
 <img src="../img/illumina_sequencing_process.png" width="600">
@@ -75,14 +79,28 @@ To explore sequencing by synthesis in more depth, we recommend this really nice 
 
 ### 3. Quality control of raw sequencing data
 
-The raw reads obtained from the sequencer are stored as **FASTQ files**. Each FASTQ file represents sequence read outs for each cluster on the flow cell corresponding to a single sample. The **number of clusters from a sample is equivalen to the number of reads per sample**.
+The raw reads obtained from the sequencer are stored as **[FASTQ files](https://en.wikipedia.org/wiki/FASTQ_format)**. The FASTQ file format is the defacto file format for sequence reads generated from next-generation sequencing technologies. 
+
+Each FASTQ file is a text file which represents sequence read outs for a sample. Each read is represented by 4 lines as shown below:
+
+```
+@HWI-ST330:304:H045HADXX:1:1101:1111:61397
+CACTTGTAAGGGCAGGCCCCCTTCACCCTCCCGCTCCTGGGGGANNNNNNNNNNANNNCGAGGCCCTGGGGTAGAGGGNNNNNNNNNNNNNNGATCTTGG
++
+@?@DDDDDDHHH?GH:?FCBGGB@C?DBEGIIIIAEF;FCGGI#########################################################
+```
+
+|Line|Description|
+|----|-----------|
+|1|Always begins with '@' and then information about the read|
+|2|The actual DNA sequence|
+|3|Always begins with a '+' and sometimes the same info in line 1|
+|4|Has a string of characters which represent the quality scores; must have same number of characters as line 2|
+
+The quality information for each read is assessed using tools like [FASTQC]().
 
 
 
-
-
-Number of clusters ~= Number of reads
-Number of sequencing cycles = Length of reads
 
 ### 4. Mapping reads and quantification
 
