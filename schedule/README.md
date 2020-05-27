@@ -1,5 +1,10 @@
 # Workshop Schedule
 
+## Pre-reading
+
+1. Workflow (raw data to counts)
+1. Experimental design considerations
+
 ## Day 1
 
 | Time            |  Topic  | Instructor |
@@ -9,8 +14,7 @@
 | 11:15 - 11:30 | R Refresher |  |
 
 ### Self-Learning Part 1
-1. Experimental design
-1. Workflow (raw data to counts)
+
 1. RNA-seq counts distribution
 1. Count normalization
 1. Sample-level QC (PCA and hierarchical clustering)
@@ -30,7 +34,7 @@
 | 10:00 - 10:20 | Questions about self-learning lessons |  |
 | 10:20 - 11:00 | In-class exercises |  |
 | 11:00 - 11:30 | Design formulas  |  |
-| 11:30 - 12:00 | Hypothesis testing |  |
+| 11:30 - 12:00 | Hypothesis testing and multiple test correction |  |
 
 ### Self-Learning Part 2
 1. Description of steps for DESeq2
@@ -51,8 +55,8 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 10:20 | Questions about self-learning lessons |  |
-| 10:20 - 11:15 | In-class exercises |  |
-| 11:15 - 12:00 | LRT until time course analysis |  |
+| 10:20 - 11:30 | In-class exercises |  |
+| 11:30 - 12:00 | LRT until time course analysis |  |
 
 ### Self-Learning Part 3
 1. Time course analysis
