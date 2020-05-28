@@ -6,12 +6,6 @@ date: "May 12, 2017"
 
 Approximate time: 
 
-## Learning Objectives 
-
-* Detailed description of dataset
-* Numbered descriptions of workflow steps leading up to count matrix
-* Link out to Illumina video
-
 
 ## RNA-seq processing workflow
 
@@ -122,3 +116,13 @@ These transcript expression estimates, often referred to as 'pseudocounts' or 'a
 
 
 ### 5. Quality control of mapped sequence reads
+
+A tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) is used to make an assessment on the quality of the mapping. It explores the features of mapped reads and their genomic properties, providing an overall view of the data quality in an HTML report format. Various quality metrics include:
+
+* DNA or rRNA contamination
+* 5'-3' biases
+* Coverage biases
+
+Qualimap requires genomic coordinate information for where each read maps. Since this is not part of the Salmon output, you will need to use a genome alignment tools to generate a [BAM]() file. 
+
+
