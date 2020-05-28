@@ -125,4 +125,8 @@ A tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) is
 
 Qualimap requires genomic coordinate information for where each read maps. Since this is not part of the Salmon output, you will need to use a genome alignment tools to generate a [BAM]() file. 
 
+### 6. Quality control: aggregating results
 
+Throughout the workflow we have performed various steps of quality checks on our data. You will need to do this for each sample in your dataset, making sure these metrics are consistent across the samples for a given experiment. Outlier samples should be flagged for further investigation and potential removal.
+
+Manually tracking these metrics and browsing through multiple HTML reports for each samples is tedious and prone to errors. [MultiQC](https://multiqc.info/) is a tool which aggregates results from several tools and generates a single HTML report with plots to visualize and compare various QC metrics between the samples. For this workflow you can use it to aggregate information from the results of FastQC, STAR, Qualimap, and Salmon. 
