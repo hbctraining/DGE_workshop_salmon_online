@@ -117,16 +117,16 @@ These transcript expression estimates, often referred to as 'pseudocounts' or 'a
 
 ### 5. Quality control of mapped sequence reads
 
-A tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) is used to make an assessment on the quality of the mapping. It explores the features of mapped reads and their genomic properties, providing an overall view of the data quality in an HTML report format. Various quality metrics include:
+A tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) is used to make an assessment on the quality of the mapping. It **explores the features of mapped reads and their genomic properties**, providing an overall view of the data quality in an HTML report format. Various quality metrics include:
 
 * DNA or rRNA contamination
 * 5'-3' biases
 * Coverage biases
 
-Qualimap requires genomic coordinate information for where each read maps. Since this is not part of the Salmon output, you will need to use a genome alignment tools to generate a [BAM]() file. 
+Qualimap requires genomic coordinate information for where each read maps as input. Since this is not part of the Salmon output, you will need to use a genome alignment tools to generate a [BAM]() file. 
 
 ### 6. Quality control: aggregating results
 
 Throughout the workflow we have performed various steps of quality checks on our data. You will need to do this for each sample in your dataset, making sure these metrics are consistent across the samples for a given experiment. Outlier samples should be flagged for further investigation and potential removal.
 
-Manually tracking these metrics and browsing through multiple HTML reports for each samples is tedious and prone to errors. [MultiQC](https://multiqc.info/) is a tool which aggregates results from several tools and generates a single HTML report with plots to visualize and compare various QC metrics between the samples. For this workflow you can use it to aggregate information from the results of FastQC, STAR, Qualimap, and Salmon. 
+Manually tracking these metrics and browsing through multiple HTML reports for each samples is tedious and prone to errors. **[MultiQC](https://multiqc.info/) is a tool which aggregates results from several tools and generates a single HTML report** with plots to visualize and compare various QC metrics between the samples. For this workflow, MultiQC is used to aggregate information from the results of FastQC, STAR, Qualimap, and Salmon. 
