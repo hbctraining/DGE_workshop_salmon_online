@@ -97,11 +97,22 @@ CACTTGTAAGGGCAGGCCCCCTTCACCCTCCCGCTCCTGGGGGANNNNNNNNNNANNNCGAGGCCCTGGGGTAGAGGGNN
 |3|Always begins with a '+' and sometimes the same info in line 1|
 |4|Has a string of characters which represent the quality scores; must have same number of characters as line 2|
 
-The quality information for each read is assessed using tools like [FASTQC]().
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is a commonly used software that provides a simple way to do some **quality control checks on raw sequence data**. 
 
+The main functions include:
 
+* Providing a quick overview to tell you in which areas there may be problems
+* Summary graphs and tables to quickly assess your data
+* Export of results to an HTML based permanent report
 
 
 ### 4. Mapping reads and quantification
+
+Once we have explored the quality of our raw reads, we can move on to quantifying expression at the transcript level. The goal of this step is to **identify from which transcript each of the reads originated from and the total number of reads associated with each transcript**.
+
+#### Lightweight Alignment
+
+
+#### Base-to-base alignment
 
 ### 5. Quality control of mapped sequence reads
