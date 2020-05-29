@@ -17,6 +17,13 @@ Approximate time: 60 minutes
 * Explain why negative binomial distribution is used to model RNA-seq count data
 
 
+## Differential gene expression analysis
+
+Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of genomic function. 
+
+The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform. The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, and quantifying reads that overlap transcripts to generate a count matrix. **This count matrix will be the starting point for our analysis in the workshop**.
+
+
 # Differential gene expression (DGE) analysis overview 
 
 The goal of RNA-seq is often to perform differential expression testing to determine which genes or transcripts are expressed at different levels between conditions. These findings can offer biological insight into the processes affected by the condition(s) of interest. 
