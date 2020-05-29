@@ -11,20 +11,14 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Understand differential gene expression and what we are trying to achieve
 * Explore the characteristics of RNA-seq count data
 * Evaluate the mean-variance relationship in relation to the negative binomial model
 
-
-## Differential gene expression analysis
-
-Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of genomic function. 
-
-The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform. The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, and quantifying reads that overlap transcripts to generate a count matrix. **This count matrix will be the starting point for our analysis in the workshop**.
+# Exploring RNA-seq count data
 
 ## Count matrix
 
-When we start our differential gene expression analysis we begin with a matrix summarizing the gene-level expression in each sample of your dataset. The rows in the matrix correspond to genes, and the columns correspond to samples. In each position of the matrix you will have a whole number representing the total number of sequence reads that originated from a particular gene in a sample.
+When we start our differential gene expression analysis we begin with a **matrix summarizing the gene-level expression in each sample of your dataset**. The rows in the matrix correspond to genes, and the columns correspond to samples. In each position of the matrix you will have an integer value representing the total number of sequence reads that originated from a particular gene in a sample.
 
 <p align="center">
 <img src="../img/deseq_counts_overview.png" width="600">
