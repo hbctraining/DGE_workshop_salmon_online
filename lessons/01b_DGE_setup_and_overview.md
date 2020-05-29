@@ -14,24 +14,21 @@ Approximate time: 60 minutes
 * Explain the experiment and its objectives
 * Describe how to set up an RNA-seq project in R 
 * Describe the RNA-seq and the differential gene expression analysis workflow
-* Explain why negative binomial distribution is used to model RNA-seq count data
 
 
-## Differential gene expression analysis
+# Differential gene expression analysis
 
-Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of genomic function. 
+Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of the biological processes that are affected. 
 
-The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform. The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, and quantifying reads that overlap transcripts to generate a count matrix. **This count matrix will be the starting point for our analysis in the workshop**.
+The standard workflow begins in the laboratory, with RNA extraction, followed by mRNA enrichment or ribosomal RNA depletion, cDNA synthesis and preparation of an adaptor-ligated sequencing library. The library is then sequenced on a high-throughput platform. The final steps are computational: aligning and/or assembling the sequencing reads to a transcriptome, and quantifying reads that overlap transcripts to obtain 'pseudocounts' for each sample. **This workflow is described in detail in the [pre-reading](01a_RNAseq_processing_workflow.md).
 
 
-# Differential gene expression (DGE) analysis overview 
+## Some header here
 
 The goal of RNA-seq is often to perform differential expression testing to determine which genes or transcripts are expressed at different levels between conditions. These findings can offer biological insight into the processes affected by the condition(s) of interest. 
 
-**To determine the abundance estimates of transcripts, our RNA-seq workflow followed the steps detailed in the image below.** All steps were performed on the command line (Linux/Unix), resulting in directories of output from the Salmon tool. These transcript abundance estimates, often referred to as **'pseudocounts'**, can be converted for use with DGE tools like DESeq2 or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf).
 
-<img src="../img/workflow-salmon-DGE.png" >
-
+ - put the new workflow here?
 
 In the next few lessons, we will walk you through an **end-to-end gene-level RNA-seq differential expression workflow** using various R packages. We will start with reading in data obtained from Salmon, convert pseudocounts to counts, perform exploratory data analysis for quality assessment and to explore the relationship between samples, perform differential expression analysis, and visually explore the results prior to performing downstream functional analysis.
 
