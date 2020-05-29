@@ -20,14 +20,10 @@ Approximate time: 60 minutes
 
 Over the past decade, RNA sequencing (RNA-seq) has become an indispensable tool for transcriptome-wide analysis of differential gene expression and differential splicing of mRNAs[1](https://www.nature.com/articles/s41576-019-0150-2). The correct identification of which genes/transcripts are changing in expression between specific conditions is key in our understanding of the biological processes that are affected. 
 
-<p align="center">
-<img src="../img/Gene_products.png" width="600">
-</p>
-
 In this workshop, we will walk you through an **end-to-end gene-level RNA-seq differential expression workflow** using various R packages. We will start with reading in data obtained from Salmon, convert pseudocounts to counts, perform exploratory data analysis for quality assessment and to explore the relationship between samples, perform differential expression analysis, and visually explore the results prior to performing downstream functional analysis.
 
 <p align="center">
-<img src="../img/de_workflow_salmon.png" width="600">
+<img src="../img/de_workflow_salmon.png" width="400">
 </p>
 
 
@@ -60,7 +56,7 @@ The authors are investigating interactions between various genes involved in Fra
 
 ## Setting up
 
-Before we get into the details of the analysis, let's get started by opening up RStudio and setting up a new project for this analysis. 
+Let's get started by opening up RStudio and setting up a new project for this analysis. 
 
 1. Go to the `File` menu and select `New Project`.
 2. In the `New Project` window, choose `New Directory`. Then, choose `New Project`. Name your new directory `DEanalysis` and then "Create the project as subdirectory of:" the Desktop (or location of your choice).
