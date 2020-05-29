@@ -7,7 +7,7 @@ date: "May 12, 2017"
 Approximate time: 
 
 
-## RNA-seq processing workflow
+# RNA-seq processing workflow
 
 Before we get started with differential gene expression, it's important to know where the count matrix came from. In this lesson we will briefly discuss the RNA-processing pipeline and the **different steps we take to go from raw sequencing reads to count matrix**. 
 
@@ -16,7 +16,7 @@ Before we get started with differential gene expression, it's important to know 
 </p>
 
 
-### 1. RNA Extraction and library preparation
+## 1. RNA Extraction and library preparation
 
 Before RNA can be sequenced, it must first be extracted and separated from its cellular environment prepared into a cDNA library. There are a number of steps involved which are outlined in the figure below, and in parallel there are various quality checks implemented to make sure wehave quality RNA to move foward with. We briefly describe some of these steps, but also encourage you to access the resources linked at the end of this lesson for more detailed information.
 
@@ -41,7 +41,7 @@ of the second cDNA strand (for details see Levin et al. (2010)). Finally, sequen
 
 *Image source: [Zeng and Mortavi, 2012](https://pubmed.ncbi.nlm.nih.gov/22910383/)*
 
-### 2. Seqeuncing (Illumina)
+## 2. Seqeuncing (Illumina)
 
 After preparation of the libraries, sequencing can be performed to generate the nucleotide sequences of the ends of the fragments, which are called **reads**. You will have the choice of sequencing a single end of the cDNA fragments (single-end reads) or both ends of the fragments (paired-end reads).
 
@@ -53,7 +53,7 @@ After preparation of the libraries, sequencing can be performed to generate the 
 
 Generally single-end sequencing is sufficient unless it is expected that the reads will match multiple locations on the genome (e.g. organisms with many paralogous genes), assemblies are being performed, or for splice isoform differentiation. Be aware that paired-end reads are generally 2x more expensive.
 
-#### Sequencing-by-synthesis 
+### Sequencing-by-synthesis 
 
 Illumina sequencing technology uses a sequencing-by-synthesis approach which is described in the figure below. 
 
@@ -71,7 +71,7 @@ _**Sequencing:**_ The sequencing of the fragment ends is based on fluorophore la
 
 To explore sequencing by synthesis in more depth, we recommend this really nice animation [available on Illumina's YouTube channel](https://www.youtube.com/watch?v=fCd6B5HRaZ8).
 
-### 3. Quality control of raw sequencing data
+## 3. Quality control of raw sequencing data
 
 The raw reads obtained from the sequencer are stored as **[FASTQ files](https://en.wikipedia.org/wiki/FASTQ_format)**. The FASTQ file format is the defacto file format for sequence reads generated from next-generation sequencing technologies. 
 
@@ -100,7 +100,7 @@ The main functions include:
 * Export of results to an HTML based permanent report
 
 
-### 4. Mapping reads and quantification
+## 4. Mapping reads and quantification
 
 Once we have explored the quality of our raw reads, we can move on to quantifying expression at the transcript level. The goal of this step is to **identify from which transcript each of the reads originated from and the total number of reads associated with each transcript**.
 
@@ -113,7 +113,7 @@ Tools that have been found to be most accurate for this step in the analysis are
 </p>
 
 
-### 5. Quality control of mapped sequence reads
+## 5. Quality control of mapped sequence reads
 
 A tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) is used to make an assessment on the quality of the mapping. It **explores the features of mapped reads and their genomic properties**, providing an overall view of the data quality in an HTML report format. Various quality metrics include:
 
@@ -123,15 +123,15 @@ A tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) is
 
 Qualimap requires genomic coordinate information for where each read maps as input. Since this is not part of the Salmon output, you will need to use a genome alignment tools to generate a [BAM]() file. 
 
-### 6. Quality control: aggregating results
+## 6. Quality control: aggregating results
 
 Throughout the workflow we have performed various steps of quality checks on our data. You will need to do this for each sample in your dataset, making sure these metrics are consistent across the samples for a given experiment. Outlier samples should be flagged for further investigation and potential removal.
 
-Manually tracking these metrics and browsing through multiple HTML reports for each samples is tedious and prone to errors. **[MultiQC](https://multiqc.info/) is a tool which aggregates results from several tools and generates a single HTML report** with plots to visualize and compare various QC metrics between the samples. For this workflow, MultiQC is used to aggregate information from the results of FastQC, STAR, Qualimap, and Salmon. 
+Manually tracking these metrics and browsing through multiple HTML reports for each samples is tedious and prone to errors. **[MultiQC](https://multiqc.info/) is a tool which aggregates results from several tools and generates a single HTML report** with plots to visualize and compare various QC metrics between the samples. For this workflow, MultiQC is used to aggregate information from the results of FastQC, STAR, Qualimap, and Salmon. Assessment of the QC metrics may result in the removal of samples before proceeeding to the next step, if necessary.
 
-### 7. Generating a count matrix
+## 7. Generating a count matrix
 
-The last step is to take the transcript-level 'pseudocounts' obtained from the mapping step and aggregate them to the gene level. The R Bioconductor package `tximport` alllows us to do this fairly easily for each sample in the dataset. Additionally, pseudocounts will be converted into raw counts and samples will be combined into a count matrix (as displayed below) for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
+The last step is to take the transcript-level 'pseudocounts' obtained from the mapping step and aggregate them to the gene level. The R Bioconductor package `tximport` allows us to do this fairly easily for each sample in the dataset. Additionally, pseudocounts will be converted into raw counts and samples will be combined into a count matrix (as displayed below) for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
 
 <p align="center">
 <img src="../img/deseq_counts_overview.png" width="600">
