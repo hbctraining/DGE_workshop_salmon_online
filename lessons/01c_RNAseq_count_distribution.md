@@ -47,30 +47,9 @@ This plot illustrates some **common features** of RNA-seq count data:
 * a long right tail due to the lack of any upper limit for expression
 * large dynamic range
 
-We can look at the shape of the histogram and note that the data is not normally distributed, for RNA-seq data it never will be. Moreover, the underlying data, as we observed earlier, is integer counts instead rather than continuous measurements. We need to take these characteristics into account when deciding on what statistical model to use.
+Looking at the shape of the histogram, we see that it is _not normally distributed_. For RNA-seq data this will always be the case. Moreover, the underlying data, as we observed earlier, is integer counts instead rather than continuous measurements. We need to take these characteristics into account when deciding on what statistical model to use.
 
 ## Modeling count data
-
-With differential expression analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)
-- case vs. control
-- correlation of expression with some variable or clinical outcome
-
-**Why does it not work to identify differentially expressed gene by ranking the genes by how different they are between the two groups (based on fold change values)?**
-
-
-<img src="../img/foldchange_heatmap.png" width="200">
-
-More often than not, there is much more going on with your data than what you are anticipating. Genes that vary in expression level between samples is a consequence of not only the experimental variables of interest but also due to extraneous sources. **The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.**
-
-<img src="../img/de_variation.png" width="500">
-
-Even though the mean expression levels between sample groups may appear to be quite different, it is possible that the difference is not actually significant. This is illustrated for 'GeneA' expression between 'untreated' and 'treated' groups in the figure below. The mean expression level of geneA for the 'treated' group is twice as large as for the 'untreated' group. But is the difference in expression (counts) **between groups** significant given the amount of variation observed **within groups** (replicates)?
-
-**We need to take into account the variation in the data (and where it might be coming from) when determining whether genes are differentially expressed.**
-
-<img src="../img/de_norm_counts_var.png" width="400">
-
-
 
 Count data in general can be modeled with various distributions:
 
@@ -78,19 +57,16 @@ Count data in general can be modeled with various distributions:
 
 2. **Poisson distribution:** For use, when **the number of cases is very large (i.e. people who buy lottery tickets), but the probability of an event is very small (probability of winning)**. The Poisson is similar to the binomial, but is based on continuous events. Appropriate for data where mean == variance. 
 
-3. **Negative binomial distribution:** An approximation of the Poisson, but has an additional parameter that adjusts the variance independently from the mean.
-
-<img src="../img/deseq_nb.png" width="400">
-
-
 > [Details provided by Rafael Irizarry in the EdX class.](https://youtu.be/fxtB8c3u6l8)
 
 
-#### So what do we use for RNA-seq count data?
+**So what do we use for RNA-seq count data?**
 
-With RNA-Seq data, **a very large number of RNAs are represented and the probability of pulling out a particular transcript is very small**. Thus, it would be an appropriate situation to use the Poisson or Negative binomial distribution. Choosing one over the other **will depend on the relationship between mean and variance in our data**.
+With RNA-Seq data, **a very large number of RNAs are represented and the probability of pulling out a particular transcript is very small**. This scenario is most similar to the lottery described above, suggesting that perhaps the Poisson distribution is most appropriate. However, this **will depend on the relationship between mean and variance in our data**.
 
-Run the following code to plot the *mean versus variance* for the 'Mov10 overexpression' replicates:
+#### Mean versus variance
+
+To assess the properties of the data we are working with, we can use the three samples corresponding to the 'Mov10 overexpression' replicates. First compute a vector of mean values, then a vector of variance values. We can then plot these values against each other to evaluate the relationship between them.
 
 ```r
 mean_counts <- apply(data[,6:8], 1, mean)        #The second argument '1' of 'apply' function indicates the function being applied to rows. Use '2' if applied to columns 
@@ -104,12 +80,18 @@ ggplot(df) +
         geom_abline(intercept = 0, slope = 1, color="red")
 ```
 
+***
+
+**Exercise**
+
+Your plot should look like the scatterplot below. Each data point represents a gene and the red line represents x = y. 
+
 <img src="../img/deseq_mean_variance2.png" width="600">
 
-In the figure above, ach data point represents a gene and the red line represents x = y. There are a few important things to note here:
-
-1. The **variance across replicates tends to be greater than the mean** (red line), especially for genes with large mean expression levels. 
+1. Is the mean equal to variance for this data? 
 2. For the **lowly expressed genes** we see quite a bit of scatter. We usually refer to this as "heteroscedasticity". That is, for a given expression level we observe **a lot of variation in the amount of variance**. 
+
+***
 
 *This is a good indication that our data do not fit the Poisson distribution.* If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect Poisson distribution (where mean == variance). Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
 
@@ -134,6 +116,27 @@ The figure below illustrates the relationship between sequencing depth and numbe
 <img src="../img/de_replicates_img2.png" width="500">
 
 Note that an **increase in the number of replicates tends to return more DE genes than increasing the sequencing depth**. Therefore, generally more replicates are better than higher sequencing depth, with the caveat that higher depth is required for detection of lowly expressed DE genes and for performing isoform-level differential expression. 
+
+With differential expression analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)
+- case vs. control
+- correlation of expression with some variable or clinical outcome
+
+**Why does it not work to identify differentially expressed gene by ranking the genes by how different they are between the two groups (based on fold change values)?**
+
+
+<img src="../img/foldchange_heatmap.png" width="200">
+
+More often than not, there is much more going on with your data than what you are anticipating. Genes that vary in expression level between samples is a consequence of not only the experimental variables of interest but also due to extraneous sources. **The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.**
+
+<img src="../img/de_variation.png" width="500">
+
+Even though the mean expression levels between sample groups may appear to be quite different, it is possible that the difference is not actually significant. This is illustrated for 'GeneA' expression between 'untreated' and 'treated' groups in the figure below. The mean expression level of geneA for the 'treated' group is twice as large as for the 'untreated' group. But is the difference in expression (counts) **between groups** significant given the amount of variation observed **within groups** (replicates)?
+
+**We need to take into account the variation in the data (and where it might be coming from) when determining whether genes are differentially expressed.**
+
+<img src="../img/de_norm_counts_var.png" width="400">
+
+
 
 
 ### Differential expression analysis workflow
