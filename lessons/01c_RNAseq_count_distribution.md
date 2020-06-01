@@ -114,52 +114,40 @@ In practice, a large number of replicates can be either hard to obtain (dependin
 
 ## Replicates and variability
 
-Biological replicates represent multiple samples (i.e. RNA from different mice) which correspond to the same sample class or group. Intuitively, we would expect samples from the same sample group (i.e. that under similar conditions/perturbaations) to exhibit a similar transcriptional profile. In most cases, there will be a high degree of similarity of samples within a group but there will also inevitably be many differences. The source of this variability on a gene's expression can be attributed to may factors, some of which are identifiable and others that remain unknown.
+Biological replicates represent multiple samples (i.e. RNA from different mice) which correspond to the same sample class or group. Intuitively, we would expect samples from the same sample group (i.e. that under similar conditions/perturbations) to exhibit a similar transcriptional profile. In most cases, there will be a high degree of similarity of samples within a group but there will also inevitably be many differences. The **source of this variability on a gene's expression can be attributed to many factors**, some of which are identifiable and others that remain unknown.
 
 <p align="center">
 <img src="../img/de_variation.png" width="600">
 </p>
 
 
-
-**The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.**
-
-The reason being, there is much more going on with your data than what you are anticipating. Genes that vary in expression level is a consequence of not only the experimental variables of interest but also due to extraneous sources. 
-
-
-
-
-With differential expression analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)
+With differential expression analysis, we are looking for genes that change in expression between two or more groups. For example, 
 - case vs. control
 - correlation of expression with some variable or clinical outcome
 
-**Why does it not work to identify differentially expressed gene by ranking the genes by how different they are between the two groups (based on fold change values)?**
+However, there is much more going on with your data than what you are anticipating. Genes that vary in expression level is a consequence of not only the experimental variable(s) of interest but also due to extraneous sources. **The goal of differential expression analysis is to identify and correct for sources of variation such that we can separate the “interesting” from the “uninteresting”.**
 
+Let's take a closer look at the figure below as an example. Expression (counts) is plotted here for 'GeneA' in the 'untreated' and 'treated' groups. Each dot corresponds to expression for a single sample, and the dots are colored based on which group they belong to.
 
-<img src="../img/foldchange_heatmap.png" width="200">
-
-
-
-Even though the mean expression levels between sample groups may appear to be quite different, it is possible that the difference is not actually significant. This is illustrated for 'GeneA' expression between 'untreated' and 'treated' groups in the figure below. The mean expression level of geneA for the 'treated' group is twice as large as for the 'untreated' group. But is the difference in expression (counts) **between groups** significant given the amount of variation observed **within groups** (replicates)?
-
-**We need to take into account the variation in the data (and where it might be coming from) when determining whether genes are differentially expressed.**
-
+<p align="center">
 <img src="../img/de_norm_counts_var.png" width="400">
+</p>
 
+The mean expression level of GeneA for the 'treated' group is twice as large as the mean expression level for the 'untreated' group. But is the difference in expression **between groups** significant given the amount of variation observed **within groups** (across replicates)?
 
-The value of additional replicates is that as you add more data, you get increasingly precise estimates of group means, and ultimately greater confidence in the ability to distinguish differences between sample classes (i.e. more DE genes).
+It is possible that the difference is not actually significant. We need to take into account the variation in the data (and where it might be coming from) when determining whether genes are differentially expressed. Modeling our data with the negative binomial allows us to do this.
 
-- **Don't spend money on technical replicates - biological replicates are much more useful**
+### How many replicates are enough?
 
->**NOTE:**
-> If you are using **cell lines** and are unsure whether or not you have prepared biological or technical replicates, take a look at [this link](https://web.archive.org/web/20170807192514/http://www.labstats.net:80/articles/cell_culture_n.html). This is a useful resource in helping you determine how best to set up your *in-vitro* experiment.
+More is always better! At minimum we recommend three replicates for each sample group, but if you can increase that by any number it is in your best interest. The value of additional replicates is that **as you add more data, you get increasingly precise estimates of group means, and ultimately greater confidence in the ability to reliably distinguish differences between sample classes**.
 
-The figure below illustrates the relationship between sequencing depth and number of replicates on the number of differentially expressed genes identified [[1](https://academic.oup.com/bioinformatics/article/30/3/301/228651/RNA-seq-differential-expression-studies-more)]. 
+The figure below is taken from a study directly evaluating the relationship between sequencing depth and number of replicates on the number of differentially expressed genes [[1](https://academic.oup.com/bioinformatics/article/30/3/301/228651/RNA-seq-differential-expression-studies-more)]. 
 
+<p align="center">
 <img src="../img/de_replicates_img2.png" width="500">
+</p>
 
 Note that an **increase in the number of replicates tends to return more DE genes than increasing the sequencing depth**. Therefore, generally more replicates are better than higher sequencing depth, with the caveat that higher depth is required for detection of lowly expressed DE genes and for performing isoform-level differential expression. 
-
 
 ## Tools for differential expression analysis 
 
@@ -175,11 +163,19 @@ Many studies describing comparisons between these methods show that while there 
 ![deg1](../img/deg_methods2.png) 
 
 
-## Remove this workflow?
+## Differential Expression with DESeq2
 
-**We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) for the DE analysis, and the analysis steps with DESeq2 are shown in the flowchart below in green**. DESeq2 first normalizes the count data to account for differences in library sizes and RNA composition between samples. Then, we will use the normalized counts to make some plots for QC at the gene and sample level. The final step is to use the appropriate functions from the DESeq2 package to perform the differential expression analysis. We will go in-depth into each of these steps in the following lessons, but additional details and helpful suggestions regarding DESeq2 can be found in the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
+We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) for the analysis in this workshop. **The analysis steps with DESeq2 are shown in the flowchart below in green**. 
 
+* DESeq2 first normalizes the count data to account for differences in library sizes and RNA composition between samples. 
+* We will use the normalized counts to make some plots for QC at the gene and sample level. 
+* The final step is to use the appropriate functions from the DESeq2 package to perform the differential expression analysis. 
+
+<p align="center">
 <img src="../img/de_workflow_salmon.png" width="400">
+</p>
+
+We will go in-depth into each of these steps in the following lessons, but additional details and helpful suggestions regarding DESeq2 can be found in the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
