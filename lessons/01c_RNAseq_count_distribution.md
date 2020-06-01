@@ -85,7 +85,7 @@ Your plot should look like the scatterplot below. Each data point represents a g
 <img src="../img/deseq_mean_variance2.png" width="600">
 
 1. The **mean is not equal to the variance** (the scatter of data points does not fall on the diagonal).
-2. For the genes with **high mean expression**, the variance across replicates tends to be greater than the mean (red line).
+2. For the genes with **high mean expression**, the variance across replicates tends to be greater than the mean (scatter is above the red line).
 3. For the genes with **low mean expression** we see quite a bit of scatter. We usually refer to this as **"heteroscedasticity"**. That is, for a given expression level in the low range we observe a lot of variability in the variance values.
 
 ***
@@ -99,14 +99,13 @@ Try this with the control replicates?
 
 ## An alternative model: The Negative Binomial
 
-Our data fail to satisfy the criteria for a the Poisson distribution, and a typical RNA-seq will. If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect a Poisson distribution (where mean == variance). However, we always expect some amount of variability between replicates and depend on it to make more precise estimates of the mean.
+Our **data fail to satisfy the criteria for a the Poisson distribution, and typical RNA-seq data will do the same**. If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect a Poisson distribution (where mean == variance). However, we always expect some amount of variability between replicates. In fact, we depend on variability between replicates to make more precise estimates of the mean. Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
 
-Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
-
-In practice, a large number of replicates can be either hard to obtain (depending on how samples are obtained) and/or can be unaffordable. It is more common to see datasets with only a handful of replicates (~3-5) and reasonable amount of variation between them. The model that fits best, given this type of variability between replicates, is the Negative Binomial (NB) model. Essentially, **the NB model is a good approximation for data where the mean < variance**, as is the case with RNA-Seq count data.
+In practice, a large number of replicates can be either hard to obtain (depending on how samples are obtained) and/or can be unaffordable. It is more common to see datasets with only a handful of replicates (~3-5) and reasonable amount of variation between them. The model that fits RNA-seq data best, given this type of variability between replicates, is the Negative Binomial (NB) model. Essentially, **the NB model is a good approximation for data where the mean < variance**, as is the case with RNA-Seq count data.
 
 > **NOTE:** If we use the Poisson this will underestimate variability leading to an increase in false positive DE genes.
 
+<img src="../img/deseq_nb.png" width="400">
 
 The value of additional replicates is that as you add more data, you get increasingly precise estimates of group means, and ultimately greater confidence in the ability to distinguish differences between sample classes (i.e. more DE genes).
 
