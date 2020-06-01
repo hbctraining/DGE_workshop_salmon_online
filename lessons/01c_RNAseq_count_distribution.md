@@ -13,6 +13,7 @@ Approximate time: 60 minutes
 
 * Explore the characteristics of RNA-seq count data
 * Evaluate the mean-variance relationship in relation to the negative binomial model
+* Understand the importance of biological replicates
 
 # Exploring RNA-seq count data
 
@@ -82,7 +83,9 @@ ggplot(df) +
 
 Your plot should look like the scatterplot below. Each data point represents a gene and the red line represents x = y. 
 
+<p align="center">
 <img src="../img/deseq_mean_variance2.png" width="600">
+</p>
 
 1. The **mean is not equal to the variance** (the scatter of data points does not fall on the diagonal).
 2. For the genes with **high mean expression**, the variance across replicates tends to be greater than the mean (scatter is above the red line).
@@ -105,10 +108,26 @@ In practice, a large number of replicates can be either hard to obtain (dependin
 
 > **NOTE:** If we use the Poisson this will underestimate variability leading to an increase in false positive DE genes.
 
+<p align="center">
 <img src="../img/deseq_nb.png" width="400">
-
+</p>
 
 ## Replicates and variability
+
+Biological replicates represent multiple samples (i.e. RNA from different mice) which correspond to the same sample class or group. Intuitively, we would expect samples from the same sample group (i.e. that under similar conditions/perturbaations) to exhibit a similar transcriptional profile. In most cases, there will be a high degree of similarity of samples within a group but there will also inevitably be many differences. The source of this variability on a gene's expression can be attributed to may factors, some of which are identifiable and others that remain unknown.
+
+<p align="center">
+<img src="../img/de_variation.png" width="600">
+</p>
+
+
+
+**The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.**
+
+The reason being, there is much more going on with your data than what you are anticipating. Genes that vary in expression level is a consequence of not only the experimental variables of interest but also due to extraneous sources. 
+
+
+
 
 With differential expression analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)
 - case vs. control
@@ -119,9 +138,7 @@ With differential expression analysis, we are looking for genes that change in e
 
 <img src="../img/foldchange_heatmap.png" width="200">
 
-More often than not, there is much more going on with your data than what you are anticipating. Genes that vary in expression level between samples is a consequence of not only the experimental variables of interest but also due to extraneous sources. **The goal of differential expression analysis to determine the relative role of these effects, and to separate the “interesting” from the “uninteresting”.**
 
-<img src="../img/de_variation.png" width="500">
 
 Even though the mean expression levels between sample groups may appear to be quite different, it is possible that the difference is not actually significant. This is illustrated for 'GeneA' expression between 'untreated' and 'treated' groups in the figure below. The mean expression level of geneA for the 'treated' group is twice as large as for the 'untreated' group. But is the difference in expression (counts) **between groups** significant given the amount of variation observed **within groups** (replicates)?
 
