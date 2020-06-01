@@ -64,9 +64,9 @@ Count data in general can be modeled with various distributions:
 
 With RNA-Seq data, **a very large number of RNAs are represented and the probability of pulling out a particular transcript is very small**. This scenario is most similar to the lottery described above, suggesting that perhaps the Poisson distribution is most appropriate. However, this **will depend on the relationship between mean and variance in our data**.
 
-#### Mean versus variance
+### Mean versus variance
 
-To assess the properties of the data we are working with, we can use the three samples corresponding to the 'Mov10 overexpression' replicates. First compute a vector of mean values, then a vector of variance values. We can then plot these values against each other to evaluate the relationship between them.
+To assess the properties of the data we are working with, we can use the three samples corresponding to the 'Mov10 overexpression' replicates. First compute a vector of mean values, then compute a vector of variance values. Then plot these values against each other to evaluate the relationship between them.
 
 ```r
 mean_counts <- apply(data[,6:8], 1, mean)        #The second argument '1' of 'apply' function indicates the function being applied to rows. Use '2' if applied to columns 
@@ -80,32 +80,36 @@ ggplot(df) +
         geom_abline(intercept = 0, slope = 1, color="red")
 ```
 
-***
-
-**Exercise**
-
 Your plot should look like the scatterplot below. Each data point represents a gene and the red line represents x = y. 
 
 <img src="../img/deseq_mean_variance2.png" width="600">
 
-1. Is the mean equal to variance for this data? 
-2. For the **lowly expressed genes** we see quite a bit of scatter. We usually refer to this as "heteroscedasticity". That is, for a given expression level we observe **a lot of variation in the amount of variance**. 
+1. The **mean is not equal to the variance** (the scatter of data points does not fall on the diagonal).
+2. For the genes with **high mean expression**, the variance across replicates tends to be greater than the mean (red line).
+3. For the genes with **low mean expression** we see quite a bit of scatter. We usually refer to this as **"heteroscedasticity"**. That is, for a given expression level in the low range we observe a lot of variability in the variance values.
 
 ***
 
-*This is a good indication that our data do not fit the Poisson distribution.* If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect Poisson distribution (where mean == variance). Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
+**Exercise**
 
-However, in practice a large number of replicates can be either hard to obtain (depending on how samples are obtained) and/or can be unaffordable. It is more common to see datasets with only a handful of replicates (~3-5) and reasonable amount of variation between them. The model that fits best, given this type of variability between replicates, is the Negative Binomial (NB) model. Essentially, **the NB model is a good approximation for data where the mean < variance**, as is the case with RNA-Seq count data.
+Try this with the control replicates?
+
+***
+
+
+## An alternative model: The Negative Binomial
+
+Our data fail to satisfy the criteria for a the Poisson distribution, and a typical RNA-seq will. If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect a Poisson distribution (where mean == variance). However, we always expect some amount of variability between replicates and depend on it to make more precise estimates of the mean.
+
+Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
+
+In practice, a large number of replicates can be either hard to obtain (depending on how samples are obtained) and/or can be unaffordable. It is more common to see datasets with only a handful of replicates (~3-5) and reasonable amount of variation between them. The model that fits best, given this type of variability between replicates, is the Negative Binomial (NB) model. Essentially, **the NB model is a good approximation for data where the mean < variance**, as is the case with RNA-Seq count data.
 
 > **NOTE:** If we use the Poisson this will underestimate variability leading to an increase in false positive DE genes.
 
-### Improving mean estimates with biological replicates
 
 The value of additional replicates is that as you add more data, you get increasingly precise estimates of group means, and ultimately greater confidence in the ability to distinguish differences between sample classes (i.e. more DE genes).
 
--  **Biological replicates** represent multiple samples (i.e. RNA from different mice) representing the same sample class
-- **Technical replicates** represent the same sample (i.e. RNA from the same mouse) but with technical steps replicated
-- Usually biological variance is much greater than technical variance, so we do not need to account for technical variance to identify biological differences in expression
 - **Don't spend money on technical replicates - biological replicates are much more useful**
 
 >**NOTE:**
