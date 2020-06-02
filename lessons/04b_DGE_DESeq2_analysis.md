@@ -81,7 +81,7 @@ In RNA-seq count data, we know:
 
 **To accurately identify DE genes, DESeq2 needs to account for the relationship between the variance and mean.** We don't want all of our DE genes to be genes with low counts because the variance is lower for lowly expressed genes.
 
-Instead of using variance as the measure of variation in the data (*since variance correlates with gene expression level*), it uses a measure of variation called **dispersion, which accounts for a gene's variance and mean expression level**. Dispersion is calculated by `Var = μ + α*μ^2`, where `α` represents the dispersion (`Var` = variance, and `μ` = mean) giving the relationship:
+Instead of using variance as the measure of variation in the data (*since variance correlates with gene expression level*), DESeq2 uses a measure of variation called **dispersion, which accounts for a gene's variance and mean expression level**. Dispersion is calculated by `Var = μ + α*μ^2`, where `α` = dispersion, `Var` = variance, and `μ` = mean, giving the relationship:
 
 | | Effect on dispersion |
 |:---:|:---:|
@@ -89,7 +89,7 @@ Instead of using variance as the measure of variation in the data (*since varian
 | Mean expression increases | Dispersion decreases |
 
 
-For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation (`Var / μ`). So 0.01 dispersion means 10% variation around the mean expected across biological replicates. The dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value (given as black dots in image below).** 
+For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation (`Var / μ`). So 0.01 dispersion means 10% variation around the mean expected across biological replicates. The dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value.** In the plot below, each black dot is a gene, and the dispersion is plotted against the mean expression (across within-group replicates) for each gene.
 
 <img src="../img/deseq_dispersion1.png" width="400">
 
@@ -97,11 +97,11 @@ For genes with moderate to high count values, the square root of dispersion will
 
 To accurately model sequencing counts, we need to generate accurate estimates of within-group variation (variation between replicates of the same sample group) for each gene. With only a few (3-6) replicates per group, the **estimates of variation for each gene are often unreliable**. 
 
-To address this problem, DESeq2 **shares information across genes** to generate more accurate estimates of variation based on the mean expression level of the gene using a method called 'shrinkage'. **DESeq2 assumes that genes with similar expression levels have similar dispersion.** 
+To address this problem, DESeq2 **shares information across genes** to generate more accurate estimates of variation based on the mean expression level of the gene using a method called 'shrinkage'. **DESeq2 assumes that genes with similar expression levels should have similar dispersion.** 
 
 **Estimating the dispersion for each gene separately:**
 
-DESeq2 estimates the dispersion for each gene based on the gene's expression level (mean counts of replicates) and variance. 
+DESeq2 estimates the dispersion for each gene based on the gene's expression level (mean counts of within-group replicates) and variance. 
 
 ### Step 3: Fit curve to gene-wise dispersion estimates
 
@@ -124,7 +124,7 @@ The curve allows for more accurate identification of differentially expressed ge
 - how close gene dispersions are from the curve 
 - sample size (more samples = less shrinkage)
 
-**This shrinkage method is particularly important to reduce false positives in the differential expression analysis.** Genes with low dispersion estimates are shrunken towards the curve, and the more accurate, higher shrunken values are output for fitting of the model and differential expression testing.
+**This shrinkage method is particularly important to reduce false positives in the differential expression analysis.** Genes with low dispersion estimates are shrunken towards the curve, and the more accurate, higher shrunken values are output for fitting of the model and differential expression testing. These shrunken estimates represent the within-group variation that is needed to determine whether the gene expression across groups is significantly different.
 
 Dispersion estimates that are slightly above the curve are also shrunk toward the curve for better dispersion estimation; however, genes with **extremely high dispersion values are not**. This is due to the likelihood that the gene does not follow the modeling assumptions and has higher variability than others for biological or technical reasons [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)]. Shrinking the values toward the curve could result in false positives, so these values are not shrunken. These genes are shown surrounded by blue circles below. 
 
@@ -133,6 +133,8 @@ Dispersion estimates that are slightly above the curve are also shrunk toward th
 **This is a good plot to examine to ensure your data is a good fit for the DESeq2 model.** You expect your data to generally scatter around the curve, with the dispersion decreasing with increasing mean expression levels. If you see a cloud or different shapes, then you might want to explore your data more to see if you have contamination (mitochondrial, etc.) or outlier samples.  Note how much shrinkage you get across the whole range of means in the `plotDispEsts()` plot for any experiment with low degrees of freedom.
 
 Examples of **worrisome dispersion plots** are shown below:
+
+The plot below shows a cloud of dispersion values, which do not generally follow the curve. This would be worrisome and suggests a bad fit of the data to the model. 
 
 <img src="../img/bad_dispersion1.png" width="600">
 
