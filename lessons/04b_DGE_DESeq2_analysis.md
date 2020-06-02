@@ -53,6 +53,8 @@ colSums(counts(dds))
 
 *How do the numbers correlate with the size factor?*
 
+We see that the larger size factors correspond to the samples with higher sequencing depth, which makes sense, because to generate our normalized counts we need to divide the counts by the size factors. This accounts for the differences in sequencing depth between samples.
+
 Now take a look at the total depth after normalization using:
 
 ```r
@@ -61,6 +63,8 @@ colSums(counts(dds, normalized=T))
 ```
 
 How do the values across samples compare with the total counts taken for each sample?
+
+You might have expected the counts to be the exact same across the samples after normalization. However, DESeq2 also accounts for RNA composition during the normalization procedure. By using the median ratio value for the size factor, DESeq2 should not be bias due to a large number of counts sucked up by a few DE genes; however, this may lead to the size factors being quite different than what would be anticipated just based on sequencing depth.
 
 ### Step 2: Estimate gene-wise dispersion
 
