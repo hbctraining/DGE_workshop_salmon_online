@@ -14,7 +14,7 @@ Approximate time: 60 minutes
 
 ## DESeq2 differential gene expression analysis workflow
 
-With the 2 lines of code above, we just completed the workflow for the differential gene expression analysis with DESeq2. The steps in the analysis are output below:
+With the 2 lines of code in the previous lesson, we just completed the workflow for the differential gene expression analysis with DESeq2. The steps in the analysis are output below:
 
 <img src="../img/deseq2_workflow_separate.png" width="200">
 
