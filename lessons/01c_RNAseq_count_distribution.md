@@ -141,6 +141,12 @@ It is possible that the difference is not actually significant. We need to take 
 
 More is always better! At minimum we recommend three replicates for each sample group, but if you can increase that by any number it is in your best interest. The value of additional replicates is that **as you add more data, you get increasingly precise estimates of group means, and ultimately greater confidence in the ability to reliably distinguish differences between sample classes**.
 
+Having many replicates allow us to:
+* estimate variation for each gene
+* randomize out unknown covariates
+* spot outliers
+* improve precision of expression and fold-change estimates
+
 The figure below is taken from a study directly evaluating the relationship between sequencing depth and number of replicates on the number of differentially expressed genes [[1](https://academic.oup.com/bioinformatics/article/30/3/301/228651/RNA-seq-differential-expression-studies-more)]. 
 
 <p align="center">
