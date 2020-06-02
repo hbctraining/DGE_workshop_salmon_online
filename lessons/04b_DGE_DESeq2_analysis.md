@@ -138,6 +138,8 @@ The plot below shows a cloud of dispersion values, which do not generally follow
 
 <img src="../img/bad_dispersion1.png" width="600">
 
+The next plot shows the dispersion values initially decreasing, then increasing with larger expression values. The larger mean expression values should not have larger dispersions based on our expectations - we expect decreasing dispersions with increasing mean. This indicates that there is less variation for more highly expressed genes than expected. This also indicates that there could be an outlier sample or contamination present in our analysis.
+
 <img src="../img/bad_dispersion2.png" width="600">
 
 
@@ -153,6 +155,8 @@ plotDispEsts(dds)
 <img src="../img/plotDispersion_salmon.png">
  
 **Since we have a small sample size, for many genes we see quite a bit of shrinkage. Do you think our data are a good fit for the model?**
+
+We see a nice decrease in dispersion with increasing mean expression, which is good. We also see the dispersion estimates generally surround the curve, which is also expected. Overall, this plot looks good. We do see strong shrinkage, which is likely due to the fact that we have only two replicates for one of our sample groups. The more replicates we have, the less shrinkage is applied to the dispersion estimates, and the more DE genes are able to be identified.
 
 
 ---
