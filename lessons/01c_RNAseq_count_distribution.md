@@ -102,7 +102,7 @@ Try this with the control replicates?
 
 ## An alternative model: The Negative Binomial
 
-Our **data fail to satisfy the criteria for a the Poisson distribution, and typical RNA-seq data will do the same**. If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect a Poisson distribution (where mean == variance). However, we always expect some amount of variability between replicates. In fact, we depend on variability between replicates to make more precise estimates of the mean. Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
+Our **data fail to satisfy the criteria for a the Poisson distribution, and typical RNA-seq data will do the same**. If the proportions of mRNA stayed exactly constant between the biological replicates for a sample group, we could expect a Poisson distribution (where mean == variance). However, we always expect some amount of variability between replicates (we'll discuss this in more detail later in the lesson). Alternatively, if we continued to add more replicates (i.e. > 20) we should eventually see the scatter start to reduce and the high expression data points move closer to the red line. So in theory, if we had enough replicates we could use the Poisson.
 
 In practice, a large number of replicates can be either hard to obtain (depending on how samples are obtained) and/or can be unaffordable. It is more common to see datasets with only a handful of replicates (~3-5) and reasonable amount of variation between them. The model that fits RNA-seq data best, given this type of variability between replicates, is the Negative Binomial (NB) model. Essentially, **the NB model is a good approximation for data where the mean < variance**, as is the case with RNA-Seq count data.
 
@@ -151,17 +151,18 @@ Note that an **increase in the number of replicates tends to return more DE gene
 
 ## Tools for differential expression analysis 
 
-To model counts appropriately when performing a differential expression analysis, there are a number of software packages that have been developed for differential expression analysis of RNA-seq data. Even as new methods are continuously being developed a few  tools are generally recommended as best practice, e.g. **[DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html)** and **[EdgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html)**. Both these tools use the negative binomial model, employ similar methods, and typically, yield similar results. They are pretty stringent, and have a good balance between sensitivity and specificity (reducing both false positives and false negatives).
+There are a number of software packages that have been developed for differential expression analysis of RNA-seq data. Many  tools such as [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html), [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html), and [baySeq](https://www.bioconductor.org/packages/release/bioc/html/baySeq.html), adopt the negative binomial model as the main approach. Other software tools, such as [NOIseq](https://www.bioconductor.org/packages/release/bioc/html/NOISeq.html) and [SAMseq](https://www.rdocumentation.org/packages/samr/versions/3.0/topics/SAMseq), adopt non-parametric methods which take into consideration that data distribution cannot be defined from a finite set of parameters, thus the amount of information about the data can increase with its volume. For larger sample sizes, the methods combining a variance-stabilizing transformation with the [‘limma’]((https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r29)) method for differential expression analysis also performs well under many different conditions.
 
-**[Limma-Voom](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r29)** is another set of tools often used together for DE analysis, but this method may be less sensitive for small sample sizes. This method is recommended when the number of biological replicates per group grows large (> 20). 
+The availability of different methods can be overwhelming as there is not a consensus about which methodology is most appropriate or which approach ensures the validity of the results in terms of robustness, accuracy and reproducibility. 
 
-Many studies describing comparisons between these methods show that while there is some agreement, there is also much variability between tools. **Additionally, there is no one method that performs optimally under all conditions ([Soneson and Dleorenzi, 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91)).**
+[Soneson and Dleorenzi, 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91) conducted an extensive comparison of eleven methods for differential expression analysis of RNA-seq data and present results based on both simulated data and real RNA-seq data. In the figure below, we see that while many (parametric) methods identify similar numbers of genes, the overlap in the genes varies between tools. They conclude that small sample sizes (common in RNA-seq experiments) impose problems for all evaluated methods and any results obtained under such conditions should be interpreted with caution. 
+
+<p align="center">
+<img src="../img/soneson_figure.png" width="500">
+</p>
 
 
-![deg1](../img/deg_methods1.png) 
-
-![deg1](../img/deg_methods2.png) 
-
+DESeq2 and edgeR are commonly used tools in the field. Both these tools use the negative binomial model, employ similar methods, and typically, yield similar results. They are pretty stringent, and have a good balance between sensitivity and specificity (reducing both false positives and false negatives). AS shown in the 
 
 ## Differential Expression with DESeq2
 
