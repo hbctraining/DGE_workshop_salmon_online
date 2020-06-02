@@ -103,4 +103,6 @@ final dispersion estimates
 fitting model and testing
 ``` 
 
+We will discuss what is occurring in each of these steps in the next lessons, but the code to execute these steps is encompassed in the two lines above.
+
 > **NOTE:** There are individual functions available in DESeq2 that would allow us to carry out each step in the workflow in a step-wise manner, rather than a single call. We demonstrated one example when generating size factors to create a normalized matrix. By calling `DESeq()`, the individual functions for each step are run for you.
