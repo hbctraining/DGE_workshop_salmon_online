@@ -84,7 +84,7 @@ ggplot(df) +
 Your plot should look like the scatterplot below. Each data point represents a gene and the red line represents x = y. 
 
 <p align="center">
-<img src="../img/deseq_mean_variance2.png" width="600">
+<img src="../img/deseq_mean_variance2.png" width="450">
 </p>
 
 1. The **mean is not equal to the variance** (the scatter of data points does not fall on the diagonal).
@@ -117,7 +117,7 @@ In practice, a large number of replicates can be either hard to obtain (dependin
 Biological replicates represent multiple samples (i.e. RNA from different mice) which correspond to the same sample class or group. Intuitively, we would expect samples from the same sample group (i.e. that under similar conditions/perturbations) to exhibit a similar transcriptional profile. In most cases, there will be a high degree of similarity of samples within a group but there will also inevitably be many differences. The **source of this variability on a gene's expression can be attributed to many factors**, some of which are identifiable and others that remain unknown.
 
 <p align="center">
-<img src="../img/de_variation.png" width="600">
+<img src="../img/de_variation.png" width="650">
 </p>
 
 
@@ -130,7 +130,7 @@ However, there is much more going on with your data than what you are anticipati
 Let's take a closer look at the figure below as an example. Expression (counts) is plotted here for 'GeneA' in the 'untreated' and 'treated' groups. Each dot corresponds to expression for a single sample, and the dots are colored based on which group they belong to.
 
 <p align="center">
-<img src="../img/de_norm_counts_var.png" width="400">
+<img src="../img/de_norm_counts_var.png" width="500">
 </p>
 
 The mean expression level of GeneA for the 'treated' group is twice as large as the mean expression level for the 'untreated' group. But is the difference in expression **between groups** significant given the amount of variation observed **within groups** (across replicates)?
@@ -158,7 +158,7 @@ The availability of different methods can be overwhelming as there is not a cons
 [Soneson and Dleorenzi, 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91) conducted an extensive comparison of eleven methods for differential expression analysis of RNA-seq data and present results based on both simulated data and real RNA-seq data. In the figure below, we see that while many (parametric) methods identify similar numbers of genes, the overlap in the genes varies between tools. They conclude that small sample sizes (common in RNA-seq experiments) impose problems for all evaluated methods and any results obtained under such conditions should be interpreted with caution. 
 
 <p align="center">
-<img src="../img/soneson_figure.png" width="800">
+<img src="../img/soneson_figure.png" width="900">
 </p>
 
 ## Differential Expression with DESeq2
