@@ -165,7 +165,7 @@ The availability of different methods can be overwhelming as there is not a cons
 
 DESeq2 is a popular tool for gene-level differential expression analysis. It uses the negative binomial model, employing a slightly more stringent approach compared to some methods yet having a good balance between sensitivity and specificity (reducing both false positives and false negatives). Consequently, the number of differentially expressed genes will be fewer, but as shown in the figure above these genes have been found to be a subset of genes identified by other methods.
 
-We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) for the analysis in this workshop. **The analysis steps with DESeq2 are shown in the flowchart below in green**. 
+We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) for the analysis in this workshop. **The analysis steps with DESeq2 are shown in the flowchart below in green and blue**. 
 
 <p align="center">
 <img src="../img/de_workflow_salmon.png" width="400">
