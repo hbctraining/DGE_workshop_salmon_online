@@ -1,7 +1,7 @@
 ---
 title: "Functional Analysis for RNA-seq"
 author: "Mary Piper, Radhika Khetani"
-date: "November 2018"
+date: "Wednesday, June 3rd, 2020"
 ---
 
 Approximate time: 120 minutes
@@ -297,7 +297,7 @@ Now we are ready to perform GSEA. The details regarding GSEA can be found in the
 <img src="../img/gsea_overview.png" width="600">
 </p>
 
-_**Image credit:** Subramanian et al. Proceedings of the National Academy of Sciences Oct 2005, 102 (43) 15545-15550; DOI: 10.1073/pnas.0506580102_
+_**Image credit:** [Subramanian et al. Proceedings of the National Academy of Sciences Oct 2005, 102 (43) 15545-15550; DOI: 10.1073/pnas.0506580102](https://www.pnas.org/content/102/43/15545)_
 
 **Step 1:** Calculation of enrichment score: 
 
