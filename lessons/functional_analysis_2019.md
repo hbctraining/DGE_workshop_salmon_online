@@ -297,6 +297,8 @@ Now we are ready to perform GSEA. The details regarding GSEA can be found in the
 <img src="../img/gsea_overview.png" width="600">
 </p>
 
+_**Image credit:** Subramanian et al. Proceedings of the National Academy of Sciences Oct 2005, 102 (43) 15545-15550; DOI: 10.1073/pnas.0506580102_
+
 **Step 1:** Calculation of enrichment score: 
 
 An enrichment score for a particular gene set is calculated by walking down the list of log2 fold changes and increasing the running-sum statistic every time a gene in the gene set is encountered and decreasing it when genes are not part of the gene set. The size of the increase/decrease is determined by magnatude of the log2 fold change. Larger log2 fold changes will result in larger increases or decreases. The final enrichment score is where the running-sum statistic is the largest deviation from zero.
