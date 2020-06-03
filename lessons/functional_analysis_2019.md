@@ -246,7 +246,7 @@ Over-representation analysis is only a single type of functional analysis method
 
 ## Functional class scoring tools
 
-Functional class scoring (FCS) tools, such as [GSEA](http://software.broadinstitute.org/gsea/index.jsp), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
+Functional class scoring (FCS) tools, such as [GSEA](https://www.pnas.org/content/102/43/15545), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
 
 <img src="../img/gsea_theory.png" width="600">
 
@@ -257,6 +257,8 @@ The hypothesis of FCS methods is that although large changes in individual genes
 Using the log2 fold changes obtained from the differential expression analysis for every gene, gene set enrichment analysis and pathway analysis can be performed using clusterProfiler and Pathview tools.
 
 For gene set or pathway analysis using clusterProfiler, coordinated differential expression over gene sets is tested instead of changes of individual genes. "Gene sets are pre-defined groups of genes, which are functionally related. Commonly used gene sets include those derived from KEGG pathways, Gene Ontology terms, MSigDB, Reactome, or gene groups that share some other functional annotations, etc. Consistent perturbations over such gene sets frequently suggest mechanistic changes" [[1](../../resources/pathway_tools.pdf)]. 
+
+#### Preparation for GSEA
 
 To perform GSEA analysis of KEGG gene sets, clusterProfiler requires the genes to be identified using Entrez IDs for all genes in our results dataset. We also need to remove the NA values and duplicates (due to gene ID conversion) prior to the analysis:
 
@@ -287,7 +289,31 @@ foldchanges <- sort(foldchanges, decreasing = TRUE)
 head(foldchanges)
 ```
 
-Perform the GSEA using KEGG gene sets:
+#### Theory of GSEA
+
+Now we are ready to perform GSEA. The details regarding GSEA can be found in the [PNAS paper](https://www.pnas.org/content/102/43/15545) by Subramanian et al. We will describe briefly the steps outlined in the paper below:
+
+<p>
+<img src="../img/gsea_overview.jpg" width="600">
+</p>
+
+**Step 1:** Calculation of enrichment score: 
+
+An enrichment score for a particular gene set is calculated by walking down the list of log2 fold changes and increasing the running-sum statistic every time a gene in the gene set is encountered and decreasing it when genes are not part of the gene set. The size of the increase/decrease is determined by magnatude of the log2 fold change. Larger log2 fold changes will result in larger increases or decreases. The final enrichment score is where the running-sum statistic is the largest deviation from zero.
+
+**Step 2:** Estimation of significance:
+
+The significance of the enrichment score is determined using permutation testing, which performs all possible rearrangements of the data points to determine the likelihood of generating an enrichment score as large as the enrichment score calculated from the observed data. Essentially, for this step, the first permutation would reorder the log2 fold changes corresponding to the different genes and reordering the gene ranks and calculation of the enrichment score. The second permutation would reorder the log2 fold changes again and recalculate the enrichment score, and this would continue for the total number of permutations run. Therefore, the number of permutations run will increase the confidence in the signficance estimates.
+
+**Step 3:** Adjust for multiple test correction
+
+After all gene sets are tested, the enrichment scores are normalized for the size of the gene set, then the p-values are corrected for multiple testing.
+
+The GSEA output will yield the core genes in the gene sets that most highly contribute to the enrichment score. The genes output are generally the genes at or before the running sum reaches its maximum value (eg. the most influential genes driving the differences between conditions for that gene set).
+
+#### Performing GSEA
+
+To perform the GSEA using KEGG gene sets with clusterProfiler, we can use the `gseKEGG()` function:
 
 ```r
 ## GSEA using gene sets from KEGG pathways
