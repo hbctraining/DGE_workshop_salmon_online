@@ -305,7 +305,7 @@ An enrichment score for a particular gene set is calculated by walking down the 
 
 **Step 2:** Estimation of significance:
 
-The significance of the enrichment score is determined using permutation testing, which performs all possible rearrangements of the data points to determine the likelihood of generating an enrichment score as large as the enrichment score calculated from the observed data. Essentially, for this step, the first permutation would reorder the log2 fold changes corresponding to the different genes and reordering the gene ranks and calculation of the enrichment score. The second permutation would reorder the log2 fold changes again and recalculate the enrichment score, and this would continue for the total number of permutations run. Therefore, the number of permutations run will increase the confidence in the signficance estimates.
+The significance of the enrichment score is determined using permutation testing, which performs rearrangements of the data points to determine the likelihood of generating an enrichment score as large as the enrichment score calculated from the observed data. Essentially, for this step, the first permutation would reorder the log2 fold changes corresponding to the different genes and reordering the gene ranks and calculation of the enrichment score. The second permutation would reorder the log2 fold changes again and recalculate the enrichment score, and this would continue for the total number of permutations run. Therefore, the number of permutations run will increase the confidence in the signficance estimates.
 
 **Step 3:** Adjust for multiple test correction
 
