@@ -294,7 +294,7 @@ head(foldchanges)
 Now we are ready to perform GSEA. The details regarding GSEA can be found in the [PNAS paper](https://www.pnas.org/content/102/43/15545) by Subramanian et al. We will describe briefly the steps outlined in the paper below:
 
 <p>
-<img src="../img/gsea_overview.jpg" width="600">
+<img src="../img/gsea_overview.png" width="600">
 </p>
 
 **Step 1:** Calculation of enrichment score: 
