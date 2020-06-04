@@ -71,13 +71,13 @@ Now that we have our contrast created, we can use it as input to the `results()`
 ?results
 ```
 You will see we have the option to provide a wide array of arguments and tweak things from the defaults as needed. As we go through the lesson we will keep coming back to the doumentation to discuss some arguments that are good to know about.
-
-For our analysis, in addition to the `contrast` argument we will also providea value of 0.05 for the `alpha` argument. We will describe this in more detail when we talk about [gene-level filtering]().
  
 ```r
 ## Extract results for MOV10 overexpression vs control
 res_tableOE <- results(dds, contrast=contrast_oe, alpha = 0.05)
 ```
+
+> **NOTE:** For our analysis, in addition to the `contrast` argument we will also provide a value of 0.05 for the `alpha` argument. We will describe this in more detail when we talk about [gene-level filtering]().
 
 The results table that is returned to us is **a `DESeqResults` object**, which is a simple subclass of DataFrame. In many ways it can be treated like a dataframe (i.e when accessing/subsetting data), however it is important to recognize that there are differences for downstream steps like visualization.
 
