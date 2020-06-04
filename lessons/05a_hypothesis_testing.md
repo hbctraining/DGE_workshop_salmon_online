@@ -38,20 +38,22 @@ After the model is fit, coefficients are estimated for each sample group along w
 
 ## Hypothesis testing 
 
-The first step in hypothesis testing is to set up a **null hypothesis** for each gene. In our case is, the null hypothesis is that there is **no differential expression across the two sample groups (LFC == 0)**. Notice that we can do this without observing any data, because it is based on a thought experiment. Second, we use a statistical test to determine if based on the observed data, the null hypothesis is true. 
+The first step in hypothesis testing is to set up a **null hypothesis** for each gene. In our case, the null hypothesis is that there is **no differential expression across the two sample groups (LFC == 0)**. Notice that we can do this without observing any data, because it is based on a thought experiment. Second, we use a statistical test to determine if based on the observed data, the null hypothesis is true. 
 
 ### Wald test
 
-In DESeq2, the **Wald test is the default used for hypothesis testing when comparing two groups**. The Wald test is a test usually performed on parameters that have been estimated by maximum likelihood. In our case we are testing each gene model coefficient (LFC) which was derived using parameters like dispersion which were estimated using maximum likelihood. 
+In DESeq2, the **Wald test is the default used for hypothesis testing when comparing two groups**. The Wald test is a test usually performed on parameters that have been estimated by maximum likelihood. In our case we are testing each gene model coefficient (LFC) which was derived using parameters like dispersion, which were estimated using maximum likelihood. 
 
 DESeq2 implements the Wald test by:
 * Taking the LFC and dividing it by its standard error, resulting in a z-statistic
 * The z-statistic is compared to a standard normal distribution, and a p-value is computed reporting the probability that a z-statistic at least as extreme as the observed value would be selected at random
 * If the p-value is small we reject the null hypothesis and state that there is evidence against the null (i.e. the gene is differentially expressed).
 
-The model fit and Wald test were already run previously as part of the `DESeq()` function:
+The **model fit and Wald test were already run previously as part of the `DESeq()` function**:
 
 ```r
+
+## DO NOT RUN THIS CODE
 
 ## Create DESeq2Dataset object
 dds <- DESeqDataSetFromTximport(txi, colData = meta, design = ~ sampletype)
@@ -62,14 +64,13 @@ dds <- DESeq(dds)
 
 ## Likelihood ratio test (LRT)
 
-DESeq2 also offers the Likelihood Ratio Test as an alternative **when evaluating expression change across more than two levels**. This type of test can be especially useful in analyzing time course experiments. 
+DESeq2 also offers the Likelihood Ratio Test (LRT) as an alternative **hypothesis test for when we are comparing more than two sample classes**. Rather than evaluating whether a gene's expression is up- or down-regulated in one class compared to another, the LRT **identifies genes that are changing in expresssion in any direction across the different sample classes**. _This type of test can be especially useful in analyzing time course experiments_. 
 
 ### How does this compare to the Wald test?
 
-The **Wald test** (default) is a test of hypothesis usually performed on parameters that have been estimated by maximum likelihood. It only **estimates one model per gene and evaluates the null hypothesis that LFC == 0.**
+The **Wald test** (default) only **estimates one model per gene** and evaluates the null hypothesis that LFC == 0.
 
-
-The **Likelihood Ratio Test** is also performed on parameters that have been estimated by maximum likelihood. For this test **two models are estimated per gene; the fit of one model is compared to the fit of the other model.**
+For the **Likelihood Ratio Test** is also performed on parameters that have been estimated by maximum likelihood. For this test **two models are estimated per gene; the fit of one model is compared to the fit of the other model.**
 
 <p align="center">
 <img src="../img/lrt_formula.png" width="300">
