@@ -237,14 +237,11 @@ cnetplot(ego2,
 
 <img src="../img/cnetplot-2_salmon.png" width="800">
 
+## Functional class scoring
 
-## Other methods for functional analysis
-
-Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring and pathway topology methods. 
+Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring methods. 
 
 ![Pathway analysis tools](../img/pathway_analysis.png)
-
-## Functional class scoring tools
 
 Functional class scoring (FCS) tools, such as [GSEA](https://www.pnas.org/content/102/43/15545), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
 
@@ -256,11 +253,11 @@ The hypothesis of FCS methods is that although large changes in individual genes
 
 Using the log2 fold changes obtained from the differential expression analysis for every gene, gene set enrichment analysis and pathway analysis can be performed using clusterProfiler and Pathview tools.
 
-For gene set or pathway analysis using clusterProfiler, coordinated differential expression over gene sets is tested instead of changes of individual genes. "Gene sets are pre-defined groups of genes, which are functionally related. Commonly used gene sets include those derived from KEGG pathways, Gene Ontology terms, MSigDB, Reactome, or gene groups that share some other functional annotations, etc. Consistent perturbations over such gene sets frequently suggest mechanistic changes" [[1](../../resources/pathway_tools.pdf)]. 
+For a gene set or pathway analysis using clusterProfiler, coordinated differential expression over gene sets is tested instead of changes of individual genes. "Gene sets are pre-defined groups of genes, which are functionally related. Commonly used gene sets include those derived from KEGG pathways, Gene Ontology terms, MSigDB, Reactome, or gene groups that share some other functional annotations, etc. Consistent perturbations over such gene sets frequently suggest mechanistic changes" [[1](../../resources/pathway_tools.pdf)]. 
 
 #### Preparation for GSEA
 
-To perform GSEA analysis of KEGG gene sets, clusterProfiler requires the genes to be identified using Entrez IDs for all genes in our results dataset. We also need to remove the NA values and duplicates (due to gene ID conversion) prior to the analysis:
+clusterProfiler offers several functions to perform GSEA using different genes sets, including but not limited to GO, KEGG, and MSigDb. We will use the KEGG gene sets, which identify genes using their Entrez IDs. Therefore, to perform the analysis, we will need to acquire the Entrez IDs. We will also need to remove the Entrez ID NA values and duplicates (due to gene ID conversion) prior to the analysis:
 
 ```r
 ## Remove any NA values (reduces the data by quite a bit)
@@ -298,6 +295,8 @@ Now we are ready to perform GSEA. The details regarding GSEA can be found in the
 </p>
 
 _**Image credit:** [Subramanian et al. Proceedings of the National Academy of Sciences Oct 2005, 102 (43) 15545-15550; DOI: 10.1073/pnas.0506580102](https://www.pnas.org/content/102/43/15545)_
+
+This image describes the theory of GSEA, with the gene set showing the metric (in our case, ranked log2 fold changes) used to determine enrichment of genes in the gene set. The left-most image is representing this metric used for the GSEA analysis. The large log2 fold changes for each gene in the gene set is shown as a line in the middle image. The large positive log2 fold changes are at the top of the gene set image, while the largest negative log2 fold changes are at the bottom of the gene set image. In the right-most image, the gene set is turned horizontally.
 
 **Step 1:** Calculation of enrichment score: 
 
@@ -350,6 +349,8 @@ gseaplot(gseaKEGG, geneSetID = 'hsa03040')
 ```
 
 ![gseaKEGG_gseaplot](../img/gsea_kegg_hsa03040.png)
+
+In this plot, the lines in plot represent the genes in the gene set 'hsa03040', and where they occur among the log2 fold changes. The largest positive log2 fold changes are on the left-hand side of the plot, while the largest negative log2 fold changes are on the right. The top plot shows the magnitude of the log2 fold changes for each gene, while the bottom plot shows the running sum, with the enrichment score peaking at the red dotted line (which is among the negative log2 fold changes).
 
 Use the [Pathview R package](http://bioconductor.org/packages/release/bioc/html/pathview.html) to integrate the KEGG pathway data from clusterProfiler into pathway images:
 
