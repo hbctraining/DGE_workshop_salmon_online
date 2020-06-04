@@ -27,24 +27,35 @@ In our dataset, we have three sample classes so we can make three possible pairw
 
 **We are really only interested in #1 and #2 from above**. When we intially created our `dds` object we had provided `~ sampletype` as our design formula, indicating that `sampletype` is our main factor of interest.
 
-To indicate to DESeq2 the two sample classes we are interested in comparing, we need to specify **contrasts**. The contrasts are used as input to DESeq2 to extract the desired results 
+To indicate which two sample classes we are interested in comparing, we need to specify **contrasts**. The contrasts are used as input to the DESeq2 `results()` function to extract the desired results. 
 
-perform differential expression testing using the Wald test. Contrasts can be provided to DESeq2 a couple of different ways:
+Contrasts can be specified in two different ways (with the first method more commonly used):
 
-1. Do nothing. Automatically DESeq2 will use the base factor level of the condition of interest as the base for statistical testing. The base level is chosen based on alphabetical order of the levels.
-2. In the `results()` function you can specify the comparison of interest, and the levels to compare. The level given last is the base level for the comparison. The syntax is given below:
+1. Contrasts can be supplied as a **character vector with exactly three elements**: the name of the factor (of interest) in the design formula, the name of the two factors levels to compare. The factor level given last is the base level for the comparison. The syntax is given below:
 	
 ```r
 	# DO NOT RUN!
 	contrast <- c("condition", "level_to_compare", "base_level")
-	results(dds, contrast = contrast, alpha = alpha_threshold)
+	results(dds, contrast = contrast)
 ```
 
->
-> **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported log2 fold change is per unit of change of that variable.
+2. Contrasts can be given as a **list of 2 character vectors**: the names of the fold changes for the level of ineterest, and the names of the fold changes for the base level. These names should match identically to the elements of `resultsNames(object)`. *This method can be useful for combining interaction terms and main effects.*
+
+```r
+	# DO NOT RUN!
+	resultsNames(dds) # to see what names to use
+	contrast <- list(resultsNames(dds)[1], resultsNames(dds)[2])
+	results(dds, contrast = contrast)
+```
+
+Alternatively, if you **only had two factor levels you could do nothing** and not worry about specifying contrasts (i.e. `results(dds)`). In this case, DESeq2 will choose what your base factor level based on alphabetical order of the levels.
+
+### Does it matter what I choose to be my base level?
+
+Yes, it does matter. **Deciding what level is the base level will determine how to interpret the fold change that is reported.**  So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in factor level of interest relative to the base level. Thus, if leaving it up to DESeq2 to decide on the contrasts be sure to check that the alphabetical order coincides with the fold change direction you are anticipating.
 
 
-## The `results` table
+## The results table
 
 To build our results table we will use the `results()` function. To tell DESeq2 which groups we wish to compare, we supply the contrasts we would like to make using the`contrast` argument. 
 
@@ -106,6 +117,8 @@ mcols(res_tableOE, use.names=T)
 
 ## P-values
 
+Although the fold changes provided is important to know, ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
+
 The first most important column in this table is p-value and adjusted p-value. Show how you can change p.adjust. 
 Note that there are some NA values for pval and padj -- WHY?
 
@@ -137,7 +150,9 @@ Talk about gene-level filtering
 
 **The order of the names in the contrast determines the direction of fold change that is reported.** The name provided in the second element is the level that is used as baseline. So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. However, these estimates do not account for the large dispersion we observe with low read counts. To avoid this, the **log2 fold changes calculated by the model need to be adjusted**. 
 
-Although the fold changes provided is important to know, ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
+>
+> **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported log2 fold change is per unit of change of that variable.
+>
 
 
 ### More accurate LFC estimates
