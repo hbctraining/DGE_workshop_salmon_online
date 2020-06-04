@@ -76,12 +76,12 @@ For the **Likelihood Ratio Test** is also performed on parameters that have been
 <img src="../img/lrt_formula.png" width="300">
 </p>
 
-* m1 is the reduced model (i.e the design formula with your main effect term removed)
+* m1 is the reduced model (i.e the design formula with your main factor term removed)
 * m2 is the full model (i.e. the full design formula your provided when creating your `dds` object`)
 
 *It is shown that LR follows a chi-squared distribution, and this can be used to calculate and associated p-value.*
 
-Here, we are evaluating the **null hypothesis that the full model fits just as well as the reduced model**. If we reject the null hypothesis, this suggests that there is a significant amount of variation explained by our main effect, therefore the gene is differentially expressed across the different levels. DESeq2 implements the LRT by using an Analysis of Deviance (ANODEV) to compare the two model fits.
+Here, we are evaluating the **null hypothesis that the full model fits just as well as the reduced model**. If we reject the null hypothesis, this suggests that there is a significant amount of variation explained by the full model (and our main factor of interest), therefore the gene is differentially expressed across the different levels. DESeq2 implements the LRT by using an Analysis of Deviance (ANODEV) to compare the two model fits.
 
 To use the LRT, we use the `DESeq()` function but this time adding two arguments: 
 
@@ -89,8 +89,6 @@ To use the LRT, we use the `DESeq()` function but this time adding two arguments
 2. the 'reduced' model
 
 ```r
-library(DESeq2)
-library(DEGreport)
 
 # The full model was specified previously with the `design = ~ sampletype`:
 # dds <- DESeqDataSetFromTximport(txi, colData = meta, ~ sampletype)
@@ -101,14 +99,27 @@ dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1)
 
 Since our 'full' model only has one factor (`sampletype`), the 'reduced' model is just the intercept (`~ 1`).
 
+
 ## Multiple test correction
 
-If we used the p-value directly from the Wald test with a significance cut-off of p < 0.05, that means there is a 5% chance it is a false positives. Each p-value is the result of a single test (single gene). The more genes we test, the more we inflate the false positive rate. **This is the multiple testing problem.** For example, if we test 20,000 genes for differential expression, at p < 0.05 we would expect to find 1,000 genes by chance. If we found 3000 genes to be differentially expressed total, roughly one third of our genes are false positives. We would not want to sift through our "significant" genes to identify which ones are true positives.
+Regardless of whether we use the Wald test or the LRT, each gene that has been tested will be associated with a p-value. It is this result which we use to determine which genes are considered significantly differntially expressed. However, **we cannot use the p-value directly.**
 
-DESeq2 helps reduce the number of genes tested by removing those genes unlikely to be significantly DE prior to testing, such as those with low number of counts and outlier samples (gene-level QC). However, we still need to correct for multiple testing to reduce the number of false positives, and there are a few common approaches:
+### What does the p-value mean?
+
+A gene with a significance cut-off of p < 0.05, means there is a 5% chance it is a false positive. For example, if we test 20,000 genes for differential expression, at p < 0.05 we would expect to find 1,000 genes by chance. If we found 3000 genes to be differentially expressed total, roughly one third of our genes are false positives! We would not want to sift through our "significant" genes to identify which ones are true positives.
+
+Since each p-value is the result of a single test (single gene). The more genes we test, the more we inflate the false positive rate. **This is the multiple testing problem.**
+
+### Correcting the p-value for multiple testing
+
+There are a few common approaches for multiple test correction:
 
 - **Bonferroni:** The adjusted p-value is calculated by: p-value * m (m = total number of tests). **This is a very conservative approach with a high probability of false negatives**, so is generally not recommended.
-- **FDR/Benjamini-Hochberg:** Benjamini and Hochberg (1995) defined the concept of FDR and created an algorithm to control the expected FDR below a specified level given a list of independent p-values. **An interpretation of the BH method for controlling the FDR is implemented in DESeq2 in which we rank the genes by p-value, then multiply each ranked p-value by m/rank**.
+- **FDR/Benjamini-Hochberg:** Benjamini and Hochberg (1995) defined the concept of FDR and created an algorithm to control the expected FDR below a specified level given a list of independent p-values. 
 - **Q-value / Storey method:** The minimum FDR that can be attained when calling that feature significant. For example, if gene X has a q-value of 0.013 it means that 1.3% of genes that show p-values at least as small as gene X are false positives
 
-> **So what does FDR < 0.05 mean?** By setting the FDR cutoff to < 0.05, we're saying that the proportion of false positives we expect amongst our differentially expressed genes is 5%. For example, if you call 500 genes as differentially expressed with an FDR cutoff of 0.05, you expect 25 of them to be false positives.
+DESeq2 helps reduce the number of genes tested by [removing those genes unlikely to be significantly DE]() **PUT LINK TO OUR MATERIALS*** prior to testing, such as those with low number of counts and outlier samples (gene-level QC). However, multiple test correction is also implemented. The default is an **interpretation of the BH method for controlling the FDR in which genes are ranked by p-value, then each ranked p-value is mulitplied by m/rank**.
+
+**So what does FDR < 0.05 mean?** 
+
+By setting the FDR cutoff to < 0.05, we're saying that the proportion of false positives we expect amongst our differentially expressed genes is 5%. For example, if you call 500 genes as differentially expressed with an FDR cutoff of 0.05, you expect 25 of them to be false positives.
