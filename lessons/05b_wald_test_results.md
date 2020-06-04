@@ -50,41 +50,48 @@ Contrasts can be specified in two different ways (with the first method more com
 
 Alternatively, if you **only had two factor levels you could do nothing** and not worry about specifying contrasts (i.e. `results(dds)`). In this case, DESeq2 will choose what your base factor level based on alphabetical order of the levels.
 
-### Does it matter what I choose to be my base level?
+To start, we want to evaluate **expression changes between the MOV10 overexpression samples and the control samples**. As such we will use the first method for specifcying contrasts and create a character vector:
 
-Yes, it does matter. **Deciding what level is the base level will determine how to interpret the fold change that is reported.**  So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in factor level of interest relative to the base level. Thus, if leaving it up to DESeq2 to decide on the contrasts be sure to check that the alphabetical order coincides with the fold change direction you are anticipating.
+```r
+ 
+## Define contrasts for MOV10 overexpression
+contrast_oe <- c("sampletype", "MOV10_overexpression", "control")
+```
+
+> ### Does it matter what I choose to be my base level?
+> 
+> Yes, it does matter. **Deciding what level is the base level will determine how to interpret the fold change that is reported.**  So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in factor level of interest relative to the base level. Thus, if leaving it up to DESeq2 to decide on the contrasts be sure to check that the alphabetical order coincides with the fold change direction you are anticipating.
 
 
 ## The results table
 
-To build our results table we will use the `results()` function. To tell DESeq2 which groups we wish to compare, we supply the contrasts we would like to make using the`contrast` argument. 
-
- Take a look at the help manual to see the other arguments that we can modify:
+Now that we have our contrast created, we can use it as input to the `results()` function. Let's take a quick look at the help manual for the function:
 
 ```r
 ?results
 ```
+You will see we have the option to provide a wide array of arguments and tweak things from the defaults as needed. As we go through the lesson we will keep coming back to the doumentation to discuss some arguments that are good to know about.
 
- We provide the bare minimum but will come back to the help documentation through out.
+For our analysis, in addition to the `contrast` argument we will also providea value of 0.05 for the `alpha` argument. We will describe this in more detail when we talk about [gene-level filtering]().
  
 ```r
-## Define contrasts, extract results table, and shrink the log2 fold changes
-
-contrast_oe <- c("sampletype", "MOV10_overexpression", "control")
-
+## Extract results for MOV10 overexpression vs control
 res_tableOE <- results(dds, contrast=contrast_oe, alpha = 0.05)
 ```
 
-The results table looks very much like a dataframe and in many ways it can be treated like one (i.e when accessing/subsetting data). However, it is important to recognize that it is actually stored in a `DESeqResults` object. When we start visualizing our data, this information will be helpful. 
+The results table that is returned to us is **a `DESeqResults` object**, which is a simple subclass of DataFrame. In many ways it can be treated like a dataframe (i.e when accessing/subsetting data), however it is important to recognize that there are differences for downstream steps like visualization.
 
 ```r
+# Check what type of object is returned
 class(res_tableOE)
 ```
 
-Now let's take a look at what information is stored in the results:
+Now let's take a look at **what information is stored** in the results:
 
 ```r
-res_tableOE %>% data.frame() %>% View()
+res_tableOE %>% 
+data.frame() %>% 
+View()
 ```
 
 ```
@@ -101,7 +108,7 @@ ENSG00000000460		1.16E+03	-0.261603812	0.07912962	-3.30661411	9.44E-04	5.92E-03
 ...			...		...		...		...		...		...
 ```
 
-Let's go through some of the columns in the results table to get a better idea of what we are looking at. To extract information regarding the meaning of each column we can use `mcols()`:
+We have six columns of information reported for each gene (row). We can use the `mcols()` function to extract information on each column:
 
 ```r
 mcols(res_tableOE, use.names=T)
@@ -114,10 +121,11 @@ mcols(res_tableOE, use.names=T)
 * `pvalue`: Wald test p-value
 * `padj`: BH adjusted p-values
  
+In the next few sections, we'll discuss in a bit more depth about some of these columns and what is being reported.
 
 ## P-values
 
-Although the fold changes provided is important to know, ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
+Ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
 
 The first most important column in this table is p-value and adjusted p-value. Show how you can change p.adjust. 
 Note that there are some NA values for pval and padj -- WHY?
