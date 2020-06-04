@@ -1,7 +1,7 @@
 ---
-title: "Gene-level differential expression analysis with DESeq2"
+title: "Exploring DESeq2 results: Wald test"
 author: "Meeta Mistry, Radhika Khetani, Mary Piper"
-date: "October 13th, 2017"
+date: "June 1, 2020"
 ---
 
 Approximate time: 60 minutes
@@ -19,17 +19,17 @@ By default DESeq2 uses the Wald test to identify genes that are differentially e
 
 ## Specifying contrasts
 
-MOV10 Differential Expression Analysis: Control versus Overexpression
-
-We have three sample classes so we can make three possible pairwise comparisons:
+In our dataset, we have three sample classes so we can make three possible pairwise comparisons:
 
 1. Control vs. Mov10 overexpression
 2. Control vs. Mov10 knockdown
 3. Mov10 knockdown vs. Mov10 overexpression
 
-**We are really only interested in #1 and #2 from above**. Using the design formula we provided `~ sampletype`, indicating that this is our main factor of interest.
+**We are really only interested in #1 and #2 from above**. When we intially created our `dds` object we had provided `~ sampletype` as our design formula, indicating that `sampletype` is our main factor of interest.
 
-To indicate to DESeq2 the two groups we want to compare, we can use **contrasts**. Contrasts are then provided to DESeq2 to perform differential expression testing using the Wald test. Contrasts can be provided to DESeq2 a couple of different ways:
+To indicate to DESeq2 the two sample classes we are interested in comparing, we need to specify **contrasts**. The contrasts are used as input to DESeq2 to extract the desired results 
+
+perform differential expression testing using the Wald test. Contrasts can be provided to DESeq2 a couple of different ways:
 
 1. Do nothing. Automatically DESeq2 will use the base factor level of the condition of interest as the base for statistical testing. The base level is chosen based on alphabetical order of the levels.
 2. In the `results()` function you can specify the comparison of interest, and the levels to compare. The level given last is the base level for the comparison. The syntax is given below:
