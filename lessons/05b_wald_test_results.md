@@ -13,7 +13,13 @@ Approximate time: 60 minutes
 * Building results tables for comparison of different sample classes
 * Summarizing significant differentially expressed genes for each comparison
 
-## MOV10 Differential Expression Analysis: Control versus Overexpression
+# Exploring results from the Wald test
+
+By default DESeq2 uses the Wald test to test for differential expression. Given the factor(s) in the design formula, and how many factor levels are present, we can build results for a number of different comparisons. Here, we will walk through how to perform the Wald test on specific factor levels and 
+
+
+
+MOV10 Differential Expression Analysis: Control versus Overexpression
 
 We have three sample classes so we can make three possible pairwise comparisons:
 
