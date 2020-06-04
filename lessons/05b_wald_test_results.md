@@ -13,11 +13,11 @@ Approximate time: 60 minutes
 * Building results tables for comparison of different sample classes
 * Summarizing significant differentially expressed genes for each comparison
 
-# Exploring results from the Wald test
+# Exploring Results (Wald test)
 
-By default DESeq2 uses the Wald test to test for differential expression. Given the factor(s) in the design formula, and how many factor levels are present, we can build results for a number of different comparisons. Here, we will walk through how to perform the Wald test on specific factor levels and 
+By default DESeq2 uses the Wald test to identify genes that are differentially expressed between two sample classes. Given the factor(s) used in the design formula, and how many factor levels are present, we can extract results for a number of different comparisons. Here, we will walk through how to obtain results from the `dds` object and provide some explanations on how to interpret them.
 
-
+## Specifying contrasts
 
 MOV10 Differential Expression Analysis: Control versus Overexpression
 
@@ -28,8 +28,6 @@ We have three sample classes so we can make three possible pairwise comparisons:
 3. Mov10 knockdown vs. Mov10 overexpression
 
 **We are really only interested in #1 and #2 from above**. Using the design formula we provided `~ sampletype`, indicating that this is our main factor of interest.
-
-### Creating contrasts
 
 To indicate to DESeq2 the two groups we want to compare, we can use **contrasts**. Contrasts are then provided to DESeq2 to perform differential expression testing using the Wald test. Contrasts can be provided to DESeq2 a couple of different ways:
 
@@ -46,10 +44,18 @@ To indicate to DESeq2 the two groups we want to compare, we can use **contrasts*
 > **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported log2 fold change is per unit of change of that variable.
 
 
-### Building the results table
+## The `results` table
 
 To build our results table we will use the `results()` function. To tell DESeq2 which groups we wish to compare, we supply the contrasts we would like to make using the`contrast` argument. 
 
+ Take a look at the help manual to see the other arguments that we can modify:
+
+```r
+?results
+```
+
+ We provide the bare minimum but will come back to the help documentation through out.
+ 
 ```r
 ## Define contrasts, extract results table, and shrink the log2 fold changes
 
@@ -57,44 +63,12 @@ contrast_oe <- c("sampletype", "MOV10_overexpression", "control")
 
 res_tableOE <- results(dds, contrast=contrast_oe, alpha = 0.05)
 ```
-Above we provided the bare minimum for the `results()` function. Take a look at the help manual to see the other arguments that we can modify:
-
-```r
-?results
-```
-
-* **Independent filtering**: We are including the `alpha` argument and setting it to 0.05. This is the significance cutoff used for optimizing the independent filtering (by default it is set to 0.1). If the adjusted p-value cutoff (FDR) will be a value other than 0.1 (for our final list of significant genes), `alpha` should be set to that value. There is also an argument to turn off the filtering off by setting `independentFiltering = F`.
-
-> **What is indepdendent filtering?** This is a low mean threshold that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered in teh muliple testing.
->
->  <img src="../img/indp_filt.png" width="600">
-> 
-> *Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
-
-* **Cooks cutoff**: We can also turn of the filtering to remove extreme outlier genes with `cooksCutoff`
-* **Multiple correction**: In DESeq2, the p-values attained by the Wald test are corrected for multiple testing using the Benjamini and Hochberg method by default. There are options to use other methods using the `pAdjustMethod` argument
-
-### Results exploration
 
 The results table looks very much like a dataframe and in many ways it can be treated like one (i.e when accessing/subsetting data). However, it is important to recognize that it is actually stored in a `DESeqResults` object. When we start visualizing our data, this information will be helpful. 
 
 ```r
 class(res_tableOE)
 ```
-
-Let's go through some of the columns in the results table to get a better idea of what we are looking at. To extract information regarding the meaning of each column we can use `mcols()`:
-
-```r
-mcols(res_tableOE, use.names=T)
-```
-
-* `baseMean`: mean of normalized counts for all samples
-* `log2FoldChange`: log2 fold change
-* `lfcSE`: standard error
-* `stat`: Wald statistic
-* `pvalue`: Wald test p-value
-* `padj`: BH adjusted p-values
- 
 
 Now let's take a look at what information is stored in the results:
 
@@ -116,10 +90,41 @@ ENSG00000000460		1.16E+03	-0.261603812	0.07912962	-3.30661411	9.44E-04	5.92E-03
 ...			...		...		...		...		...		...
 ```
 
-**The order of the names in the contrast determines the direction of fold change that is reported.** The name provided in the second element is the level that is used as baseline. So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. However, these estimates do not account for the large dispersion we observe with low read counts. To avoid this, the **log2 fold changes calculated by the model need to be adjusted**. 
+Let's go through some of the columns in the results table to get a better idea of what we are looking at. To extract information regarding the meaning of each column we can use `mcols()`:
 
-Although the fold changes provided is important to know, ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
+```r
+mcols(res_tableOE, use.names=T)
+```
 
+* `baseMean`: mean of normalized counts for all samples
+* `log2FoldChange`: log2 fold change
+* `lfcSE`: standard error
+* `stat`: Wald statistic
+* `pvalue`: Wald test p-value
+* `padj`: BH adjusted p-values
+ 
+
+## P-values
+
+The first most important column in this table is p-value and adjusted p-value. Show how you can change p.adjust. 
+Note that there are some NA values for pval and padj -- WHY?
+
+### Gene-level filtering
+
+Insert some code to subset the results to keep only those with NA in various columns.
+
+Talk about gene-level filtering
+
+* **Independent filtering**: We are including the `alpha` argument and setting it to 0.05. This is the significance cutoff used for optimizing the independent filtering (by default it is set to 0.1). If the adjusted p-value cutoff (FDR) will be a value other than 0.1 (for our final list of significant genes), `alpha` should be set to that value. There is also an argument to turn off the filtering off by setting `independentFiltering = F`.
+
+> **What is indepdendent filtering?** This is a low mean threshold that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered in teh muliple testing.
+>
+>  <img src="../img/indp_filt.png" width="600">
+> 
+> *Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
+
+* **Cooks cutoff**: We can also turn of the filtering to remove extreme outlier genes with `cooksCutoff`
+* **Multiple correction**: In DESeq2, the p-values attained by the Wald test are corrected for multiple testing using the Benjamini and Hochberg method by default. There are options to use other methods using the `pAdjustMethod` argument
 
 > **NOTE: on p-values set to NA**
 > > 
@@ -127,7 +132,15 @@ Although the fold changes provided is important to know, ultimately the **p-adju
 > 2. If a row contains a sample with an extreme count outlier then the p-value and adjusted p-value will be set to NA. These outlier counts are detected by Cook’s distance. 
 > 3. If a row is filtered by automatic independent filtering, for having a low mean normalized count, then only the adjusted p-value will be set to NA. 
 
-### Shrunken log2 foldchanges (LFC)
+
+## Fold change
+
+**The order of the names in the contrast determines the direction of fold change that is reported.** The name provided in the second element is the level that is used as baseline. So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. However, these estimates do not account for the large dispersion we observe with low read counts. To avoid this, the **log2 fold changes calculated by the model need to be adjusted**. 
+
+Although the fold changes provided is important to know, ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
+
+
+### More accurate LFC estimates
 
 To generate more accurate log2 foldchange estimates, DESeq2 allows for the **shrinkage of the LFC estimates toward zero** when the information for a gene is low, which could include:
 
@@ -160,8 +173,26 @@ res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE)
 
 > **NOTE: Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
 
+### Adding a fold change threshold: 
+With large significant gene lists it can be hard to extract meaningful biological relevance. To help increase stringency, one can also **add a fold change threshold**. Use shrunken values here!
 
-### MA Plot
+For e.g., we can create a new threshold `lfc.cutoff` and set it to 0.58 (remember that we are working with log2 fold changes so this translates to an actual fold change of 1.5).
+
+`lfc.cutoff <- 0.58`
+
+`sigOE <- res_tableOE_tb %>% filter(padj < padj.cutoff & abs(log2FoldChange) > lfc.cutoff)`
+
+> ### An alternative approach to add the fold change threshold:
+> The `results()` function has an option to add a fold change threshold using the `lfcThrehsold` argument. This method is more statistically motivated, and is recommended when you want a more confident set of genes based on a certain fold-change. It actually performs a statistical test against the desired threshold, by performing a two-tailed test for log2 fold changes greater than the absolute value specified. The user can change the alternative hypothesis using `altHypothesis` and perform two one-tailed tests as well. **This is a more conservative approach, so expect to retrieve a much smaller set of genes!**
+>
+> Test this out using our data:
+> 
+> `results(dds, contrast = contrast_oe, alpha = 0.05, lfcThreshold = 0.58)`
+>
+> **How do the results differ? How many significant genes do we get using this approach?**
+
+
+## Visualizing results with an MA plot
 
 A plot that can be useful to exploring our results is the MA plot. The MA plot shows the mean of the normalized counts versus the log2 foldchanges for all genes tested. The genes that are significantly DE are colored to be easily identified. This is also a great way to illustrate the effect of LFC shrinkage. The DESeq2 package offers a simple function to generate an MA plot. 
 
@@ -184,7 +215,11 @@ plotMA(res_tableOE, ylim=c(-2,2))
 In addition to the comparison described above, this plot allows us to evaluate the magnitude of fold changes and how they are distributed relative to mean expression. Generally, we would expect to see significant genes across the full range of expression levels. 
 
 
-## MOV10 Differential Expression Analysis: Control versus Knockdown
+***
+
+**Excerise**
+
+**MOV10 Differential Expression Analysis: Control versus Knockdown**
 
 Now that we have results for the overexpression results, let's do the same for the **Control vs. Knockdown samples**. Use contrasts in the `results()` to extract a results table and store that to a variable called `res_tableKD`.  
 
@@ -198,6 +233,8 @@ res_tableKD <- lfcShrink(dds, contrast=contrast_kd, res=res_tableKD)
 ```
 
 Take a quick peek at the results table containing Wald test statistics for the Control-Knockdown comparison we are interested in and make sure that format is similar to what we observed with the OE.
+
+***
 
 ## Summarizing results
 
@@ -240,7 +277,11 @@ sigOE <- res_tableOE_tb %>%
 sigOE
 ```
 
+***
 
+**Exercise**
+
+Do the same with KD
 Using the same p-adjusted threshold as above (`padj.cutoff < 0.05`), subset `res_tableKD` to report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
 
 ```r
@@ -258,26 +299,11 @@ sigKD <- res_tableKD_tb %>%
 ```r
 sigKD
 ``` 
+***
+
 
 Now that we have extracted the significant results, we are ready for visualization!
 
-> ### Adding a fold change threshold: 
-> With large significant gene lists it can be hard to extract meaningful biological relevance. To help increase stringency, one can also **add a fold change threshold**.
-> 
-> For e.g., we can create a new threshold `lfc.cutoff` and set it to 0.58 (remember that we are working with log2 fold changes so this translates to an actual fold change of 1.5).
-> 
-> `lfc.cutoff <- 0.58`
-> 
-> `sigOE <- res_tableOE_tb %>% filter(padj < padj.cutoff & abs(log2FoldChange) > lfc.cutoff)`
-
-> ### An alternative approach to add the fold change threshold:
-> The `results()` function has an option to add a fold change threshold using the `lfcThrehsold` argument. This method is more statistically motivated, and is recommended when you want a more confident set of genes based on a certain fold-change. It actually performs a statistical test against the desired threshold, by performing a two-tailed test for log2 fold changes greater than the absolute value specified. The user can change the alternative hypothesis using `altHypothesis` and perform two one-tailed tests as well. **This is a more conservative approach, so expect to retrieve a much smaller set of genes!**
->
-> Test this out using our data:
-> 
-> `results(dds, contrast = contrast_oe, alpha = 0.05, lfcThreshold = 0.58)`
->
-> **How do the results differ? How many significant genes do we get using this approach?**
 
 
 ---
