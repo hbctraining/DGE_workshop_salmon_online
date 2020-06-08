@@ -134,6 +134,8 @@ The `padj` column in the results table represents the adjusted p-value. The defa
 
 Let's take a closer look at our results table. As we scroll through, you will notice that for **selected genes there are NA values in the `pvalue` and `padj` columns**. What does this mean?
 
+<img src="../img/gene_filtering.png" width="600">
+
 The missing values represente genes that have undergone filtering as part of the DESeq function. Prior to differential expression analysis it is beneficial to omit genes that have little or no chance of being detected as differentially expressed. This will increase the power to detect differentially expressed genes. The genes omitted fall into three categories:
 
 **1. Genes with zero counts in all samples**
