@@ -126,9 +126,7 @@ mcols(res_tableOE, use.names=T)
 
 The p-value is a probability value used to determine whether there is evidence to reject the null hypothesis. **A smaller p-value means that there is stronger evidence in favor of the alternative hypothesis**. However, because we are performing a test for each inidividual gene we need to correct these p-values for multiple testing.
 
-**The `padj` column** in the results table represents the adjusted p-value. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
-
-**The `padj` column is the most important column of the results**. In order to identify a set of genes which are significantly differentially expressed you will want to set a threshold. Typically, `padj` < 0.05 is a good starting point.
+**The `padj` column** in the results table represents the adjusted p-value, and is the most important column of the results. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
 
 ### Gene-level filtering
 
@@ -172,7 +170,7 @@ View()
 DESeq2 defines a low mean threshold, that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered for muliple testing. This is based on the notion that genes with very low counts are not likely to see significant differences typically due to high dispersion.
 
 <p align="center">
-<img src="../img/indep_filt_scatterplus.png" width="450">
+<img src="../img/indep_filt_scatterplus.png" width="700">
 </p>
 
 *Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
@@ -185,9 +183,9 @@ data.frame() %>%
 View()
 ```
 
-> **If a gene is filtered by independent filtering, then only the adjusted p-value will be set to NA. 
+> **If a gene is filtered by independent filtering, then only the adjusted p-value will be set to NA.** 
 
-> **NOTE:** DESeq2 will perform the filtering outlined above by default; however other DE tools, such as EdgeR will not.  Filtering is a necessary step, even if you are using limma-voom and/or edgeR's quasi-likelihood methods. Be sure to follow pre-filtering steps when using other tools, as outlined in their user guides found on Bioconductor as they generally perform much better. 
+> _**NOTE:** DESeq2 will perform the filtering outlined above by default; however other DE tools, such as EdgeR will not.  Filtering is a necessary step, even if you are using limma-voom and/or edgeR's quasi-likelihood methods. Be sure to follow pre-filtering steps when using other tools, as outlined in their user guides found on Bioconductor as they generally perform much better._
 
 ## Fold change
 
