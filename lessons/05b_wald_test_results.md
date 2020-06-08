@@ -126,50 +126,68 @@ mcols(res_tableOE, use.names=T)
 
 The p-value is a probability value used to determine whether there is evidence to reject the null hypothesis. **A smaller p-value means that there is stronger evidence in favor of the alternative hypothesis**. However, because we are performing a test for each inidividual gene we need to correct these p-values for multiple testing.
 
-The `padj` column in the results table represents the adjusted p-value. The default method for multiple test correction in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
+**The `padj` column** in the results table represents the adjusted p-value. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
 
 **The `padj` column is the most important column of the results**. In order to identify a set of genes which are significantly differentially expressed you will want to set a threshold. Typically, `padj` < 0.05 is a good starting point.
 
 ### Gene-level filtering
 
-Let's take a closer look at our results table. As we scroll through, you will notice that for **selected genes there are NA values in the `pvalue` and `padj` columns**. What does this mean?
+Let's take a closer look at our results table. As we scroll through it, you will notice that for **selected genes there are NA values in the `pvalue` and `padj` columns**. What does this mean?
 
-<img src="../img/gene_filtering.png" width="600">
 
-The missing values represente genes that have undergone filtering as part of the DESeq function. Prior to differential expression analysis it is beneficial to omit genes that have little or no chance of being detected as differentially expressed. This will increase the power to detect differentially expressed genes. The genes omitted fall into three categories:
+<p align="center">
+<img src="../img/gene_filtering.png" width="700">
+</p>
+
+The missing values represent genes that have undergone filtering as part of the `DESeq()` function. Prior to differential expression analysis it is **beneficial to omit genes that have little or no chance of being detected as differentially expressed.** This will increase the power to detect differentially expressed genes. DESeq2 does not physically remove any genes from the original counts matrix, and so all genes will be present in your results table. The genes omitted by DESeq2 meet one of the **three filtering criteria outlined below**:
 
 **1. Genes with zero counts in all samples**
 
- If within a row, all samples have zero counts, the baseMean column will be zero, and the log2 fold change estimates, p-value and adjusted p-value will all be set to NA.
+If within a row, all samples have zero counts there is no expression information and therefore these genes are not tested. 
+
+```r
+res_tableOE[which(res_tableOE$baseMean == 0),] %>% 
+data.frame() %>% 
+View()
+```
+
+> **The baseMean column for these genes will be zero, and the log2 fold change estimates, p-value and adjusted p-value will all be set to NA.**
 
 
 **2. Genes with an extreme count outlier**
 
-We can also turn of the filtering to remove extreme outlier genes with `cooksCutoff`
+The `DESeq()` function calculates, for every gene and for every sample, a diagnostic test for outliers called Cook’s distance. Cook’s distance is a measure of how much a single sample is influencing the fitted coefficients for a gene, and a large value of Cook’s distance is intended to indicate an outlier count. Genes which contain a Cook’s distance above a threshold are flagged, however at least 3 replicates are required for flagging, as it is difficult to judge which sample might be an outlier with only 2 replicates. We can turn off this filtering by using the `cooksCutoff` argument in the `results()` function.
 
-If a row contains a sample with an extreme count outlier then the p-value and adjusted p-value will be set to NA. These outlier counts are detected by Cook’s distance. 
+```r
+res_tableOE[which(res_tableOE$pvalue == NA & res_tableOE$padj == NA),] %>% 
+data.frame() %>% 
+View()
+```
+
+> **If a gene contains a sample with an extreme count outlier then the p-value and adjusted p-value will be set to NA.** 
 
 
 **3. Genes with a low mean normalized counts**
 
-If a row is filtered by automatic independent filtering, for having a low mean normalized count, then only the adjusted p-value will be set to NA. 
+DESeq2 defines a low mean threshold, that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered for muliple testing. This is based on the notion that genes with very low counts are not likely to see significant differences typically due to high dispersion.
 
-* **Independent filtering**: We are including the `alpha` argument and setting it to 0.05. This is the significance cutoff used for optimizing the independent filtering (by default it is set to 0.1). If the adjusted p-value cutoff (FDR) will be a value other than 0.1 (for our final list of significant genes), `alpha` should be set to that value. There is also an argument to turn off the filtering off by setting `independentFiltering = F`.
+<p align="center">
+<img src="../img/indep_filt_scatterplus.png" width="450">
+</p>
 
-> **What is indepdendent filtering?** This is a low mean threshold that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered in teh muliple testing.
->
->  <img src="../img/indp_filt.png" width="600">
-> 
-> *Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
+*Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
 
+At a user-specified value (`alpha = 0.05`), DESeq2 evaluates the change in the number of significant genes as it filters out increasingly bigger portions of genes based on their mean counts, as shown in the figure above. The point at which the number of significant genes reaches a peak is the low mean threshold that is used to filter genes that undergo multiple testing. There is also an argument to turn off the filtering off by setting `independentFiltering = F`.
 
+```r
+res_tableOE[which(res_tableOE$pvalue != NA & res_tableOE$padj == NA),] %>% 
+data.frame() %>% 
+View()
+```
 
-**DESeq2 will perform this filtering by default; however other DE tools, such as EdgeR will not.**  Filtering is a necessary step, even if you are using limma-voom and/or edgeR's quasi-likelihood methods. Be sure to follow pre-filtering steps when using other tools, as outlined in their user guides found on Bioconductor as they generally perform much better. 
+> **If a gene is filtered by independent filtering, then only the adjusted p-value will be set to NA. 
 
-
-Insert some code to subset the results to keep only those with NA in various columns.
- 
-
+> **NOTE:** DESeq2 will perform the filtering outlined above by default; however other DE tools, such as EdgeR will not.  Filtering is a necessary step, even if you are using limma-voom and/or edgeR's quasi-likelihood methods. Be sure to follow pre-filtering steps when using other tools, as outlined in their user guides found on Bioconductor as they generally perform much better. 
 
 ## Fold change
 
