@@ -10,8 +10,9 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 10:30 | Workshop Introduction |  |
-| 10:30 - 11:15 | Intro to DGE / setting up DGE analysis |  |
-| 11:15 - 11:30 | R Refresher |  |
+| 10:30 - 10:45 | R refresher Q & A | |
+| 10:45 - 11:15 | RNA-seq pre-reading discussion |  |
+| 11:15 - 12:00 | Intro to DGE / setting up DGE analysis |  |
 
 ### Self-Learning Part 1
 
