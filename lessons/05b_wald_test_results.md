@@ -126,7 +126,7 @@ mcols(res_tableOE, use.names=T)
 
 The p-value is a probability value used to determine whether there is evidence to reject the null hypothesis. **A smaller p-value means that there is stronger evidence in favor of the alternative hypothesis**. However, because we are performing a test for each inidividual gene we need to correct these p-values for multiple testing.
 
-**The `padj` column** in the results table represents the adjusted p-value, and is the most important column of the results. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
+**The `padj` column** in the results table represents the p-value adjusted for multiple testing, and is the most important column of the results. Typically, a threshold such as `padj` < 0.05 is a good starting point for identifying significant genes. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
 
 ### Gene-level filtering
 
@@ -134,7 +134,7 @@ Let's take a closer look at our results table. As we scroll through it, you will
 
 
 <p align="center">
-<img src="../img/gene_filtering.png" width="700">
+<img src="../img/gene_filtering.png" width="800">
 </p>
 
 The missing values represent genes that have undergone filtering as part of the `DESeq()` function. Prior to differential expression analysis it is **beneficial to omit genes that have little or no chance of being detected as differentially expressed.** This will increase the power to detect differentially expressed genes. DESeq2 does not physically remove any genes from the original counts matrix, and so all genes will be present in your results table. The genes omitted by DESeq2 meet one of the **three filtering criteria outlined below**:
@@ -170,7 +170,7 @@ View()
 DESeq2 defines a low mean threshold, that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered for muliple testing. This is based on the notion that genes with very low counts are not likely to see significant differences typically due to high dispersion.
 
 <p align="center">
-<img src="../img/indep_filt_scatterplus.png" width="700">
+<img src="../img/indep_filt_scatterplus.png" width="800">
 </p>
 
 *Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
@@ -189,11 +189,19 @@ View()
 
 ## Fold change
 
-**The order of the names in the contrast determines the direction of fold change that is reported.** The name provided in the second element is the level that is used as baseline. So for example, if we observe a log2 fold change of -2 this would mean the gene expression is lower in Mov10_oe relative to the control. However, these estimates do not account for the large dispersion we observe with low read counts. To avoid this, the **log2 fold changes calculated by the model need to be adjusted**. 
+Another important column in the results table, is the `log2FoldChange`. With large significant gene lists it can be hard to extract meaningful biological relevance. To help increase stringency, one can also **add a fold change threshold**. Keep in mind when setting that value that we are working with log2 fold changes, so a cutoff of `log2FoldChange` < 1 would translate to an actual fold change of 2.
 
 >
-> **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported log2 fold change is per unit of change of that variable.
+> **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported `log2FoldChange` is per unit of change of that variable.
 >
+
+The fold changes reported in the results table are calculated by:
+
+```r
+log2 (normalized_counts_group1 / normalized_counts_group2)
+```
+
+The problem is, these fold change estimates are not entirely accurate as they do not account for the large dispersion we observe with low read counts. To address this, the **log2 fold changes calculated by the model need to be adjusted**. 
 
 
 ### More accurate LFC estimates
@@ -229,14 +237,6 @@ res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE)
 
 > **NOTE: Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
 
-### Adding a fold change threshold: 
-With large significant gene lists it can be hard to extract meaningful biological relevance. To help increase stringency, one can also **add a fold change threshold**. Use shrunken values here!
-
-For e.g., we can create a new threshold `lfc.cutoff` and set it to 0.58 (remember that we are working with log2 fold changes so this translates to an actual fold change of 1.5).
-
-`lfc.cutoff <- 0.58`
-
-`sigOE <- res_tableOE_tb %>% filter(padj < padj.cutoff & abs(log2FoldChange) > lfc.cutoff)`
 
 > ### An alternative approach to add the fold change threshold:
 > The `results()` function has an option to add a fold change threshold using the `lfcThrehsold` argument. This method is more statistically motivated, and is recommended when you want a more confident set of genes based on a certain fold-change. It actually performs a statistical test against the desired threshold, by performing a two-tailed test for log2 fold changes greater than the absolute value specified. The user can change the alternative hypothesis using `altHypothesis` and perform two one-tailed tests as well. **This is a more conservative approach, so expect to retrieve a much smaller set of genes!**
