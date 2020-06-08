@@ -296,7 +296,7 @@ Now we are ready to perform GSEA. The details regarding GSEA can be found in the
 
 _**Image credit:** [Subramanian et al. Proceedings of the National Academy of Sciences Oct 2005, 102 (43) 15545-15550; DOI: 10.1073/pnas.0506580102](https://www.pnas.org/content/102/43/15545)_
 
-This image describes the theory of GSEA, with the gene set showing the metric (in our case, ranked log2 fold changes) used to determine enrichment of genes in the gene set. The left-most image is representing this metric used for the GSEA analysis. The large log2 fold changes for each gene in the gene set is shown as a line in the middle image. The large positive log2 fold changes are at the top of the gene set image, while the largest negative log2 fold changes are at the bottom of the gene set image. In the right-most image, the gene set is turned horizontally.
+This image describes the theory of GSEA, with the 'gene set S' showing the metric used (in our case, ranked log2 fold changes) to determine enrichment of genes in the gene set. The left-most image is representing this metric used for the GSEA analysis. The log2 fold changes for each gene in the 'gene set S' is shown as a line in the middle image. The large positive log2 fold changes are at the top of the gene set image, while the largest negative log2 fold changes are at the bottom of the gene set image. In the right-most image, the gene set is turned horizontally, showing the calculations involved in determining enrichment, as described below.
 
 **Step 1:** Calculation of enrichment score: 
 
