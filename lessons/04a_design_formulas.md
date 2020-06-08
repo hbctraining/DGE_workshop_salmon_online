@@ -4,7 +4,7 @@ author: "Meeta Mistry, Radhika Khetani, Mary Piper"
 date: "Wednesday, May 27th, 2020"
 ---
 
-Approximate time: 60 minutes
+Approximate time: 30 minutes
 
 ## Learning Objectives 
 
@@ -106,3 +106,45 @@ fitting model and testing
 We will discuss what is occurring in each of these steps in the next lessons, but the code to execute these steps is encompassed in the two lines above.
 
 > **NOTE:** There are individual functions available in DESeq2 that would allow us to carry out each step in the workflow in a step-wise manner, rather than a single call. We demonstrated one example when generating size factors to create a normalized matrix. By calling `DESeq()`, the individual functions for each step are run for you.
+
+***
+
+**Exercise**
+
+Let's suppose our experiment has the following metadata:
+
+| | **genotype** | **treatment** |
+| :---: | :---: | :---: |
+| **sample1** | WT | ev |
+| **sample2** | WT | ev |
+| **sample3** | WT | ev |
+| **sample4** | WT | ev |
+| **sample5** | KO_geneA | ev |
+| **sample6** | KO_geneA | ev |
+| **sample7** | KO_geneA | ev |
+| **sample8** | KO_geneA | ev |
+| **sample9** | WT | treat1 |
+| **sample10** | WT | treat1 |
+| **sample11** | WT | treat1 |
+| **sample12** | WT | treat1 |
+| **sample13** | KO_geneA | treat1 |
+| **sample14** | KO_geneA | treat1 |
+| **sample15** | KO_geneA | treat1 |
+| **sample16** | KO_geneA | treat1 |
+| **sample17** | WT | treat2 |
+| **sample18** | WT | treat2 |
+| **sample19** | WT | treat2 |
+| **sample20** | WT | treat2 |
+| **sample21** | KO_geneA | treat2 |
+| **sample22** | KO_geneA | treat2 |
+| **sample23** | KO_geneA | treat2 |
+| **sample24** | KO_geneA | treat2 |
+
+How would the design formula be structured to perform the following analyses?
+
+1. Test for the effect of `treatment`.
+
+2. Test for the effect of `treatment`, while regressing out the variation due to `genotype`.
+
+3. Test for the effect of `genotype` on the `treatment` effects.
+***
