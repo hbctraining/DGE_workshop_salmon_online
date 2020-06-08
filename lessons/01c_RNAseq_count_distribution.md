@@ -12,7 +12,7 @@ Approximate time: 60 minutes
 ## Learning Objectives 
 
 * Explore the characteristics of RNA-seq count data
-* Evaluate the mean-variance relationship in relation to the negative binomial model
+* Evaluate the mean-variance relationship in RNA-seq count data
 * Understand the importance of biological replicates
 
 # Exploring RNA-seq count data
