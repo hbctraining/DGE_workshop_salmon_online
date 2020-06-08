@@ -155,21 +155,13 @@ The figure below is taken from a study directly evaluating the relationship betw
 
 Note that an **increase in the number of replicates tends to return more DE genes than increasing the sequencing depth**. Therefore, generally more replicates are better than higher sequencing depth, with the caveat that higher depth is required for detection of lowly expressed DE genes and for performing isoform-level differential expression. 
 
-## Tools for differential expression analysis 
-
-There are a number of software packages that have been developed for differential expression analysis of RNA-seq data. Many  tools such as [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html), [edgeR](https://bioconductor.org/packages/release/bioc/html/edgeR.html), and [baySeq](https://www.bioconductor.org/packages/release/bioc/html/baySeq.html), adopt the **negative binomial model as the main approach**. Other software tools, such as [NOIseq](https://www.bioconductor.org/packages/release/bioc/html/NOISeq.html) and [SAMseq](https://www.rdocumentation.org/packages/samr/versions/3.0/topics/SAMseq), adopt **non-parametric methods** which take into consideration that data distribution cannot be defined from a finite set of parameters, thus the amount of information about the data can increase with its volume. For larger sample sizes, the [methods combining a variance-stabilizing transformation with the ‘limma’ method](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-2-r29) for differential expression analysis also performs well under many different conditions.
-
-The availability of different methods can be overwhelming as there is not a consensus about which methodology is most appropriate or which approach ensures the validity of the results in terms of robustness, accuracy and reproducibility. 
-
-[Soneson and Dleorenzi, 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91) conducted an extensive comparison of eleven methods for differential expression analysis of RNA-seq data and present results based on both simulated data and real RNA-seq data. In the figure below, we see that while many (parametric) methods identify similar numbers of genes, the overlap in the genes varies between tools. They conclude that small sample sizes (common in RNA-seq experiments) impose problems for all evaluated methods and any results obtained under such conditions should be interpreted with caution. 
-
-<p align="center">
-<img src="../img/soneson_figure.png" width="900">
-</p>
-
 ## Differential Expression with DESeq2
 
-DESeq2 is a popular tool for gene-level differential expression analysis. It uses the negative binomial model, employing a slightly more stringent approach compared to some methods yet having a good balance between sensitivity and specificity (reducing both false positives and false negatives). Consequently, the number of differentially expressed genes will be fewer, but as shown in the figure above these genes have been found to be a subset of genes identified by other methods.
+DESeq2 is a popular tool for gene-level differential expression analysis. It uses the negative binomial distribution, employing a slightly more stringent approach compared to some methods yet having a good balance between sensitivity and specificity (reducing both false positives and false negatives). Consequently, the number of differentially expressed genes will be fewer, but as shown in the figure above these genes have been found to be a subset of genes identified by other methods.
+
+> ### Other tools for Differential Expression Analysis
+> There are a number of software packages that have been developed for differential expression analysis of RNA-seq data. Most adopt the **negative binomial approach**, however there are other tools based on non-parametric methods suitable for larger sample sizes. An extensive comparison of these methods can be found in [Soneson and Dleorenzi, 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91).
+
 
 We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) for the analysis in this workshop. **The analysis steps with DESeq2 are shown in the flowchart below in green and blue**. 
 
