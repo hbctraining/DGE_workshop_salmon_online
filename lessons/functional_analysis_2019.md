@@ -107,7 +107,7 @@ For the different steps in the functional analysis, we require Ensembl and Entre
 
 ```r
 ## Merge the AnnotationHub dataframe with the results 
-res_ids <- inner_join(res_tableOE_tb, annotations_ahb, by=c("gene"="gene_id"))    
+res_ids <- left_join(res_tableOE_tb, annotations_ahb, by=c("gene"="gene_id"))    
 ```
 
 > _**NOTE:** If you were unable to generate the `annotations_ahb` object, you can download the annotations to your `data` folder by right-clicking [here](https://github.com/hbctraining/DGE_workshop_salmon/blob/master/data/DGE_workshop_annotations.RData?raw=true). To generate the object you would run the following code:_
