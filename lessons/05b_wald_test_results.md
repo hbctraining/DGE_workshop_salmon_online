@@ -70,7 +70,7 @@ Now that we have our contrast created, we can use it as input to the `results()`
 ```r
 ?results
 ```
-You will see we have the option to provide a wide array of arguments and tweak things from the defaults as needed. As we go through the lesson we will keep coming back to the doumentation to discuss some arguments that are good to know about.
+You will see we have the option to provide a wide array of arguments and tweak things from the defaults as needed. As we go through the lesson we will keep coming back to the help doumentation to discuss some arguments that are good to know about.
  
 ```r
 ## Extract results for MOV10 overexpression vs control
@@ -108,7 +108,7 @@ ENSG00000000460		1.16E+03	-0.261603812	0.07912962	-3.30661411	9.44E-04	5.92E-03
 ...			...		...		...		...		...		...
 ```
 
-We have six columns of information reported for each gene (row). We can use the `mcols()` function to extract information on each column:
+We have six columns of information reported for each gene (row). We can use the `mcols()` function to extract information on what the values stored in each column represent:
 
 ```r
 mcols(res_tableOE, use.names=T)
@@ -121,20 +121,36 @@ mcols(res_tableOE, use.names=T)
 * `pvalue`: Wald test p-value
 * `padj`: BH adjusted p-values
  
-In the next few sections, we'll discuss in a bit more depth about some of these columns and what is being reported.
 
 ## P-values
 
-Ultimately the **p-adjusted values should be used to determine significant genes**. The significant genes can be output for visualization and/or functional analysis.
+The p-value is a probability value used to determine whether there is evidence to reject the null hypothesis. **A smaller p-value means that there is stronger evidence in favor of the alternative hypothesis**. However, because we are performing a test for each inidividual gene we need to correct these p-values for multiple testing.
 
-The first most important column in this table is p-value and adjusted p-value. Show how you can change p.adjust. 
-Note that there are some NA values for pval and padj -- WHY?
+The `padj` column in the results table represents the adjusted p-value. The default method for multiple test correction in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
+
+**The `padj` column is the most important column of the results**. In order to identify a set of genes which are significantly differentially expressed you will want to set a threshold. Typically, `padj` < 0.05 is a good starting point.
 
 ### Gene-level filtering
 
-Insert some code to subset the results to keep only those with NA in various columns.
+Let's take a closer look at our results table. As we scroll through, you will notice that for **selected genes there are NA values in the `pvalue` and `padj` columns**. What does this mean?
 
-Talk about gene-level filtering
+The missing values represente genes that have undergone filtering as part of the DESeq function. Prior to differential expression analysis it is beneficial to omit genes that have little or no chance of being detected as differentially expressed. This will increase the power to detect differentially expressed genes. The genes omitted fall into three categories:
+
+**1. Genes with zero counts in all samples**
+
+ If within a row, all samples have zero counts, the baseMean column will be zero, and the log2 fold change estimates, p-value and adjusted p-value will all be set to NA.
+
+
+**2. Genes with an extreme count outlier**
+
+We can also turn of the filtering to remove extreme outlier genes with `cooksCutoff`
+
+If a row contains a sample with an extreme count outlier then the p-value and adjusted p-value will be set to NA. These outlier counts are detected by Cook’s distance. 
+
+
+**3. Genes with a low mean normalized counts**
+
+If a row is filtered by automatic independent filtering, for having a low mean normalized count, then only the adjusted p-value will be set to NA. 
 
 * **Independent filtering**: We are including the `alpha` argument and setting it to 0.05. This is the significance cutoff used for optimizing the independent filtering (by default it is set to 0.1). If the adjusted p-value cutoff (FDR) will be a value other than 0.1 (for our final list of significant genes), `alpha` should be set to that value. There is also an argument to turn off the filtering off by setting `independentFiltering = F`.
 
@@ -144,14 +160,13 @@ Talk about gene-level filtering
 > 
 > *Image courtesy of [slideshare presentation](https://www.slideshare.net/joachimjacob/5rna-seqpart5detecting-differentialexpression) from Joachim Jacob, 2014.*
 
-* **Cooks cutoff**: We can also turn of the filtering to remove extreme outlier genes with `cooksCutoff`
-* **Multiple correction**: In DESeq2, the p-values attained by the Wald test are corrected for multiple testing using the Benjamini and Hochberg method by default. There are options to use other methods using the `pAdjustMethod` argument
 
-> **NOTE: on p-values set to NA**
-> > 
-> 1. If within a row, all samples have zero counts, the baseMean column will be zero, and the log2 fold change estimates, p-value and adjusted p-value will all be set to NA.
-> 2. If a row contains a sample with an extreme count outlier then the p-value and adjusted p-value will be set to NA. These outlier counts are detected by Cook’s distance. 
-> 3. If a row is filtered by automatic independent filtering, for having a low mean normalized count, then only the adjusted p-value will be set to NA. 
+
+**DESeq2 will perform this filtering by default; however other DE tools, such as EdgeR will not.**  Filtering is a necessary step, even if you are using limma-voom and/or edgeR's quasi-likelihood methods. Be sure to follow pre-filtering steps when using other tools, as outlined in their user guides found on Bioconductor as they generally perform much better. 
+
+
+Insert some code to subset the results to keep only those with NA in various columns.
+ 
 
 
 ## Fold change
