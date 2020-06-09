@@ -17,11 +17,6 @@ To perform Differential Gene Expression analysis, we need to start with a matrix
 In this lesson we will briefly discuss the RNA-processing pipeline for bulk RNA-seq, and the **different steps we take to go from raw sequencing reads to a gene expression count matrix**. 
 
 <p align="center">
-<img src="../img/workflow-salmon-DGE-alt1.png" width="600" >
-</p>
-
-
-<p align="center">
 <img src="../img/workflow-salmon-DGE-alt2.png" width="600" >
 </p>
 
