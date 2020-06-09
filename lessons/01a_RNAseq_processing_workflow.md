@@ -1,10 +1,14 @@
 ---
 title: "From raw sequence reads to count matrix"
 author: "Meeta Mistry, Radhika Khetani, Mary Piper"
-date: "May 12, 2017"
+date: "June 8, 2020"
 ---
 
-Approximate time: 
+Approximate time: 40 minutes
+
+## Learning objectives
+
+* Understand the different steps of the RNA-seq workflow
 
 
 # RNA-seq processing workflow
