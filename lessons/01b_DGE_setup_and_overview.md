@@ -29,7 +29,7 @@ In this workshop, we will walk you through an **end-to-end gene-level RNA-seq di
 
 ## Review of the dataset
 
-We will be using the Salmon abundance estimates from the RNA-Seq dataset that is part of a larger study described in [Kenny PJ et al, Cell Rep 2014](http://www.ncbi.nlm.nih.gov/pubmed/25464849). 
+For this workshop, we will be using a publicly available RNA-Seq dataset that is part of a larger study described in [Kenny PJ et al, Cell Rep 2014](http://www.ncbi.nlm.nih.gov/pubmed/25464849). 
 
 The RNA-Seq was performed on HEK293F cells that were either transfected with a MOV10 transgene, or siRNA to knock down Mov10 expression, or non-specific (irrelevant) siRNA. This resulted in 3 conditions **Mov10 oe** (over expression), **Mov10 kd** (knock down) and **Irrelevant kd**, respectively. The number of replicates is as shown below. 
 
@@ -53,6 +53,14 @@ The authors are investigating interactions between various genes involved in Fra
 **Our questions:**
 * What patterns of expression can we identify with the loss or gain of MOV10? 
 * Are there any genes shared between the two conditions?
+
+### RNA-seq workflow
+
+For this dataset, raw sequence reads were obtained from the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367). These reads were then processed using the RNA-seq workflow as detailed in the [pre-reading](01a_RNAseq_processing_workflow.md) for this workshop. All steps were performed on the command line (Linux/Unix), including a thorough quality control assessment. If you are interested, we have the **MultiQC html report for this dataset [linked here]()** for you to peruse.
+
+The directories of output from the mapping/quantification (Salmon) is the data that we will be using. These transcript abundance estimates, often referred to as **'pseudocounts', will be the starting point for our differential gene expression analysis**.
+
+
 
 ## Setting up
 
