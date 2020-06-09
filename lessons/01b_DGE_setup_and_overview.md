@@ -35,8 +35,9 @@ The RNA-Seq was performed on HEK293F cells that were either transfected with a M
 
 Using these data, we will evaluate transcriptional patterns associated with perturbation of MOV10 expression. Please note that the irrelevant siRNA will be treated as our control condition.
 
+<p align="center">
 <img src="../img/dataset.png" width="400">
-
+</p>
 
 ***What is the purpose of these datasets? What does Mov10 do?***
 
@@ -48,7 +49,9 @@ The authors are investigating interactions between various genes involved in Fra
 
 **The hypothesis [the paper](http://www.ncbi.nlm.nih.gov/pubmed/25464849) is testing is that FMRP and MOV10 associate and regulate the translation of a subset of RNAs.**
 
+<p align="center">
 <img src="../img/mov10-model.png" width="400">
+</p>
 
 **Our questions:**
 * What patterns of expression can we identify with the loss or gain of MOV10? 
@@ -58,7 +61,7 @@ The authors are investigating interactions between various genes involved in Fra
 
 For this dataset, raw sequence reads were obtained from the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367). These reads were then processed using the RNA-seq workflow as detailed in the [pre-reading](01a_RNAseq_processing_workflow.md) for this workshop. All steps were performed on the command line (Linux/Unix), including a thorough quality control assessment. If you are interested, we have the **MultiQC html report for this dataset [linked here]()** for you to peruse.
 
-The directories of output from the mapping/quantification (Salmon) is the data that we will be using. These transcript abundance estimates, often referred to as **'pseudocounts', will be the starting point for our differential gene expression analysis**.
+The directories of output from the mapping/quantification step of the workflow (Salmon) is the data that we will be using. These transcript abundance estimates, often referred to as **'pseudocounts', will be the starting point for our differential gene expression analysis**.
 
 
 
