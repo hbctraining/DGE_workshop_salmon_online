@@ -8,14 +8,16 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* LFC shrinkage 
-* Gene-level filtering?
-* Building results tables for comparison of different sample classes
-* Summarizing significant differentially expressed genes for each comparison
+* Discuss the steps required to generate a results table for pairwise comaprisons (Wald test)
+* Summarize the different levels of gene filtering 
+* Explain log fold change shrinkage
+
 
 # Exploring Results (Wald test)
 
 By default DESeq2 uses the Wald test to identify genes that are differentially expressed between two sample classes. Given the factor(s) used in the design formula, and how many factor levels are present, we can extract results for a number of different comparisons. Here, we will walk through how to obtain results from the `dds` object and provide some explanations on how to interpret them.
+
+> **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported `log2FoldChange` is per unit of change of that variable.
 
 ## Specifying contrasts
 
@@ -191,8 +193,8 @@ View()
 
 Another important column in the results table, is the `log2FoldChange`. With large significant gene lists it can be hard to extract meaningful biological relevance. To help increase stringency, one can also **add a fold change threshold**. Keep in mind when setting that value that we are working with log2 fold changes, so a cutoff of `log2FoldChange` < 1 would translate to an actual fold change of 2.
 
->
-> **NOTE:** The Wald test can also be used with **continuous variables**. If the variable of interest provided in the design formula is continuous-valued, then the reported `log2FoldChange` is per unit of change of that variable.
+> ### An alternative approach to add the fold change threshold:
+> The `results()` function has an option to add a fold change threshold using the `lfcThrehsold` argument. This method is more statistically motivated, and is recommended when you want a more confident set of genes based on a certain fold-change. It actually performs a statistical test against the desired threshold, by performing a two-tailed test for log2 fold changes greater than the absolute value specified. The user can change the alternative hypothesis using `altHypothesis` and perform two one-tailed tests as well. **This is a more conservative approach, so expect to retrieve a much smaller set of genes!**
 >
 
 The fold changes reported in the results table are calculated by:
@@ -201,29 +203,25 @@ The fold changes reported in the results table are calculated by:
 log2 (normalized_counts_group1 / normalized_counts_group2)
 ```
 
-The problem is, these fold change estimates are not entirely accurate as they do not account for the large dispersion we observe with low read counts. To address this, the **log2 fold changes calculated by the model need to be adjusted**. 
+The problem is, these fold change estimates are not entirely accurate as they do not account for the large dispersion we observe with low read counts. To address this, the **log2 fold changes need to be adjusted**. 
 
 
 ### More accurate LFC estimates
 
-To generate more accurate log2 foldchange estimates, DESeq2 allows for the **shrinkage of the LFC estimates toward zero** when the information for a gene is low, which could include:
+To generate more accurate log2 foldchange (LFC) estimates, DESeq2 allows for the **shrinkage of the LFC estimates toward zero** when the information for a gene is low, which could include:
 
 - Low counts
 - High dispersion values
 
-As with the shrinkage of dispersion estimates, LFC shrinkage uses **information from all genes** to generate more accurate estimates. Specifically, the distribution of LFC estimates for all genes is used (as a prior) to shrink the LFC estimates of genes with little information or high dispersion toward more likely (lower) LFC estimates. 
+LFC shrinkage uses **information from all genes** to generate more accurate estimates. Specifically, the distribution of LFC estimates for all genes is used (as a prior) to shrink the LFC estimates of genes with little information or high dispersion toward more likely (lower) LFC estimates. 
 
+<p align="center">
 <img src="../img/deseq2_shrunken_lfc.png" width="500">
+</p>
 
 *Illustration taken from the [DESeq2 paper](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8).*
 
-For example, in the figure above, the green gene and purple gene have the same mean values for the two sample groups (C57BL/6J and DBA/2J), but the green gene has little variation while the purple gene has high levels of variation. For the green gene with low variation, the **unshrunken LFC estimate** (vertex of the green **solid line**) is very similar to the shrunken LFC estimate (vertex of the green dotted line), but the LFC estimates for the purple gene are quite different due to the high dispersion. So even though two genes can have similar normalized count values, they can have differing degrees of LFC shrinkage. Notice the **LFC estimates are shrunken toward the prior (black solid line)**.
-
-In the most recent versions of DESeq2, the shrinkage of LFC estimates is **not performed by default**. This means that the log2 foldchanges would be the same as those calculated by:
-
-```r
-log2 (normalized_counts_group1 / normalized_counts_group2)
-```
+In the figure above, we have an example using two genes green gene and purple gene. For each gene the expression values are plotted for each sample in the two different mouse strains (C57BL/6J and DBA/2J). Both genes have the same mean values for the two sample groups, but the green gene has little variation within group while the purple gene has high levels of variation. For the green gene with low within group variation, the **unshrunken LFC estimate** (vertex of the green **solid line**) is very similar to the shrunken LFC estimate (vertex of the green dotted line). However, LFC estimates for the purple gene are quite different due to the high dispersion. So even though two genes can have similar normalized count values, they can have differing degrees of LFC shrinkage. Notice the **LFC estimates are shrunken toward the prior (black solid line)**.
 
 To generate the shrunken log2 fold change estimates, you have to run an additional step on your results object (that we will create below) with the function `lfcShrink()`.
 
@@ -235,22 +233,12 @@ res_tableOE_unshrunken <- res_tableOE
 res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE)
 ```
 
-> **NOTE: Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
+**Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
 
 
-> ### An alternative approach to add the fold change threshold:
-> The `results()` function has an option to add a fold change threshold using the `lfcThrehsold` argument. This method is more statistically motivated, and is recommended when you want a more confident set of genes based on a certain fold-change. It actually performs a statistical test against the desired threshold, by performing a two-tailed test for log2 fold changes greater than the absolute value specified. The user can change the alternative hypothesis using `altHypothesis` and perform two one-tailed tests as well. **This is a more conservative approach, so expect to retrieve a much smaller set of genes!**
->
-> Test this out using our data:
-> 
-> `results(dds, contrast = contrast_oe, alpha = 0.05, lfcThreshold = 0.58)`
->
-> **How do the results differ? How many significant genes do we get using this approach?**
+## MA plot
 
-
-## Visualizing results with an MA plot
-
-A plot that can be useful to exploring our results is the MA plot. The MA plot shows the mean of the normalized counts versus the log2 foldchanges for all genes tested. The genes that are significantly DE are colored to be easily identified. This is also a great way to illustrate the effect of LFC shrinkage. The DESeq2 package offers a simple function to generate an MA plot. 
+A plot that can be useful to exploring our results is the MA plot. The MA plot shows the **mean of the normalized counts versus the log2 foldchanges for all genes tested**. The genes that are significantly DE are colored to be easily identified. This is also a great way to illustrate the effect of LFC shrinkage. The DESeq2 package offers a simple function to generate an MA plot. 
 
 **Let's start with the unshrunken results:**
 
@@ -258,108 +246,36 @@ A plot that can be useful to exploring our results is the MA plot. The MA plot s
 plotMA(res_tableOE_unshrunken, ylim=c(-2,2))
 ```
 
-<img src="../img/maplot_unshrunken.png" width="600">
-
 **And now the shrunken results:**
 
 ```r
 plotMA(res_tableOE, ylim=c(-2,2))
 ```
 
-<img src="../img/MA_plot.png" width="600">
+On the right you have the unshrunken fold change values plotted and you can see the abundance of scatter for the the lowly expressed genes. That is, many of the low expressors exhibit very high fold changes. After shrinkage, we see the fold changes are much smaller estimates.
+
+<p float="left">
+  <img src="../img/maplot_unshrunken.png" width="400">
+  <img src="../img/MA_plot.png" width="400">
+</p>
+
 
 In addition to the comparison described above, this plot allows us to evaluate the magnitude of fold changes and how they are distributed relative to mean expression. Generally, we would expect to see significant genes across the full range of expression levels. 
 
 
 ***
 
-**Excerise**
+**Excercise**
 
 **MOV10 Differential Expression Analysis: Control versus Knockdown**
 
-Now that we have results for the overexpression results, let's do the same for the **Control vs. Knockdown samples**. Use contrasts in the `results()` to extract a results table and store that to a variable called `res_tableKD`.  
+Now that we have results for the overexpression results, do the same for the **Control vs. Knockdown samples**. 
 
-```r
-## Define contrasts, extract results table and shrink log2 fold changes
-contrast_kd <-  c("sampletype", "MOV10_knockdown", "control")
-
-res_tableKD <- results(dds, contrast=contrast_kd, alpha = 0.05)
-
-res_tableKD <- lfcShrink(dds, contrast=contrast_kd, res=res_tableKD)
-```
-
-Take a quick peek at the results table containing Wald test statistics for the Control-Knockdown comparison we are interested in and make sure that format is similar to what we observed with the OE.
+1. Create a contrast vector called `contrast_kd`.
+2. Use contrast vector in the `results()` to extract a results table and store that to a variable called `res_tableKD`. 
+3. Shrink the LFC estimates using `lfcShrink()` and assign it back to `res_tableKD`.
 
 ***
-
-## Summarizing results
-
-To summarize the results table, a handy function in DESeq2 is `summary()`. Confusingly it has the same name as the function used to inspect data frames. This function when called with a DESeq results table as input, will summarize the results using the alpha threshold: FDR < 0.05 (padj/FDR is used even though the output says `p-value < 0.05`). Let's start with the OE vs control results:
-
-```r
-## Summarize results
-summary(res_tableOE, alpha = 0.05)
-```
-
-In addition to the number of genes up- and down-regulated at the default threshold, **the function also reports the number of genes that were tested (genes with non-zero total read count), and the number of genes not included in multiple test correction due to a low mean count**.
-
-
-## Extracting significant differentially expressed genes
-
-Let's first create variables that contain our threshold criteria:
-
-```r
-### Set thresholds
-padj.cutoff <- 0.05
-```
-
-We can easily subset the results table to only include those that are significant using the `filter()` function, but first we will convert the results table into a tibble:
-
-```r
-res_tableOE_tb <- res_tableOE %>%
-  data.frame() %>%
-  rownames_to_column(var="gene") %>% 
-  as_tibble()
-```
-
-Now we can subset that table to only keep the significant genes using our pre-defined thresholds:
-
-```r
-sigOE <- res_tableOE_tb %>%
-        filter(padj < padj.cutoff)
-```
-
-```r
-sigOE
-```
-
-***
-
-**Exercise**
-
-Do the same with KD
-Using the same p-adjusted threshold as above (`padj.cutoff < 0.05`), subset `res_tableKD` to report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
-
-```r
-
-res_tableKD_tb <- res_tableKD %>%
-  data.frame() %>%
-  rownames_to_column(var="gene") %>% 
-  as_tibble()
-  
-sigKD <- res_tableKD_tb %>%
-        filter(padj < padj.cutoff)
-```
-
-**How many genes are differentially expressed in the Knockdown compared to Control?** 
-```r
-sigKD
-``` 
-***
-
-
-Now that we have extracted the significant results, we are ready for visualization!
-
 
 
 ---
