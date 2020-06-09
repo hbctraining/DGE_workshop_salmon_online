@@ -189,6 +189,9 @@ data <- txi$counts %>%
 
 ```
 
+> **NOTE**: Until recently, the standard approach for RNA-seq analysis had been to map our reads using a splice-aware aligner (i.e STAR) and then use the resulting BAM files as input to counting tools like [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) and [htseq-count](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to obtain our final expression matrix. The field has now moved towards using lightweight alignment tools like Salmon as standard practice. If you are still working with data generated using the older standard approach we have some [materials linked here](https://hbctraining.github.io/DGE_workshop/schedule/1.5-day.htmll) on **using DESeq2 with a raw count matrix as your starting point**.
+
+
 ### Creating metadata
 
 Of great importance is keeping track of the information about our data. At minimum, we need to atleast **have a file which maps our samples to the corresponding sample groups that we are investigating**. We will use the columns headers from the counts matrix as the row names of our metadata file and have single column to identify each sample as "MOV10_overexpression", "MOV10_knockdown", or "control". 
