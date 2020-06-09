@@ -11,9 +11,9 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
+* Describe the RNA-seq and the differential gene expression analysis workflow
 * Explain the experiment and its objectives
 * Describe how to set up an RNA-seq project in R 
-* Describe the RNA-seq and the differential gene expression analysis workflow
 
 
 # Differential gene expression analysis
