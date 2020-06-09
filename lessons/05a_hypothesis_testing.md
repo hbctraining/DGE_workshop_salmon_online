@@ -8,9 +8,9 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Wald test
-* Likelihood Ratio Test
-* Multiple test correction
+* Desribe the process of model fitting 
+* Compare two methods for hypothesis testing (Wald test vs. LRT)
+* Explain the need for multiple testing and introduce different methods
 
 
 # DESeq2: Model fitting and Hypothesis testing 
