@@ -17,7 +17,7 @@
 ### Self-Learning Part 1
 
 1. RNA-seq counts distribution
-1. Count normalization
+1. [Count normalization](../lessons/02_DGE_count_normalization.md)
 1. Sample-level QC (PCA and hierarchical clustering)
 
 ### Assignment #1
