@@ -16,7 +16,9 @@ Approximate time: 80 minutes
 
 The next step in the DESeq2 workflow is QC, which includes sample-level and gene-level steps to perform QC checks on the count data to help us ensure that the samples/replicates look good. 
 
+<p align="center">
 <img src="../img/de_workflow_salmon_qc.png" width="400">
+</p>
 
 ## Sample-level QC
 
@@ -28,11 +30,15 @@ A useful initial step in an RNA-seq analysis is often to assess overall similari
 
 To explore the similarity of our samples, we will be performing sample-level QC using Principal Component Analysis (PCA) and hierarchical clustering methods. These methods/tools allow us to check how well similar the replicates are to each other (clustering) and to make sure that the experimental condition is the major source of variation in the data. Sample-level QC can also help identify any samples behaving like outliers; we can further explore any potential outliers to determine whether they need to be removed prior to DE analysis. 
 
+<p align="center">
 <img src="../img/sample_qc.png" width="700">
+</p>
 
 These unsupervised clustering methods are run using **log2 transformed normalized counts**. The log2 transformation **improves the distances/clustering for visualization**. We will be using **regularized log transform** (rlog) of the normalized counts (with DESeq2).
 
+<p align="center">
 <img src="../img/rlog_transformation.png" width="500">
+</p>
 
 >_**NOTE:** The [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) suggests large datasets (100s of samples) to use the variance-stabilizing transformation (vst) instead of rlog for transformation of the counts, since the rlog function might take too long to run and the `vst()` function is faster with similar properties to rlog._
 
@@ -49,23 +55,33 @@ Principal Component Analysis (PCA) is a technique used to emphasize variation an
 
 We have an example dataset and a few associated PCA plots below to get a feel for how to interpret them. The metadata for the experiment is displayed below. The main condition of interest is `treatment`.
 
+<p align="center">
 <img src="../img/example_metadata.png" width="600">
+</p>
 
 When visualizing on PC1 and PC2, we don't see the samples separate by `treatment`, so we decide to explore other sources of variation present in the data. We hope that we have included all possible known sources of variation in our metadata table, and we can use these factors to color the PCA plot. 
 
+<p align="center">
 <img src="../img/example_PCA_treatmentPC1.png" width="600">
+</p>
 
 We start with the factor `cage`, but the `cage` factor does not seem to explain the variation on PC1 or PC2.
 
+<p align="center">
 <img src="../img/example_PCA_cage.png" width="600">
+</p>
 
 Then, we color by the `sex` factor, which appears to separate samples on PC2. This is good information to take note of, as we can use it downstream to account for the variation due to sex in the model and regress it out.
 
+<p align="center">
 <img src="../img/example_PCA_sex.png" width="600">
+</p>
 
 Next we explore the `strain` factor and find that it explains the variation on PC1. 
 
+<p align="center">
 <img src="../img/example_PCA_strain.png" width="600">
+</p>
 
 It's great that we have been able to identify the sources of variation for both PC1 and PC2. By accounting for it in our model, we should be able to detect more genes differentially expressed due to `treatment`.
 
@@ -73,29 +89,13 @@ Worrisome about this plot is that we see two samples that do not cluster with th
 
 Still we haven't found if `treatment` is a major source of variation after `strain` and `sex`. So, we explore PC3 and PC4 to see if `treatment` is driving the variation represented by either of these PCs.
 
+<p align="center">
 <img src="../img/example_PCA_treatmentPC3.png" width="600">
-
+</p>
+  
 We find that the samples separate by `treatment` on PC3, and are optimistic about our DE analysis since our condition of interest, `treatment`, is separating on PC3 and we can regress out the variation driving PC1 and PC2.
 
 Depending on how much variation is explained by the first few principal components, you **may want to explore more (i.e consider more components and plot pairwise combinations)**. Even if your samples do not separate clearly by the experimental variable, you may still get biologically relevant results from the DE analysis. If you are expecting very small effect sizes, then it's possible the signal is drowned out by extraneous sources of variation. In situations **where you can identify those sources, it is important to account for these in your model**, as it provides more power to the tool for detecting DE genes.  
-
-***
-
-**Exercise**
-
-The figure below was generated from a time course experiment with sample groups 'Ctrl' and 'Sci' and the following timepoints: 0h, 2h, 8h, and 16h. 
-
-- Determine the sources explaining the variation represented by PC1 and PC2.
-- Do the sample groups separate well?
-- Do the replicates cluster together for each sample group?
-- Are there any outliers in the data?
-- Should we have any other concerns regarding the samples in the dataset?
-
-<p align="center">
-<img src="../img/PCA_example3.png" width="900">
-</p>
-
-***
 
 ### Hierarchical Clustering Heatmap
 
@@ -113,7 +113,7 @@ The hierarchical tree along the axes indicates which samples are more similar to
 
 Now that we have a good understanding of the QC steps normally employed for RNA-seq, let's implement them for the Mov10 dataset we are going to be working with.
 
-### Transform normalized counts using the rlog transformation
+### Transform normalized counts for the MOV10 dataset
 
 **To improve the distances/clustering for the PCA and heirarchical clustering visualization methods**, we need to moderate the variance across the mean by applying the rlog transformation to the normalized counts. 
 
@@ -217,7 +217,7 @@ Overall, we observe pretty high correlations across the board ( > 0.999) suggest
 > pheatmap(rld_cor, annotation = meta, color = heat.colors, border_color=NA, fontsize = 10, 
 >			fontsize_row = 10, height=20)
 > ```       
-> Curious on all of the available [color palettes offered by the RColorBrewer package](http://www.r-graph-gallery.com/38-rcolorbrewers-palettes/)? Try typing in your console `display.brewer.all()` and see what happens!
+> Curious about all of the available [color palettes offered by the RColorBrewer package](http://www.r-graph-gallery.com/38-rcolorbrewers-palettes/)? Try typing in your console `display.brewer.all()` and see what happens!
 > 
 
 ---
