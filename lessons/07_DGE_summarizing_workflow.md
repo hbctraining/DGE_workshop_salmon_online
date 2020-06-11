@@ -18,7 +18,10 @@ We have detailed the various steps in a differential expression analysis workflo
 
 	```r
 	# Run tximport
-	txi <- tximport(files, type="salmon", tx2gene=t2g, countsFromAbundance = "lengthScaledTPM")
+	txi <- tximport(files, 
+			type="salmon", 
+			tx2gene=t2g, 
+			countsFromAbundance = "lengthScaledTPM")
 	
 	# "files" is a vector wherein each element is the path to the salmon quant.sf file, and each element is named with the name of the sample.
 	# "t2g" is a 2 column data frame which contains transcript IDs mapped to geneIDs (in that order)
