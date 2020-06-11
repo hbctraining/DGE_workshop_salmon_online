@@ -151,11 +151,15 @@ plotPCA(rld, intgroup="sampletype")
 <img src="../img/PCA_salmon.png" width="650">
 </p>
 
-**What does this plot tell you about the similarity of samples?** 
+***
 
-**Does it fit the expectation from the experimental design?** 
+Exercise:
 
-**What do you think the %variance information (in the axes titles) tell you about the data in the context of the PCA?**
+1. What does the above plot tell you about the similarity of samples?
+1. Does it fit the expectation from the experimental design?
+1. What do you think the %variance information (in the axes titles) tell you about the data in the context of the PCA?
+
+***
 
 By default `plotPCA()` uses the *top 500 most variable genes*. You can change this by adding the `ntop=` argument and specifying how many of the genes you want the function to consider.
 
