@@ -24,7 +24,9 @@ The output of RNA-seq differential expression analysis is a list of significant 
 
 Generally for any differential expression analysis, it is useful to interpret the resulting gene lists using freely available web- and R-based tools.  While tools for functional analysis span a wide variety of techniques, they can loosely be categorized into three main types: over-representation analysis, functional class scoring, and pathway topology [[1](https://github.com/hbctraining/In-depth-NGS-Data-Analysis-Course/raw/master/resources/pathway_tools.pdf)]. 
 
-![Pathway analysis tools](../img/pathway_analysis.png)
+<p align="center">
+<img src="../img/pathway_analysis.png" width="500">
+</p>
 
 The goal of functional analysis is provide biological insight, so it's necessary to analyze our results in the context of our experimental hypothesis: **FMRP and MOV10 associate and regulate the translation of a subset of RNAs**. Therefore, based on the authors' hypothesis, we may expect the enrichment of processes/pathways related to **translation, splicing, and the regulation of mRNAs**, which we would need to validate experimentally.
 
@@ -38,10 +40,14 @@ These databases typically **categorize genes into groups (gene sets)** based on 
 
 To determine whether any categories are over-represented, you can determine the probability of having the observed proportion of genes associated with a specific category in your gene list based on the proportion of genes associated with the same category in the background set (gene categorizations for the appropriate organism). 
 
+<p align="center">
 <img src="../img/go_proportions.png" width="600">
-
+</p>
+  
+<p align="center">  
 <img src="../img/go_proportions_table3.png" width="600">
-
+</p>
+  
 The statistical test that will determine whether something is actually over-represented is the *Hypergeometric test*.
 
 ### Hypergeometric testing
@@ -50,7 +56,9 @@ Using the example of the first functional category above, hypergeometric distrib
 
 The calculation of probability of k successes follows the formula:
 
-![hypergeo](../img/hypergeo.png) 
+<p align="center">  
+<img src="../img/hypergeo.png" width="500">
+</p>
 
 This test will result in an adjusted p-value (after multiple test correction) for each category tested.
 
@@ -155,7 +163,10 @@ cluster_summary <- data.frame(ego)
 write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 ```
 
-![cluster_summary](../img/cluster_summary.png)                
+
+<p align="center">  
+<img src="../img/cluster_summary.png" width="500">
+</p>             
 
 > **NOTE:** Instead of saving just the results summary from the `ego` object, it might also be beneficial to save the object itself. The `save()` function enables you to save it as a `.rda` file, e.g. `save(ego, file="results/ego.rda")`. 
 > The complementary function to `save()` is the function `load()`, e.g. `ego <- load(file="results/ego.rda")`.
@@ -176,8 +187,10 @@ dotplot(ego, showCategory=50)
 - `Orientation:` to `Landscape`
 - `PDF size` to `8 x 14` to give a figure of appropriate size for the text labels
 
+<p align="center"> 
 <img src="../img/mov10oe_dotplot.png" width="600">
-
+</p> 
+  
 The next plot is the **enrichment GO plot**, which shows the relationship between the top 50 most significantly enriched GO terms (padj.), by grouping similar terms together. The color represents the p-values relative to the other displayed terms (brighter red is more significant) and the size of the terms represents the number of genes that are significant from our list.
 
 ```r
@@ -187,8 +200,10 @@ emapplot(ego, showCategory = 50)
 
 **To save the figure,** click on the `Export` button in the RStudio `Plots` tab and `Save as PDF...`. In the pop-up window, change the `PDF size` to `12 x 14` to give a figure of appropriate size for the text labels.
 
+<p align="center"> 
 <img src="../img/emapplot_salmon.png" width="800">
-
+</p> 
+  
 Finally, the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the pvalues of the terms, with the more significant terms being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
 
 ```r
@@ -217,8 +232,10 @@ cnetplot(ego,
 
 **Again, to save the figure,** click on the `Export` button in the RStudio `Plots` tab and `Save as PDF...`. Change the `PDF size` to `12 x 14` to give a figure of appropriate size for the text labels.
 
+<p align="center"> 
 <img src="../img/cnetplot1_salmon.png" width="800">
-
+</p> 
+  
 If you are interested in significant processes that are **not** among the top five, you can subset your `ego` dataset to only display these processes:
 
 ```r
@@ -235,18 +252,24 @@ cnetplot(ego2,
          vertex.label.font=6)
 ```
 
+<p align="center"> 
 <img src="../img/cnetplot-2_salmon.png" width="800">
-
+</p> 
+  
 ## Functional class scoring
 
 Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring methods. 
 
-![Pathway analysis tools](../img/pathway_analysis.png)
+<p align="center"> 
+<img src="../img/pathway_analysis.png" width="500">
+</p> 
 
 Functional class scoring (FCS) tools, such as [GSEA](https://www.pnas.org/content/102/43/15545), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
 
+<p align="center"> 
 <img src="../img/gsea_theory.png" width="600">
-
+</p> 
+  
 The hypothesis of FCS methods is that although large changes in individual genes can have significant effects on pathways (and will be detected via ORA methods), weaker but coordinated changes in sets of functionally related genes (i.e., pathways) can also have significant effects.  Thus, rather than setting an arbitrary threshold to identify 'significant genes', **all genes are considered** in the analysis. The gene-level statistics from the dataset are aggregated to generate a single pathway-level statistic and statistical significance of each pathway is reported. This type of analysis can be particularly helpful if the differential expression analysis only outputs a small list of significant DE genes. 
 
 ### Gene set enrichment analysis using clusterProfiler and Pathview
@@ -290,7 +313,7 @@ head(foldchanges)
 
 Now we are ready to perform GSEA. The details regarding GSEA can be found in the [PNAS paper](https://www.pnas.org/content/102/43/15545) by Subramanian et al. We will describe briefly the steps outlined in the paper below:
 
-<p>
+<p align="center"> 
 <img src="../img/gsea_overview.png" width="600">
 </p>
 
@@ -339,6 +362,7 @@ View(gseaKEGG_results)
 
 write.csv(gseaKEGG_results, "results/gseaOE_kegg.csv", quote=F)
 ```
+
 > _**NOTE:** We will all get different results for the GSEA because the permutations performed use random reordering. If we would like to use the same permutations every time we run a function (i.e. we would like the same results every time we run the function), then we could use the `set.seed(123456)` function prior to running. The input to `set.seed()` could be any number, but if you would want the same results, then you would need to use the same number as input._
 
 Explore the GSEA plot of enrichment of one of the pathways in the ranked list:
@@ -347,8 +371,9 @@ Explore the GSEA plot of enrichment of one of the pathways in the ranked list:
 ## Plot the GSEA plot for a single enriched pathway, `hsa03040`
 gseaplot(gseaKEGG, geneSetID = 'hsa03040')
 ```
-
-![gseaKEGG_gseaplot](../img/gsea_kegg_hsa03040.png)
+<p align="center"> 
+<img src="../img/gsea_kegg_hsa03040.png" width="600">
+</p>
 
 In this plot, the lines in plot represent the genes in the gene set 'hsa03040', and where they occur among the log2 fold changes. The largest positive log2 fold changes are on the left-hand side of the plot, while the largest negative log2 fold changes are on the right. The top plot shows the magnitude of the log2 fold changes for each gene, while the bottom plot shows the running sum, with the enrichment score peaking at the red dotted line (which is among the negative log2 fold changes).
 
@@ -366,7 +391,9 @@ pathview(gene.data = foldchanges,
 ```
 >**NOTE:** If the below error message occurs: `Error in detach("package:dplyr", unload = T) : invalid 'name' argument`, that means the dplyr package is not currently loaded. Ignore the message and continue to run pathview command.
 
-![gseaKEGG_pathview](../img/hsa03040.pathview.png)
+<p align="center"> 
+<img src="../img/hsa03040.pathview.png" width="800">
+</p>
 
 
 >**NOTE:** Printing out Pathview images for all significant pathways can be easily performed as follows:
@@ -374,11 +401,14 @@ pathview(gene.data = foldchanges,
 > ```r
 >## Output images for all significant KEGG pathways
 > get_kegg_plots <- function(x) {
->    pathview(gene.data = foldchanges, pathway.id = gseaKEGG_results$ID[x], species = "hsa", 
->        limit = list(gene = 2, cpd = 1))
+>    pathview(gene.data = foldchanges, 
+>             pathway.id = gseaKEGG_results$ID[x], 
+>             species = "hsa",
+>             limit = list(gene = 2, cpd = 1))
 > }
 >
-> purrr::map(1:length(gseaKEGG_results$ID), get_kegg_plots)
+> purrr::map(1:length(gseaKEGG_results$ID), 
+>            get_kegg_plots)
 > ```
 
 Instead of exploring enrichment of KEGG gene sets, we can also explore the enrichment of BP Gene Ontology terms using gene set enrichment analysis: 
@@ -397,6 +427,7 @@ gseaGO_results <- gseaGO@result
 
 gseaplot(gseaGO, geneSetID = 'GO:0007423')
 ```
+
 There are other gene sets available for GSEA analysis in clusterProfiler (Disease Ontology, Reactome pathways, etc.). In addition, it is possible to supply your own gene set GMT file, such as a GMT for [MSigDB](http://software.broadinstitute.org/gsea/msigdb/index.jsp) using special clusterProfiler functions as shown below:
 
 ```r
@@ -414,7 +445,9 @@ msig_df <- data.frame(msig)
 
 ## Pathway topology tools
 
-![Pathway analysis tools](../img/pathway_analysis.png)
+<p align="center"> 
+<img src="../img/pathway_analysis.png" width="500">
+</p>
 
 The last main type of functional analysis technique is pathway topology analysis. Pathway topology analysis often takes into account gene interaction information along with the fold changes and adjusted p-values from differential expression analysis to identify dysregulated pathways. Depending on the tool, pathway topology tools explore how genes interact with each other (e.g. activation, inhibition, phosphorylation, ubiquitination, etc.) to determine the pathway-level statistics. Pathway topology-based methods utilize the number and type of interactions between gene product (our DE genes) and other gene products to infer gene function or pathway association. 
 
