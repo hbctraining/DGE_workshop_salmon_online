@@ -57,7 +57,7 @@ Using the example of the first functional category above, hypergeometric distrib
 The calculation of probability of k successes follows the formula:
 
 <p align="center">  
-<img src="../img/hypergeo.png" width="500">
+<img src="../img/hypergeo.png" width="200">
 </p>
 
 This test will result in an adjusted p-value (after multiple test correction) for each category tested.
