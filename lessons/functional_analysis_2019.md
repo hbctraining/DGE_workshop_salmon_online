@@ -165,7 +165,7 @@ write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 
 
 <p align="center">  
-<img src="../img/cluster_summary.png" width="500">
+<img src="../img/cluster_summary.png" width="800">
 </p>             
 
 > **NOTE:** Instead of saving just the results summary from the `ego` object, it might also be beneficial to save the object itself. The `save()` function enables you to save it as a `.rda` file, e.g. `save(ego, file="results/ego.rda")`. 
