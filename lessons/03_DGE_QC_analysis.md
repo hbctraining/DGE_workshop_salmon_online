@@ -107,7 +107,9 @@ The hierarchical tree along the axes indicates which samples are more similar to
 
 **In the plot below, we would be quite concerned about 'Wt_3' and 'KO_3' samples not clustering with the other replicates. We would want to explore the PCA to see if we see the same clustering of samples.**
 
+<p align="center">
 <img src="../img/heatmap_example.png" width="500">
+</p>
 
 ***
 
@@ -144,8 +146,9 @@ The function `plotPCA()` requires two arguments as input: a `DESeqTransform` obj
 ### Plot PCA 
 plotPCA(rld, intgroup="sampletype")
 ```
-
+<p align="center">
 ![pca](../img/PCA_salmon.png)
+</p>
 
 **What does this plot tell you about the similarity of samples? Does it fit the expectation from the experimental design?** 
 
@@ -207,7 +210,9 @@ pheatmap(rld_cor, annotation = meta)
 
 When you plot using `pheatmap()` the hierarchical clustering information is used to place similar samples together and this information is represented by the tree structure along the axes. The `annotation` argument accepts a dataframe as input, in our case it is the `meta` data frame. 
 
+<p align="center">
 ![heatmap1](../img/pheatmap_salmon.png)
+</p>
 
 Overall, we observe pretty high correlations across the board ( > 0.999) suggesting no outlying sample(s). Also, similar to the PCA plot you see the samples clustering together by sample group. Together, these plots suggest to us that the data are of good quality and we have the green light to proceed to differential expression analysis.
 
