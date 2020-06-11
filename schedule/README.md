@@ -9,10 +9,10 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:30 | Workshop Introduction |  |
-| 10:30 - 10:45 | R refresher Q & A | |
-| 10:45 - 11:15 | RNA-seq pre-reading discussion |  |
-| 11:15 - 12:00 | Intro to DGE / setting up DGE analysis |  |
+| 10:00 - 10:30 | Workshop Introduction | Radhika |
+| 10:30 - 10:45 | R refresher Q & A | Mary |
+| 10:45 - 11:15 | RNA-seq pre-reading discussion | Meeta/Mary |
+| 11:15 - 12:00 | Intro to DGE / setting up DGE analysis | Meeta |
 
 ### Self-Learning Part 1
 
@@ -32,16 +32,14 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:20 | Questions about self-learning lessons |  |
-| 10:20 - 11:00 | In-class exercises |  |
-| 11:00 - 11:30 | Design formulas  |  |
-| 11:30 - 12:00 | Hypothesis testing and multiple test correction |  |
+| 10:00 - 11:00 | Self-learning lessons discussion | Radhika/Jihe |
+| 11:00 - 11:30 | Design formulas  | Mary |
+| 11:30 - 12:00 | Hypothesis testing and multiple test correction | Meeta |
 
 ### Self-Learning Part 2
 1. Description of steps for DESeq2
 1. Wald test results
 1. Visualization
-
 
 ### Assignment #2
 * R script
