@@ -25,7 +25,7 @@ The output of RNA-seq differential expression analysis is a list of significant 
 Generally for any differential expression analysis, it is useful to interpret the resulting gene lists using freely available web- and R-based tools.  While tools for functional analysis span a wide variety of techniques, they can loosely be categorized into three main types: over-representation analysis, functional class scoring, and pathway topology [[1](https://github.com/hbctraining/In-depth-NGS-Data-Analysis-Course/raw/master/resources/pathway_tools.pdf)]. 
 
 <p align="center">
-<img src="../img/pathway_analysis.png" width="500">
+<img src="../img/pathway_analysis.png" width="600">
 </p>
 
 The goal of functional analysis is provide biological insight, so it's necessary to analyze our results in the context of our experimental hypothesis: **FMRP and MOV10 associate and regulate the translation of a subset of RNAs**. Therefore, based on the authors' hypothesis, we may expect the enrichment of processes/pathways related to **translation, splicing, and the regulation of mRNAs**, which we would need to validate experimentally.
@@ -165,7 +165,7 @@ write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 
 
 <p align="center">  
-<img src="../img/cluster_summary.png" width="800">
+<img src="../img/cluster_summary.png" width="700">
 </p>             
 
 > **NOTE:** Instead of saving just the results summary from the `ego` object, it might also be beneficial to save the object itself. The `save()` function enables you to save it as a `.rda` file, e.g. `save(ego, file="results/ego.rda")`. 
@@ -188,7 +188,7 @@ dotplot(ego, showCategory=50)
 - `PDF size` to `8 x 14` to give a figure of appropriate size for the text labels
 
 <p align="center"> 
-<img src="../img/mov10oe_dotplot.png" width="600">
+<img src="../img/mov10oe_dotplot.png" width="800">
 </p> 
   
 The next plot is the **enrichment GO plot**, which shows the relationship between the top 50 most significantly enriched GO terms (padj.), by grouping similar terms together. The color represents the p-values relative to the other displayed terms (brighter red is more significant) and the size of the terms represents the number of genes that are significant from our list.
@@ -261,7 +261,7 @@ cnetplot(ego2,
 Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring methods. 
 
 <p align="center"> 
-<img src="../img/pathway_analysis.png" width="500">
+<img src="../img/pathway_analysis.png" width="600">
 </p> 
 
 Functional class scoring (FCS) tools, such as [GSEA](https://www.pnas.org/content/102/43/15545), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
@@ -446,7 +446,7 @@ msig_df <- data.frame(msig)
 ## Pathway topology tools
 
 <p align="center"> 
-<img src="../img/pathway_analysis.png" width="500">
+<img src="../img/pathway_analysis.png" width="600">
 </p>
 
 The last main type of functional analysis technique is pathway topology analysis. Pathway topology analysis often takes into account gene interaction information along with the fold changes and adjusted p-values from differential expression analysis to identify dysregulated pathways. Depending on the tool, pathway topology tools explore how genes interact with each other (e.g. activation, inhibition, phosphorylation, ubiquitination, etc.) to determine the pathway-level statistics. Pathway topology-based methods utilize the number and type of interactions between gene product (our DE genes) and other gene products to infer gene function or pathway association. 
