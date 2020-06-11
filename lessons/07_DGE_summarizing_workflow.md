@@ -31,24 +31,29 @@ We have detailed the various steps in a differential expression analysis workflo
 	all(colnames(txi$counts) == rownames(metadata))
 	
 	# Create DESeq2Dataset object
-	dds <- DESeqDataSetFromTximport(txi, colData = metadata, design = ~ condition)
+	dds <- DESeqDataSetFromTximport(txi, 
+					colData = metadata, 
+					design = ~ condition)
 	```
 	
 3. Exploratory data analysis (PCA & heirarchical clustering) - identifying outliers and sources of variation in the data:
 	
 	```r
 	# Transform counts for data visualization
-	rld <- rlog(dds, blind=TRUE)
+	rld <- rlog(dds, 
+		    blind=TRUE)
 	
 	# Plot PCA 
-	plotPCA(rld, intgroup="condition")
+	plotPCA(rld, 
+		intgroup="condition")
 	
 	# Extract the rlog matrix from the object and compute pairwise correlation values
 	rld_mat <- assay(rld)
 	rld_cor <- cor(rld_mat)
 	
 	# Plot heatmap
-	pheatmap(rld_cor, annotation = metadata)
+	pheatmap(rld_cor, 
+		 annotation = metadata)
 	```
 	
 4. Run DESeq2:
@@ -72,10 +77,18 @@ We have detailed the various steps in a differential expression analysis workflo
 6. Create contrasts to perform Wald testing on the shrunken log2 foldchanges between specific conditions:
 
 	```r
-	# Output results of Wald test for contrast
+	# Specify contrast for comparison of interest
 	contrast <- c("condition", "level_to_compare", "base_level")
-	res <- results(dds, contrast = contrast, alpha = 0.05)
-	res <- lfcShrink(dds, contrast = contrast, res=res)
+	
+	# Output results of Wald test for contrast
+	res <- results(dds, 
+		       contrast = contrast, 
+		       alpha = 0.05)
+	
+	# Shrink the log2 fold changes to be more accurate
+	res <- lfcShrink(dds, 
+			 contrast = contrast, 
+			 res=res)
 	```
 
 7. Output significant results:
@@ -91,7 +104,8 @@ We have detailed the various steps in a differential expression analysis workflo
                   as_tibble()
 	
 	# Subset the significant results
-	sig_res <- filter(res_tbl, padj < padj.cutoff)
+	sig_res <- filter(res_tbl, 
+			  padj < padj.cutoff)
 	```
 
 8. Visualize results: volcano plots, heatmaps, normalized counts plots of top genes, etc.
