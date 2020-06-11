@@ -42,7 +42,7 @@ These unsupervised clustering methods are run using **log2 transformed normalize
 
 >_**NOTE:** The [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) suggests large datasets (100s of samples) to use the variance-stabilizing transformation (vst) instead of rlog for transformation of the counts, since the rlog function might take too long to run and the `vst()` function is faster with similar properties to rlog._
 
-### [Principal Component Analysis (PCA)](https://hbctraining.github.io/DGE_workshop/lessons/principal_component_analysis.html)
+### Principal Component Analysis (PCA)
 
 Principal Component Analysis (PCA) is a technique used to emphasize variation and bring out strong patterns in a dataset (dimensionality reduction). This is a very important technique used in the QC and analysis of both bulk and single-cell RNAseq data. To better understand how it works, **please go through [this YouTube video from StatQuest](https://www.youtube.com/watch?v=_UVHneBUBW0) that explains PCA**. 
 
@@ -130,7 +130,7 @@ The `rlog()` function returns a `DESeqTransform` object, another type of DESeq-s
 
 > **NOTE:** The `rlog()` funtion can be a bit slow when you have e.g. > 20 samples. In these situations the `vst()` function is much faster and performs a similar transformation appropriate for use with `plotPCA()`. It's typically just a few seconds with `vst()` due to optimizations and the nature of the transformation.
 
-### Principal components analysis (PCA) for the MOV10 dataset
+### Principal component analysis (PCA) for the MOV10 dataset
 
 We are now ready for the QC steps, let's start with PCA!
 
