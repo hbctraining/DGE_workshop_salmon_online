@@ -59,7 +59,7 @@ The authors are investigating interactions between various genes involved in Fra
 
 ### RNA-seq workflow
 
-For this dataset, raw sequence reads were obtained from the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367). These reads were then processed using the RNA-seq workflow as detailed in the [pre-reading for this workshop](01a_RNAseq_processing_workflow.md). All steps were performed on the command line (Linux/Unix), including a thorough quality control assessment. If you are interested, we have the **MultiQC html report for this dataset [linked here]()** for you to peruse.
+For this dataset, raw sequence reads were obtained from the [Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=SRP029367). These reads were then processed using the RNA-seq workflow as detailed in the [pre-reading for this workshop](01a_RNAseq_processing_workflow.md). All steps were performed on the command line (Linux/Unix), including a thorough quality control assessment. If you are interested, we have the **MultiQC html report for this dataset [linked here](https://github.com/hbctraining/DGE_workshop_salmon_online/raw/master/data/multiqc_report_rnaseq.html.zip)** for you to peruse.
 
 The directories of output from the mapping/quantification step of the workflow (Salmon) is the data that we will be using. These transcript abundance estimates, often referred to as **'pseudocounts', will be the starting point for our differential gene expression analysis**.
 
