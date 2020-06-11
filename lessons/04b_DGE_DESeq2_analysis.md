@@ -16,7 +16,7 @@ Approximate time: 60 minutes
 
 With the 2 lines of code in the previous lesson, we just completed the workflow for the differential gene expression analysis with DESeq2. The steps in the analysis are output below:
 
-<img src="../img/deseq2_workflow_separate.png" width="200">
+<img src="../img/deseq2_workflow_separate.png" width="500">
 
 We will be taking a detailed look at each of these steps to better understand how DESeq2 is performing the statistical analysis and what metrics we should examine to explore the quality of our analysis.
 
