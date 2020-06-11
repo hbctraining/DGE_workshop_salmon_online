@@ -157,7 +157,7 @@ Note that an **increase in the number of replicates tends to return more DE gene
 
 ## Differential Expression with DESeq2
 
-DESeq2 is a popular tool for gene-level differential expression analysis. It uses the negative binomial distribution, employing a slightly more stringent approach compared to some methods yet having a good balance between sensitivity and specificity (reducing both false positives and false negatives). Consequently, the number of differentially expressed genes will be fewer, but as shown in the figure above these genes have been found to be a subset of genes identified by other methods.
+DESeq2 is a popular tool for gene-level differential expression analysis. It uses the negative binomial distribution, employing a slightly more stringent approach compared to some methods yet having a good balance between sensitivity and specificity (reducing both false positives and false negatives). 
 
 > ### Other tools for Differential Expression Analysis
 > There are a number of software packages that have been developed for differential expression analysis of RNA-seq data. Most adopt the **negative binomial approach**, however there are other tools based on non-parametric methods suitable for larger sample sizes. An extensive comparison of these methods can be found in [Soneson and Dleorenzi, 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-91).
