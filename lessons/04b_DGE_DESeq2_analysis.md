@@ -14,7 +14,19 @@ Approximate time: 60 minutes
 
 ## DESeq2 differential gene expression analysis workflow
 
-With the 2 lines of code in the previous lesson, we just completed the workflow for the differential gene expression analysis with DESeq2. The steps in the analysis are output below:
+By previously creating the DESeq2 object with the appropriate design formula and running DESeq2 using the two lines of code:
+
+```r
+# DO NOT RUN
+
+## Create DESeq2Dataset object
+dds <- DESeqDataSetFromTximport(txi, colData = meta, design = ~ sampletype)
+
+## Run analysis
+dds <- DESeq(dds)
+```
+
+We completed the entire workflow for the differential gene expression analysis with DESeq2. The steps in the analysis are output below:
 
 <p align="center">
 <img src="../img/deseq2_workflow_separate.png" width="500">
