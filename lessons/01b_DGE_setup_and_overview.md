@@ -189,7 +189,7 @@ data <- txi$counts %>%
 
 ```
 
-> #### What if I don't have Salmon pseudocounts as input?
+> ### What if I don't have Salmon pseudocounts as input?
 > Until recently, the standard approach for RNA-seq analysis had been to map our reads using a splice-aware aligner (i.e STAR) and then use the resulting BAM files as input to counting tools like [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) and [htseq-count](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to obtain our final expression matrix. The field has now moved towards using lightweight alignment tools like Salmon as standard practice. If you are still working with data generated using the older standard approach we have some [materials linked here](https://hbctraining.github.io/DGE_workshop/schedule/1.5-day.htmll) on **using DESeq2 with a raw count matrix as your starting point**.
 
 
