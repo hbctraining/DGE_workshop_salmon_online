@@ -91,6 +91,8 @@ class(res_tableOE)
 Now let's take a look at **what information is stored** in the results:
 
 ```r
+
+# What is stored in results?
 res_tableOE %>% 
 data.frame() %>% 
 View()
@@ -113,6 +115,7 @@ ENSG00000000460		1.16E+03	-0.261603812	0.07912962	-3.30661411	9.44E-04	5.92E-03
 We have six columns of information reported for each gene (row). We can use the `mcols()` function to extract information on what the values stored in each column represent:
 
 ```r
+# Get information on each column in results
 mcols(res_tableOE, use.names=T)
 ```
 
@@ -146,6 +149,7 @@ The missing values represent genes that have undergone filtering as part of the 
 If within a row, all samples have zero counts there is no expression information and therefore these genes are not tested. 
 
 ```r
+# Filter genes by zero expression
 res_tableOE[which(res_tableOE$baseMean == 0),] %>% 
 data.frame() %>% 
 View()
@@ -159,6 +163,7 @@ View()
 The `DESeq()` function calculates, for every gene and for every sample, a diagnostic test for outliers called Cook’s distance. Cook’s distance is a measure of how much a single sample is influencing the fitted coefficients for a gene, and a large value of Cook’s distance is intended to indicate an outlier count. Genes which contain a Cook’s distance above a threshold are flagged, however at least 3 replicates are required for flagging, as it is difficult to judge which sample might be an outlier with only 2 replicates. We can turn off this filtering by using the `cooksCutoff` argument in the `results()` function.
 
 ```r
+# Filter genes that have an extreme outlier
 res_tableOE[which(res_tableOE$pvalue == NA & res_tableOE$padj == NA),] %>% 
 data.frame() %>% 
 View()
@@ -180,6 +185,7 @@ DESeq2 defines a low mean threshold, that is empirically determined from your da
 At a user-specified value (`alpha = 0.05`), DESeq2 evaluates the change in the number of significant genes as it filters out increasingly bigger portions of genes based on their mean counts, as shown in the figure above. The point at which the number of significant genes reaches a peak is the low mean threshold that is used to filter genes that undergo multiple testing. There is also an argument to turn off the filtering off by setting `independentFiltering = F`.
 
 ```r
+# Filter genes below the low mean threshold
 res_tableOE[which(res_tableOE$pvalue != NA & res_tableOE$padj == NA),] %>% 
 data.frame() %>% 
 View()
@@ -235,6 +241,15 @@ res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE)
 
 **Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
 
+> ### Different types of shrinkage estimation
+> When you run `lfcShrink()` as we have above you will see the text below appear in your console:
+> 
+> ```using 'normal' for LFC shrinkage, the Normal prior from Love et al (2014). Note that type='apeglm' and type='ashr' have shown to have less bias than type='normal'.```
+> 
+> Recently, the authors have implemented options for different methods for shrinkage estimation. It has been shown that in most situations these methods have [less bias than the 'normal` method](https://bioconductor.org/packages/devel/bioc/vignettes/apeglm/inst/doc/apeglm.html) we have used by default. 
+> 
+> However when using these methods, rather than using the `contrast` argument you will be required to specify `coef`. Using contrast forms an expanded model matrix, treating all factor levels equally, and averages over all distances between all pairs of factor levels to estimate the prior. Using coef, means looking only at that column of the model matrix (so usually that would be one level against the reference level) and estimates the prior for that coefficient from the distribution of those MLE of coefficients. When using coef, the shrinkage depends on which level is chosen as reference.
+
 
 ## MA plot
 
@@ -243,12 +258,14 @@ A plot that can be useful to exploring our results is the MA plot. The MA plot s
 **Let's start with the unshrunken results:**
 
 ```r
+# MA plot using unshrunken fold changes
 plotMA(res_tableOE_unshrunken, ylim=c(-2,2))
 ```
 
 **And now the shrunken results:**
 
 ```r
+# MA plot using shrunken fold changes
 plotMA(res_tableOE, ylim=c(-2,2))
 ```
 
