@@ -26,7 +26,7 @@ In addition to the number of genes up- and down-regulated at the default thresho
 
 ## Extracting significant differentially expressed genes
 
-Let's first create variables that contain our threshold criteria:
+Let's first create variables that contain our threshold criteria. We will only be using the adjusted p-values in our criteria:
 
 ```r
 ### Set thresholds
@@ -36,6 +36,7 @@ padj.cutoff <- 0.05
 We can easily subset the results table to only include those that are significant using the `filter()` function, but first we will convert the results table into a tibble:
 
 ```r
+# Create a tibble of results
 res_tableOE_tb <- res_tableOE %>%
   data.frame() %>%
   rownames_to_column(var="gene") %>% 
@@ -45,11 +46,13 @@ res_tableOE_tb <- res_tableOE %>%
 Now we can subset that table to only keep the significant genes using our pre-defined thresholds:
 
 ```r
+# Subset the tibble to keep only significant genes
 sigOE <- res_tableOE_tb %>%
         filter(padj < padj.cutoff)
 ```
 
 ```r
+# Take a quick look at this tibble
 sigOE
 ```
 
@@ -57,24 +60,11 @@ sigOE
 
 **Exercise**
 
-Do the same with KD
-Using the same p-adjusted threshold as above (`padj.cutoff < 0.05`), subset `res_tableKD` to report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
+**MOV10 Differential Expression Analysis: Control versus Knockdown**
 
-```r
+1. Using the same p-adjusted threshold as above (`padj.cutoff < 0.05`), subset `res_tableKD` to report the number of genes that are up- and down-regulated in Mov10_knockdown compared to control.
+2. How many genes are differentially expressed in the Knockdown compared to Control? How does this compare to the overexpression significant gene list (in terms of numbers)?
 
-res_tableKD_tb <- res_tableKD %>%
-  data.frame() %>%
-  rownames_to_column(var="gene") %>% 
-  as_tibble()
-  
-sigKD <- res_tableKD_tb %>%
-        filter(padj < padj.cutoff)
-```
-
-**How many genes are differentially expressed in the Knockdown compared to Control?** 
-```r
-sigKD
-``` 
 ***
 
 
