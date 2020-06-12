@@ -49,7 +49,9 @@ of the second cDNA strand (for details see Levin et al. (2010)). Once double-str
 
 Sequencing of the cDNA libraries will generate **reads**. Reads correspond to the nucleotide sequences of the ends of each of the cDNA fragements in the library. You will have the choice of sequencing either a single end of the cDNA fragments (single-end reads) or both ends of the fragments (paired-end reads).
 
+<p align="center">
 <img src="../img/paired_end_reads.png" width="500">
+</p>
 
 - SE - Single end dataset => Only Read1
 - PE - Paired-end dataset => Read1 + Read2
