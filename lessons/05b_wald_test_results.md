@@ -292,8 +292,6 @@ Now that we have results for the overexpression results, do the same for the **C
 2. Use contrast vector in the `results()` to extract a results table and store that to a variable called `res_tableKD`. 
 3. Shrink the LFC estimates using `lfcShrink()` and assign it back to `res_tableKD`.
 
-***
-
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
