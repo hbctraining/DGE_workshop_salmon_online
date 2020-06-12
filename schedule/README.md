@@ -38,7 +38,8 @@
 
 ### Self-Learning Part 2
 1. Description of steps for DESeq2
-1. Wald test results
+1. [Wald test results](../lessons/05b_wald_test_results.md)
+1. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
 1. Visualization
 
 ### Assignment #2
