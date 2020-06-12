@@ -95,7 +95,7 @@ Your plot should look like the scatterplot below. Each data point represents a g
 
 **Exercise**
 
-1. Evaluate the relationship between mean and variance for the control replicates (Irrel_kd samples). Note the differences or similarities in the plot compared to the one using the overexpression replicates.
+Evaluate the relationship between mean and variance for the control replicates (Irrel_kd samples). Note the differences or similarities in the plot compared to the one using the overexpression replicates.
 
 ***
 
