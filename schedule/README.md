@@ -12,7 +12,7 @@
 | 10:00 - 10:30 | Workshop Introduction | Radhika |
 | 10:30 - 10:45 | R refresher Q & A | Mary |
 | 10:45 - 11:15 | RNA-seq pre-reading discussion | Meeta/Mary |
-| 11:15 - 12:00 | Intro to DGE / setting up DGE analysis | Meeta |
+| 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
 
 ### Self-Learning Part 1
 
