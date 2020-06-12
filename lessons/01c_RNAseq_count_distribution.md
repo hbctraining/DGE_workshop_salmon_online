@@ -95,7 +95,7 @@ Your plot should look like the scatterplot below. Each data point represents a g
 
 **Exercise**
 
-Try this with the control replicates?
+1. Evaluate the relationship between mean and variance for the control replicates (Irrel_kd samples). Note the differences or similarities in the plot compared to the one using the overexpression replicates.
 
 ***
 
@@ -111,6 +111,16 @@ In practice, a large number of replicates can be either hard to obtain (dependin
 <p align="center">
 <img src="../img/deseq_nb.png" width="400">
 </p>
+
+***
+
+**Exercise**
+
+1. An RNA-seq experiment was conducted on mice forebrain to evaluate the effect of increasing concentrations of a treatment. For each of the five different concentrations we have n = 5 mice for a total of 25 samples.  If we observed little to no variability between replicates, what might this suggest about our samples? 
+2. What type of mean-variance relationship would you expect to see for this dataset?
+
+***
+
 
 ## Replicates and variability
 
