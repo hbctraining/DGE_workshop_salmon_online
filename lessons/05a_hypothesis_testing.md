@@ -99,6 +99,13 @@ dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1)
 
 Since our 'full' model only has one factor (`sampletype`), the 'reduced' model (removing that factor) leaves us with nothing in our design formula. DESeq2 cannot fit a model with nothing in the design formula, and so in the scenario where you have no additional covariates the intercept is modeled using the syntax `~ 1`.
 
+***
+
+**Exercise**
+
+
+
+***
 
 ## Multiple test correction
 
