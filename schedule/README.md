@@ -34,7 +34,7 @@
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:00 | Self-learning lessons discussion | Radhika/Jihe |
 | 11:00 - 11:30 | Design formulas  | Mary |
-| 11:30 - 12:00 | Hypothesis testing and multiple test correction | Meeta |
+| 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
 ### Self-Learning Part 2
 1. Description of steps for DESeq2
