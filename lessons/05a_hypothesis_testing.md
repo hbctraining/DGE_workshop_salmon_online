@@ -103,7 +103,7 @@ Since our 'full' model only has one factor (`sampletype`), the 'reduced' model (
 
 **Exercise**
 
-You are studying brain maturation and growth patterns in mouse cortex and have obtained RNA-seq data for a total of 31 mice. These samples were acquired at 9 developmental stages during the postnatal period of 2-40 days of growth, with multiple replicates at each stage. You also have sex information for these mice (16 males and 15 females).
+You are studying brain maturation and growth patterns in mouse cortex and have obtained RNA-seq data for a total of 31 mice. These samples were acquired at 9 developmental stages during the postnatal period of 2-40 days of growth, with at least three  replicates at each stage. You also have sex information for these mice (16 males and 15 females).
 
 1. What is an appropriate hypothesis test if you are testing for expression differences across the developmental stages? 
 2. Provide the line of code used to create the `dds` object. 
