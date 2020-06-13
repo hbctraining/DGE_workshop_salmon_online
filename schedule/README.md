@@ -2,7 +2,7 @@
 
 ## Pre-reading
 
-1. [Workflow (raw data to counts)](01a_RNAseq_processing_workflow.md)
+1. [Workflow (raw data to counts)](../lessons/01a_RNAseq_processing_workflow.md)
 1. Experimental design considerations
 
 ## Day 1
