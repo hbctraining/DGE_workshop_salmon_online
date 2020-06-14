@@ -193,6 +193,15 @@ plotDispEsts(dds)
 
 We see a nice decrease in dispersion with increasing mean expression, which is good. We also see the dispersion estimates generally surround the curve, which is also expected. Overall, this plot looks good. We do see strong shrinkage, which is likely due to the fact that we have only two replicates for one of our sample groups. The more replicates we have, the less shrinkage is applied to the dispersion estimates, and the more DE genes are able to be identified. We would generally recommend having at least 4 biological replicates per condition for better estimation of variation.
 
+***
+
+**Exercise**
+
+Given the dispersion plot below, would you have any concerns regarding the fit of your data to the model?
+
+<p align="center">
+<img src="../img/exercise_dispersion.png">
+</p>
 
 ---
 
