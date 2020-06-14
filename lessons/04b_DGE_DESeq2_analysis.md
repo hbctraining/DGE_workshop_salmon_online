@@ -197,7 +197,10 @@ We see a nice decrease in dispersion with increasing mean expression, which is g
 
 **Exercise**
 
-Given the dispersion plot below, would you have any concerns regarding the fit of your data to the model?
+Given the dispersion plot below, would you have any concerns regarding the fit of your data to the model? 
+	
+- If not, what aspects of the plot makes you feel confident about your data?
+- If so, what are your concerns? What would you do to address them?
 
 <p align="center">
 <img src="../img/exercise_dispersion.png" width="600">
