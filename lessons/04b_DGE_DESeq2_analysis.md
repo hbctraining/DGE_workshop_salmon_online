@@ -186,7 +186,7 @@ plotDispEsts(dds)
 ```
 
 <p align="center">
-<img src="../img/plotDispersion_salmon.png">
+<img src="../img/plotDispersion_salmon.png" width="600">
 </p>
 
 **Since we have a small sample size, for many genes we see quite a bit of shrinkage. Do you think our data are a good fit for the model?**
@@ -203,7 +203,7 @@ Given the dispersion plot below, would you have any concerns regarding the fit o
 - If so, what are your concerns? What would you do to address them?
 
 <p align="center">
-<img src="../img/exercise_dispersion.png" width="600">
+<img src="../img/exercise_dispersion.png" width="500">
 </p>
 
 ---
