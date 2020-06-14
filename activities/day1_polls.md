@@ -31,3 +31,8 @@
    1. FASTQC is a tool used to evaluate the raw sequence reads.
    1. Mapping quality tools like Qualimap require genomic coordinate information as input.
    1. If a sample exhibits low quality scores at any one of the checkpoints it should be discarded before proceeding to differential gene expression analysis.
+   
+5. For the majority of bulk RNA-seq experiments, higher sequencing depth is more important than the number of replicates.
+
+   1. True
+   1. False
