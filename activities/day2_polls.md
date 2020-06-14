@@ -1,14 +1,20 @@
-1. Which of the following factor does not need to be taken into consideration when comparing expression of a same gene between samples?  
+1. Which of the following factors does not need to be taken into consideration when comparing expression of a same gene between samples?  
   a. Sequencing depth  
   b. Gene length  
   c. RNA composition
 
-2. Which of the following normalization method is recommended for differential expression analysis between samples?  
+2. Which of the following normalization methods are utilized by DESeq2's model?  
   a. CPM (counts per million)  
   b. TPM (transcripts per kilobase million)  
   c. RPKM (reads per kilobase of exon per million reads/fragments mapped)  
-  d. DESeq2's median of ratios
+  d. median of ratios
+  
+3. Which of the following normalization methods should NOT be used to compare the expression of the same gene between any two samples?  
+  a. CPM (counts per million)  
+  b. TPM (transcripts per kilobase million)  
+  c. RPKM (reads per kilobase of exon per million reads/fragments mapped)  
+  d. median of ratios
 
-3. True or False: The presence of differential expression genes between samples will dramatically affect the size factor (normalization factor).  
+4. True or False: The presence of differentially expressed genes between samples can alter the size factor (normalization factor).  
   a. True  
   b. False
