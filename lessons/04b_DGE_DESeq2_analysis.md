@@ -14,7 +14,7 @@ Approximate time: 60 minutes
 
 ## DESeq2 differential gene expression analysis workflow
 
-By previously creating the DESeq2 object with the appropriate design formula and running DESeq2 using the two lines of code:
+Previously, we created the DESeq2 object using the appropriate design formula and running DESeq2 using the two lines of code:
 
 ```r
 # DO NOT RUN
