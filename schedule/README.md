@@ -3,7 +3,7 @@
 ## Pre-reading
 
 1. [Workflow (raw data to counts)](../lessons/01a_RNAseq_processing_workflow.md)
-1. Experimental design considerations
+1. [Experimental design considerations](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html)
 
 ## Day 1
 
@@ -11,7 +11,7 @@
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 10:30 | Workshop Introduction | Radhika |
 | 10:30 - 10:45 | [R refresher Q & A](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/R_refresher.html) | Mary |
-| 10:45 - 11:15 | [RNA-seq pre-reading discussion](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html) | Meeta/Mary |
+| 10:45 - 11:15 | RNA-seq pre-reading discussion | Meeta/Mary |
 | 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
 
 ### Self-Learning Part 1
@@ -33,11 +33,11 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:00 | Self-learning lessons discussion | Radhika/Jihe |
-| 11:00 - 11:30 | Design formulas  | Mary |
+| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Mary |
 | 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
 ### Self-Learning Part 2
-1. Description of steps for DESeq2
+1. [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
 1. [Wald test results](../lessons/05b_wald_test_results.md)
 1. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
 1. Visualization
