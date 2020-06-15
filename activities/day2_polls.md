@@ -5,6 +5,7 @@
   d. Count data follows a negative binomial distribution.
 
 2. Increasing the number of replicates enables more precise estimates of group means, and increases our statistical power to call differentially expressed genes correctly.   
+
    a. True  
    b. False
    
@@ -13,17 +14,20 @@
   b. Gene length  
   c. RNA composition
 
-4. Which of the following normalization methods are utilized by DESeq2's model?  
+4. Which of the following normalization methods are utilized by DESeq2's model?
+
   a. CPM (counts per million)  
   b. TPM (transcripts per kilobase million)  
   c. RPKM (reads per kilobase of exon per million reads/fragments mapped)  
   d. median of ratios
   
-5. True or False: RPKM is the preferred normalization method over TPM to compare the expression of a given gene between samples.
+5. True or False: RPKM is the preferred normalization method to compare the expression of a given gene between samples.
+
   a. True  
   b. False
 
 6. True or False: The presence of differentially expressed genes between samples can alter the size factor (normalization factor).  
+
   a. True  
   b. False
   
