@@ -8,32 +8,13 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Introducing an alternative statistical test for differential expression analysis
 * Extract results using the LRT and compare to Wald test
 * Export results to file
 
 
-## Hypothesis testing: Likelihood ratio test (LRT)
+## Exploring results from the Likelihood ratio test (LRT)
 
 DESeq2 also offers the Likelihood Ratio Test as an alternative **when evaluating expression change across more than two levels**. This type of test can be especially useful in analyzing time course experiments. 
-
-### How does this compare to the Wald test?
-
-The **Wald test** (default) is a test of hypothesis usually performed on parameters that have been estimated by maximum likelihood. It only **estimates one model per gene and evaluates the null hypothesis that LFC == 0.**
-
-
-The **Likelihood Ratio Test** is also performed on parameters that have been estimated by maximum likelihood. For this test **two models are estimated per gene; the fit of one model is compared to the fit of the other model.**
-
-<p align="center">
-<img src="../img/lrt_formula.png" width="300">
-</p>
-
-* m1 is the reduced model (i.e the design formula with your main effect term removed)
-* m2 is the full model (i.e. the full design formula your provided when creating your `dds` object`)
-
-*It is shown that LR follows a chi-squared distribution, and this can be used to calculate and associated p-value.*
-
-Here, we are evaluating the **null hypothesis that the full model fits just as well as the reduced model**. If we reject the null hypothesis, this suggests that there is a significant amount of variation explained by our main effect, therefore the gene is differentially expressed across the different levels. DESeq2 implements the LRT by using an Analysis of Deviance (ANODEV) to compare the two model fits.
 
 To use the LRT, we use the `DESeq()` function but this time adding two arguments: 
 
@@ -50,8 +31,6 @@ library(DEGreport)
 # Likelihood ratio test
 dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1)
 ```
-
-Since our 'full' model only has one factor (`sampletype`), the 'reduced' model is just the intercept (`~ 1`).
 
 Generally, this test will result in a larger number of genes than the individual pair-wise comparisons. While the LRT is a test of significance for differences of any level of the factor, one should not expect it to be exactly equal to the union of sets of genes using Wald tests (although we do expect a majority overlap).
 
