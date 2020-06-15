@@ -1,9 +1,9 @@
 1. Which of the following is NOT part of the library preparation process?
 
-   1. Reverse transcription
-   1. Fragmentation
-   1. Immunoprecipitation
-   1. PolyA selection
+	1. Reverse transcription
+	1. Fragmentation
+	1. Immunoprecipitation
+	1. PolyA selection
 
  
 1. In Illumina's sequencing by synthesis process, each cycle incorporates a fluorophore labelled dNTP which is excited by a laser. Each dNTP has a distinct excitatory signal emission which is captured by cameras. The number of bases incorporated is equal to the total length of the cDNA fragment being sequenced.
