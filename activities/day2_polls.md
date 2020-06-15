@@ -1,4 +1,4 @@
-1. Which of the following factors does not need to be taken into consideration when comparing expression of a same gene between samples?  
+1. Which of the following factors does not need to be taken into consideration when comparing expression of a given gene between samples?  
   a. Sequencing depth  
   b. Gene length  
   c. RNA composition
