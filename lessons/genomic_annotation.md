@@ -217,7 +217,7 @@ To **obtain an annotation data frame** using AnnotationHub, we'll use the `genes
 ```r
 # Create a gene-level dataframe 
 annotations_ahb <- genes(human_ens, return.type = "data.frame")  %>%
-  dplyr::select(gene_id, entrezid, gene_biotype) %>% 
+  dplyr::select(gene_id, gene_name, entrezid, gene_biotype) %>% 
   dplyr::filter(gene_id %in% res_tableOE_tb$gene)
 ```
 
@@ -247,15 +247,15 @@ annotations_ahb$entrezid <- map(annotations_ahb$entrezid,1) %>%  unlist()
 
 Let's take a look and see how many of our Ensembl identifiers have an associated gene symbol, and how many of them are unique:
 ```r
-which(is.na(annotations_ahb$symbol)) %>% length()
+which(is.na(annotations_ahb$gene_name)) %>% length()
 
-which(duplicated(annotations_ahb$symbol)) %>% length()
+which(duplicated(annotations_ahb$gene_name)) %>% length()
 ```
 
 Let's identify the non-duplicated genes and only keep the ones that are not duplicated:
 ```r
 # Determine the indices for the non-duplicated genes
-non_duplicates_idx <- which(duplicated(annotations_ahb$symbol) == FALSE)
+non_duplicates_idx <- which(duplicated(annotations_ahb$gene_name) == FALSE)
 
 # How many rows does annotations_ahb have?
 annotations_ahb %>% nrow()
@@ -291,7 +291,7 @@ To create our `tx2gene` file, we would need to use a combination of the methods 
  
  # Create a gene-level dataframe
  genedb <- genes(human_ens, return.type = "data.frame")  %>%
-   dplyr::select(gene_id, symbol)
+   dplyr::select(gene_id, gene_name)
  
  # Merge the two dataframes together
  annotations <- inner_join(txdb, genedb)
