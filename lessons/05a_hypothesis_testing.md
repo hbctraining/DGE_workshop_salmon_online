@@ -18,7 +18,7 @@ Approximate time: 60 minutes
 The final step in the DESeq2 workflow is taking the counts for each gene and fitting it to the model and testing for differential expression.
 
 <p align="center">
-<img src="../img/de_workflow_salmon_deseq2.png" width="400">
+<img src="../img/de_workflow_salmon_deseq2.png" width="500">
 </p>
 
 ## Generalized Linear Model 
