@@ -26,6 +26,5 @@
   d. Count data follows a negative binomial distribution.
 
 6. Increasing the number of replicates enables more precise estimates of group means, and increases our statistical power to call differentially expressed genes correctly.   
-
-a. True 
-b. False
+   a. True  
+   b. False
