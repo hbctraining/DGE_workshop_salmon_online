@@ -18,3 +18,11 @@
 4. True or False: The presence of differentially expressed genes between samples can alter the size factor (normalization factor).  
   a. True  
   b. False
+  
+5. The following statements are describing the characteristics of RNA-seq count data. Select the statement that is incorrect.
+a. Count data has large dynamic range, with no upper limit for expression.
+b. For genes with low mean expression we observe a range of variance values.
+c. For genes with high mean expression, the mean < variance.
+d. Count data follows a negative binomial distribution.
+
+6. 
