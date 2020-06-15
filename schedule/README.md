@@ -9,8 +9,8 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:30 | Workshop Introduction | Radhika |
-| 10:30 - 10:45 | [R refresher Q & A](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/R_refresher.html) | Mary |
+| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop.pdf) | Radhika |
+| 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | Mary |
 | 10:45 - 11:15 | RNA-seq pre-reading discussion | Meeta/Mary |
 | 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
 
