@@ -1,10 +1,8 @@
 1. Which of the following is NOT part of the library preparation process?
 
-**I assume hybridization is the correct answer, but hybridization occurs in the PCR step. Perhaps we could add 'immunoprecipiation' instead?** - MP
-
    1. Reverse transcription
    1. Fragmentation
-   1. Hybridization
+   1. Immunoprecipitation
    1. PolyA selection
 
  
