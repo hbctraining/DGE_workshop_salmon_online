@@ -1,5 +1,4 @@
 1. The following statements are describing the characteristics of RNA-seq count data. Select the statement that is incorrect.   
-  
   1. Count data has large dynamic range, with no upper limit for expression.  
   1. For genes with low mean expression we observe a range of variance values.  
   1. For genes with high mean expression, the variance is less than the mean.  
