@@ -6,12 +6,12 @@
 	1. PolyA selection
 
  
-1. In Illumina's sequencing by synthesis process, each cycle incorporates a fluorophore labelled dNTP which is excited by a laser. Each dNTP has a distinct excitatory signal emission which is captured by cameras. The number of bases incorporated is equal to the total length of the cDNA fragment being sequenced.
+1. In Illumina's sequencing by synthesis process, each cycle incorporates a fluorophore labelled dNTP which is excited by a laser. Each dNTP has a distinct excitatory signal emission which is captured by cameras. The number of bases incorporated is equal to the total length of the cDNA fragment being sequenced. OR *"The number of bases incorporated during Illumina's sequencing by synthesis process is equal to the total length of the cDNA fragment being sequenced."*
 
 	1. True
 	2. False
 
-1. Lightweight alignment tools are those which avoid base-to-base genomic alignment of the reads. These tools not only provide quantification estimates faster than older tools, but also show improvements in accuracy. Which of the following tools is not a lightweight alignment tool?
+1. Lightweight alignment tools are those which avoid base-to-base genomic alignment of the reads. These tools not only provide quantification estimates faster than older tools, but also show improvements in accuracy. Which of the following tools is not a lightweight alignment tool? OR *"Lightweight alignment tools avoid base-to-base genomic alignment of the reads. These tools provide quantification estimates faster than older tools, and also show improvements in accuracy. Which of the following tools is not a lightweight alignment tool?"*
 
 	1. Sailfish
 	1. STAR
