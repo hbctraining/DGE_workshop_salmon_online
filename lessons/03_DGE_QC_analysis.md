@@ -37,7 +37,7 @@ To explore the similarity of our samples, we will be performing sample-level QC 
 These unsupervised clustering methods are run using **log2 transformed normalized counts**. The log2 transformation **improves the distances/clustering for visualization**. Instead of using an ordinary log2 transform, we will be using **regularized log transform** (rlog), to avoid any bias from the abundance of low-count genes; Note1 below explains this in more detail.
 
 <p align="center">
-<img src="../img/rlog_transformation_new.png" width="500">
+<img src="../img/rlog_transformation_new.png" width="650">
 </p>
 
 *Image adapted from "[Beginner's guide to using the DESeq2 package](https://bioc.ism.ac.jp/packages/2.14/bioc/vignettes/DESeq2/inst/doc/beginner.pdf)" by Love, Anders and Huber, 2014*
