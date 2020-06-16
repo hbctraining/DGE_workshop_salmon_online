@@ -18,7 +18,7 @@
 
 1. [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
 1. [Count normalization](../lessons/02_DGE_count_normalization.md)
-1. Sample-level QC (PCA and hierarchical clustering)
+1. [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
 
 ### Assignment #1
 * All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_1.R)
