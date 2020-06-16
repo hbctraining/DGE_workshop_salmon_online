@@ -28,19 +28,27 @@ A useful initial step in an RNA-seq analysis is often to assess overall similari
 - Does this fit to the expectation from the experiment’s design? 
 - What are the major sources of variation in the dataset?
 
-To explore the similarity of our samples, we will be performing sample-level QC using Principal Component Analysis (PCA) and hierarchical clustering methods. These methods/tools allow us to check how well similar the replicates are to each other (clustering) and to make sure that the experimental condition is the major source of variation in the data. Sample-level QC can also help identify any samples behaving like outliers; we can further explore any potential outliers to determine whether they need to be removed prior to DE analysis. 
+To explore the similarity of our samples, we will be performing sample-level QC using Principal Component Analysis (PCA) and hierarchical clustering methods. These methods/tools allow us to check **how well similar the replicates are to each other** (clustering) and **to make sure that the experimental condition is the major source of variation** in the data. Sample-level QC can also help identify any samples behaving like outliers; we can further explore any potential outliers to determine whether they need to be removed prior to DE analysis. 
 
 <p align="center">
 <img src="../img/sample_qc.png" width="700">
 </p>
 
-These unsupervised clustering methods are run using **log2 transformed normalized counts**. The log2 transformation **improves the distances/clustering for visualization**. We will be using **regularized log transform** (rlog) of the normalized counts (with DESeq2).
+These unsupervised clustering methods are run using **log2 transformed normalized counts**. The log2 transformation **improves the distances/clustering for visualization**. Instead of using an ordinary log2 transform, we will be using **regularized log transform** (rlog), to avoid any bias from the abundance of low-count genes; Note1 below explains this in more detail.
 
 <p align="center">
-<img src="../img/rlog_transformation.png" width="500">
+<img src="../img/rlog_transformation_new.png" width="500">
 </p>
 
->_**NOTE:** The [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) suggests large datasets (100s of samples) to use the variance-stabilizing transformation (vst) instead of rlog for transformation of the counts, since the rlog function might take too long to run and the `vst()` function is faster with similar properties to rlog._
+*Image adapted from "[Beginner's guide to using the DESeq2 package](https://bioc.ism.ac.jp/packages/2.14/bioc/vignettes/DESeq2/inst/doc/beginner.pdf)" by Love, Anders and Huber, 2014*
+
+>**NOTE1:** *"Many common statistical methods for exploratory analysis of multidimensional data, especially methods for clustering and ordination (e. g., principal-component analysis and the like), work best for (at least approximately) homoskedastic data; this means that the variance of an observable quantity (i.e., here, the expression strength of a gene) does not depend on the mean. In RNA-Seq data, however, variance grows with the mean. For example, if one performs PCA directly on a matrix of normalized read counts, the result typically depends only on the few most strongly expressed genes because they show the largest absolute differences between samples. A simple and often used strategy to avoid this is to take the logarithm of the normalized count values plus a small pseudocount; however, now the genes with low counts tend to dominate the results because, due to the strong Poisson noise inherent to small count values, they show the strongest relative differences between samples.*
+> 
+> *As a solution, DESeq2 offers the regularized-logarithm transformation, or rlog for short. For genes with high counts, the rlog transformation differs not much from an ordinary log2 transformation. For genes with lower counts, however, the values are shrunken towards the genes’ averages across all samples. Using an empirical Bayesian prior in the form of a ridge penality, this is done such that the rlog-transformed data are approximately homoskedastic."* - From the "Beginner's guide to using the DESeq2 package" by Love, MI et al. 2014.
+>
+> The [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) is the updated version of the doc mentioned above.
+
+>**NOTE2:** The [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) suggests large datasets (100s of samples) to use the variance-stabilizing transformation (vst) instead of rlog for transformation of the counts, since the rlog function might take too long to run and the `vst()` function is faster with similar properties to rlog.
 
 ### Principal Component Analysis (PCA)
 
@@ -53,7 +61,7 @@ To better understand how it works, **please go through [this YouTube video from 
 #### Interpreting PCA plots
 
 
-**Essentially, if two samples have similar levels of expression for the genes that contribute significantly to the variation represented by a given PC (Principal Component), they will be plotted close together on the axis that represents that PC.** Therefore, we would expect that biological replicates to have similar scores (since the same genes are changing) and cluster together, and the samples from different treatment groups to have different score. This is easiest to understand by visualizing some example PCA plots.
+**Essentially, if two samples have similar levels of expression for the genes that contribute significantly to the variation represented by a given PC (Principal Component), they will be plotted close together on the axis that represents that PC.** Therefore, we would expect that biological replicates to have similar scores (because our expectation is that the same genes are changing) and cluster together. This is easiest to understand by visualizing some example PCA plots.
 
 We have an example dataset and a few associated PCA plots below to get a feel for how to interpret them. The metadata for the experiment is displayed below. The main condition of interest is `treatment`.
 
