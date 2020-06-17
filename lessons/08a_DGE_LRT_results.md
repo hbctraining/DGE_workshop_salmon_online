@@ -52,7 +52,7 @@ For analyses using the likelihood ratio test, the p-values are determined solely
 * `log2FoldChange`: log2 fold change
 * `lfcSE`: standard error
 
-> **NOTE:** Which log2 fold change is reported in the results is printed at the top of the the results table. This can be controlled using the `name` argument; the value provided to name must be an element of resultsNames(dds).
+> **NOTE:** Printed at the top of the the results table are the two sample groups used to generate the log2 fold change reported in the results table. This can be controlled using the `name` argument; the value provided to name must be an element of resultsNames(dds).
 
 ## Identifying significant genes
 
