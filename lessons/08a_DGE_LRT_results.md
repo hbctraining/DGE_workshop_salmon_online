@@ -34,7 +34,7 @@ Let's take a look at the results table:
 res_LRT  
 ```
 
-```r
+```
 log2 fold change (MLE): sampletype MOV10 overexpression vs control 
 LRT p-value: '~ sampletype' vs '~ 1' 
 DataFrame with 57761 rows and 6 columns
@@ -108,13 +108,12 @@ The number of significant genes observed from the LRT is quite high. This list i
 
 We now have this list of ~7K significant genes that we know are changing in some way across the three different sample groups, what do we do next?
 
-It's likely that we are interested in genes that have particular patterns across the sample groups (levels) of our condition. For example, with the MOV10 dataset, we may be interested in genes that exhibit the lowest expression for the `Mov10_KD` and highest expression for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). If we could subset our 7K list of genes to isolate these genes, we could explore them further and obtain some biological insight as to what biological processes are being affected by this change in expression.
+It's likely that we are interested in genes that have particular patterns across the sample groups (levels) of our condition. For example, with the MOV10 dataset we might be interested in genes that exhibit low expression in the `Mov10_KD` samples, increase in control samples and further increased for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). We want to subset our list of 7K genes for those that exhibit this expression pattern, so that we can explore them further.
 
 
+To identify groups of genes which share expression patterns we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a hierarchical clustering approach based on pair-wise correlations, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
 
-To identify genes associated with these patterns we can use a clustering tool, `degPatterns` from the 'DEGreport' package, that groups the genes based on their changes in expression across sample groups.
-
-First we will subset our rlog transformed normalized counts to contain only the differentially expressed genes (padj < 0.05).
+Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). We will further subset to keep only 
 
 ```r
 # Subset results for faster cluster finding (for classroom demo purposes)
