@@ -34,6 +34,20 @@ Let's take a look at the results table:
 res_LRT  
 ```
 
+```r
+log2 fold change (MLE): sampletype MOV10 overexpression vs control 
+LRT p-value: '~ sampletype' vs '~ 1' 
+DataFrame with 57761 rows and 6 columns
+                        baseMean     log2FoldChange              lfcSE             stat               pvalue                 padj
+                       <numeric>          <numeric>          <numeric>        <numeric>            <numeric>            <numeric>
+ENSG00000000003 3525.88347786355 -0.438245423329571 0.0774607246185232 40.4611749305021 1.63669402960044e-09 3.14070461117016e-08
+ENSG00000000005 26.2489043110535 0.0292079869376247  0.441128912409409 1.61898836146221    0.445083140923522     0.58866891597654
+ENSG00000000419 1478.25124052691  0.383635036119846  0.113760957175207 11.3410110249776  0.00344612277761083   0.0122924772964227
+ENSG00000000457  518.42202383345  0.228970583496456  0.102331174090148 14.6313920603898 0.000665018279181725  0.00304543241149833
+ENSG00000000460 1159.77613645835 -0.269138203013482 0.0814992499897986 25.0394477225533 3.65386933066256e-06 3.23415706764646e-05
+...                          ...                ...                ...              ...                  ...                  
+```
+
 The results table output looks similar to the Wald test results, with identical columns to what we observed previously. 
 
 ### Why are fold changes reported for an LRT test?
@@ -78,16 +92,15 @@ nrow(sigKD)
 
 ```
 
-How many genes from the Mov10 overexpression Wald test are contained in the LRT gene set? How do they compare to the Mov10 knockdown and overexpression? 
-
-The number of significant genes observed from the LRT is quite high. We are **unable to set a fold change criteria here since the statistic is not generated from any one pairwise comparison.** This list includes genes that can be changing in any number of combinations across the three factor levels. It is advisable to instead increase the stringency on our criteria and lower the FDR threshold.
+The number of significant genes observed from the LRT is quite high. This list includes genes that can be changing in any direction across the three factor levels (control, KO, overexpression). To reduce the number of significant genes, we can increase the stringency of our FDR threshold (`padj.cutoff`).
 
 ***
+
 **Exercise**
 
-1. Using a more stringent cutoff of `padj < 0.001`, count how many genes are significant using the LRT method.
-2. Set the variables `OEgenes` and `KDgenes`to contain the genes that meet the  threshold `padj < 0.001`.
-3. Find the overlapping number of genes between these gene sets and the genes from LRT at `padj < 0.001`.
+1. Compare the resulting gene list from the LRT test to the gene lists from the Wald test comparisons.
+    1. How many of the `sigLRT_genes` overlap with the significant genes in `sigOE`?
+    1. How many of the `sigLRT_genes` overlap with the significant genes in `sigKD`?
 
 ***
 
