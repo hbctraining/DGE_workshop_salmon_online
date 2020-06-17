@@ -104,9 +104,15 @@ The number of significant genes observed from the LRT is quite high. This list i
 
 ***
 
-### Identifying gene clusters exhibiting particular patterns across samples
+## Identifying clusters of genes with shared expression profiles
 
-Often we are interested in genes that have particular patterns across the sample groups (levels) of our condition. For example, with the MOV10 dataset, we may be interested in genes that exhibit the lowest expression for the `Mov10_KD` and highest expression for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). To identify genes associated with these patterns we can use a clustering tool, `degPatterns` from the 'DEGreport' package, that groups the genes based on their changes in expression across sample groups.
+We now have this list of ~7K significant genes that we know are changing in some way across the three different sample groups, what do we do next?
+
+It's likely that we are interested in genes that have particular patterns across the sample groups (levels) of our condition. For example, with the MOV10 dataset, we may be interested in genes that exhibit the lowest expression for the `Mov10_KD` and highest expression for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). If we could subset our 7K list of genes to isolate these genes, we could explore them further and obtain some biological insight as to what biological processes are being affected by this change in expression.
+
+
+
+To identify genes associated with these patterns we can use a clustering tool, `degPatterns` from the 'DEGreport' package, that groups the genes based on their changes in expression across sample groups.
 
 First we will subset our rlog transformed normalized counts to contain only the differentially expressed genes (padj < 0.05).
 
