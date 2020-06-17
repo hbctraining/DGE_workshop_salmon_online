@@ -14,34 +14,49 @@ Approximate time: 60 minutes
 
 ## Exploring results from the Likelihood ratio test (LRT)
 
-DESeq2 also offers the Likelihood Ratio Test as an alternative **when evaluating expression change across more than two levels**. This type of test can be especially useful in analyzing time course experiments. 
+DESeq2 also offers the Likelihood Ratio Test as an alternative **when evaluating expression change across more than two levels**. Genes which are identified as significant, are those that are changing in expression in any direction across the different factor levels.
 
-To use the LRT, we use the `DESeq()` function but this time adding two arguments: 
+Generally, this test will result in a larger number of genes than the individual pair-wise comparisons. While the LRT is a test of significance for differences of any level(s) of the factor, one should not expect it to be exactly equal to the union of sets of genes using Wald tests (although we do expect a majority overlap).
 
-1. specifying that we want to use the LRT test
-2. the 'reduced' model
+## The `results()` table
+
+To extract the results from our `dds_lrt` object we can us the same `results()` function we had used with the Wald test. _There is no need for contrasts since we are not making a pair-wise comparison._
 
 ```r
-library(DESeq2)
-library(DEGreport)
-
-# The full model was specified previously with the `design = ~ sampletype`:
-# dds <- DESeqDataSetFromTximport(txi, colData = meta, ~ sampletype)
-
-# Likelihood ratio test
-dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1)
+# Extract results for LRT
+res_LRT <- results(dds_lrt)
 ```
-
-Generally, this test will result in a larger number of genes than the individual pair-wise comparisons. While the LRT is a test of significance for differences of any level of the factor, one should not expect it to be exactly equal to the union of sets of genes using Wald tests (although we do expect a majority overlap).
 
 Let's take a look at the results table:
 
 ```r
-# Extract results
-res_LRT <- results(dds_lrt)
+# View results for LRT
+res_LRT  
 ```
 
-You will find that similar columns are reported for the LRT test. One thing to note is, **even though there are fold changes present they are not directly associated with the actual hypothesis test**. Thus, when filtering significant genes from the LRT we use only the FDR as our threshold. *How many genes are significant at `padj < 0.05`?*
+The results table output looks similar to the Wald test results, with identical columns to what we observed previously. 
+
+### Why are fold changes reported for an LRT test?
+
+For analyses using the likelihood ratio test, the p-values are determined solely by the difference in deviance between the full and reduced model formula. **A single log2 fold change is printed in the results table for consistency with other results table outputs, but is not associated with the actual test.**
+
+**Columns relevant to the LRT test:**
+
+* `baseMean`: mean of normalized counts for all samples
+* `stat`: the difference in deviance between the reduced model and the full model
+* `pvalue`: the stat value is compared to a chi-squared distribution to generate a pvalue
+* `padj`: BH adjusted p-values
+
+**Additional columns:**
+
+* `log2FoldChange`: log2 fold change
+* `lfcSE`: standard error
+
+> **NOTE:** Which log2 fold change is reported in the results is printed at the top of the the results table. This can be controlled using the `name` argument; the value provided to name must be an element of resultsNames(dds).
+
+## Identifying significant genes
+
+When filtering significant genes from the LRT we threshold only the `padj` column. _How many genes are significant at `padj < 0.05`?_
 
 ```r
 # Create a tibble for LRT results
