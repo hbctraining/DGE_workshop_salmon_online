@@ -43,7 +43,7 @@
 1. Visualization
 
 ### Assignment #2
-* R script
+* All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_2.R)
 * Dropbox link
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
