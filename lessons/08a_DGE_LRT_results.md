@@ -106,13 +106,11 @@ The number of significant genes observed from the LRT is quite high. This list i
 
 ## Identifying clusters of genes with shared expression profiles
 
-We now have this list of ~7K significant genes that we know are changing in some way across the three different sample groups, what do we do next?
+We now have this list of ~7K significant genes that we know are changing in some way across the three different sample groups. What do we do next?
 
-A good next step is to identify groups of genes that share a pattern of expression change across the sample groups (levels) of our condition. For example, with the MOV10 dataset we might be interested in genes that exhibit low expression in the `Mov10_KD` samples, increase in control samples and further increased for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). 
+A good next step is to identify groups of genes that share a pattern of expression change across the sample groups (levels). To do this we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a **hierarchical clustering approach based on pair-wise correlations** between genes, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
 
-To identify groups of genes which share expression patterns we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a hierarchical clustering approach based on pair-wise correlations between genes, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
-
-Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). It may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only top 1000 genes sorted by p-adjusted value. 
+Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). In out case, it may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only the top 1000 genes sorted by p-adjusted value. 
 
 ```r
 # Subset results for faster cluster finding (for classroom demo purposes)
@@ -125,28 +123,39 @@ clustering_sig_genes <- sigLRT_genes %>%
 cluster_rlog <- rld_mat[clustering_sig_genes$gene, ]
 ```
 
-Then we c
+The rlog transformed counts for the significant genes are input to `degPatterns` along with a few additional arguments:
+
+* `metadata`: the metadata dataframe that corresponds to samples
+* `time`: character column name in metadata that will be used as variable that changes
+* `col`: character column name in metadata to separate samples
 
 ```r
 # Use the `degPatterns` function from the 'DEGreport' package to show gene clusters across sample groups
 clusters <- degPatterns(cluster_rlog, metadata = meta, time = "sampletype", col=NULL)
 ```
 
-Let's explore the output:
+Once the clustering is finished running, you will get your command prompt back in the console and you should see a figure appear in in your plot window. The genes have been clustered into four different groups. For each group of genes, we have a boxplot illustrating expression change across the different sample groups. A line graph is overlayed to illustrate the trend in expression change.
+
+
+<p align="center">
+<img src="../img/degReport_clusters2.png" width="800">
+</p>
+
+
+Suppose we are interested in the genes which show a decreased expression in the knockdown samples and increase in the overexpression. According to the plot there are 275 genes which share this expression profile. To find out what these genes are let's explore the output. What type of data structure is the `clusters` output?
 
 ```r
 # What type of data structure is the `clusters` output?
 class(clusters)
+```
+We can see what objects are stored in the list by using `names(clusters)`. There is a dataframe stored inside. This the main result so let's take a look at it. The first column contains the genes, and the second column contains the cluster number to which they belong.
 
+```r
 # Let's see what is stored in the `df` component
 head(clusters$df)
 ```
 
-While we don't see any clusters with the pattern we are looking for (KD < CTL < OE), we do see a lot of genes that don't change much between control and knockdown sample groups, but increase drastically with the overexpression group (Group 1). 
-
-<img src="../img/degReport_clusters2.png" width="600">
-
-Let's explore the set of genes in Group 1 in more detail:
+Since we are interested in Group 1, we can filter the dataframe to keep only those genes:
 
 ```r
 # Extract the Group 1 genes
@@ -155,8 +164,7 @@ group1 <- clusters$df %>%
           filter(cluster == 1)
 ```
 
-After extracting a group of genes, we can perform functional analysis to explore associated functions. We can repeat this extraction and functional analysis for any of the groups of interest.
-
+After extracting a group of genes, we can use annotation packages to obtain additional information. We can also use these lists of genes as input to downstream functional analysis tools to obtain more biological insisght and see whether the groups of genes share a specific function. 
 
 
 ---
