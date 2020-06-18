@@ -8,6 +8,15 @@
 # 3. Test for the effect of genotype, while regressing out the variation due to treatment.
 
 # 4. Test for the effect of genotype on the treatment effects.
+
+#### Hypothesis testing
+# 1. What is an appropriate hypothesis test if you are testing for expression differences across the developmental stages?
+
+# 2. Provide the line of code used to create the dds object.
+
+# 3. Provide the line of code used to run DESeq2.
+
+# 4. The results of the differential expression analysis run identifies a group of genes that spike in expression between the first and second timepoints with no change in expression thereafter. How would we go about obtaining fold changes for these genes?
   
 #### Description of steps for DESeq2
 # 1. Given the dispersion plot below, would you have any concerns regarding the fit of your data to the model?
