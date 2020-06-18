@@ -29,4 +29,16 @@
     1. True  
     1. False
   
+7. Sample-level QC can be performed on normalized counts directly, but the log transformation of the normalized counts gives a better idea of similarity and differences
+    1. True
+    1. False
+    
+8. When I plot PC1 vs PC2 for my data, the samples are not separating along PC1 based on my experimental question/factor. Which of the following should I NOT do.
+    1. Color my data points by other factors in the data systemtically to identify what is the major source of variation.
+    1. I should plot other PCs to identify if the samples separate by the experimental factor along another PC
+    1. I should remove some samples and recreate the PCA to see if it helps with the clustering
+    1. The data are too noisy, I need to throw out the experiment and start from scratch
 
+9. In the multiqc report one of my samples appeared to be fairly different from the others, it has different trends for the various plots. During sample-level QC, it is not clustering with the other replicates from the same sample group. What should I do?
+    1. At this point it is okay to remove it as an outlier. Once removed, redo the sample-level QC.
+    2. Don't remove it as an outlier
