@@ -108,12 +108,11 @@ The number of significant genes observed from the LRT is quite high. This list i
 
 We now have this list of ~7K significant genes that we know are changing in some way across the three different sample groups, what do we do next?
 
-It's likely that we are interested in genes that have particular patterns across the sample groups (levels) of our condition. For example, with the MOV10 dataset we might be interested in genes that exhibit low expression in the `Mov10_KD` samples, increase in control samples and further increased for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). We want to subset our list of 7K genes for those that exhibit this expression pattern, so that we can explore them further.
+A good next step is to identify groups of genes that share a pattern of expression change across the sample groups (levels) of our condition. For example, with the MOV10 dataset we might be interested in genes that exhibit low expression in the `Mov10_KD` samples, increase in control samples and further increased for the `Mov10_OE` sample groups (i.e. KD < CTL < OE). 
 
+To identify groups of genes which share expression patterns we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a hierarchical clustering approach based on pair-wise correlations between genes, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
 
-To identify groups of genes which share expression patterns we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a hierarchical clustering approach based on pair-wise correlations, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
-
-Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). We will further subset to keep only 
+Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). It may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only top 1000 genes sorted by p-adjusted value. 
 
 ```r
 # Subset results for faster cluster finding (for classroom demo purposes)
@@ -126,7 +125,7 @@ clustering_sig_genes <- sigLRT_genes %>%
 cluster_rlog <- rld_mat[clustering_sig_genes$gene, ]
 ```
 
-Then we can use the `degPatterns` function from the 'DEGreport' package to determine sets of genes that exhibit similar expression patterns across sample groups. The `degPatterns` tool uses a hierarchical clustering approach based on pair-wise correlations, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
+Then we c
 
 ```r
 # Use the `degPatterns` function from the 'DEGreport' package to show gene clusters across sample groups
