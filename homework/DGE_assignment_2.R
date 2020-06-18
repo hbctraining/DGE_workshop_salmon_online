@@ -1,5 +1,14 @@
 #### Assignment 2 ####
 
+#### Design formula
+# 1. How would the design formula be structured to perform the following analyses?
+
+# 2. Test for the effect of treatment.
+
+# 3. Test for the effect of genotype, while regressing out the variation due to treatment.
+
+# 4. Test for the effect of genotype on the treatment effects.
+  
 #### Description of steps for DESeq2
 # 1. Given the dispersion plot below, would you have any concerns regarding the fit of your data to the model?
 # If not, what aspects of the plot makes you feel confident about your data?
