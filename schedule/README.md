@@ -41,11 +41,11 @@
 1. [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
 1. [Wald test results](../lessons/05b_wald_test_results.md)
 1. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
-1. Visualization
+1. [Visualization](..//essons/06_DGE_visualizing_results.md)
 
 ### Assignment #2
 * All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_2.R)
-* Dropbox link
+* Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Monday before the next class using [this link](https://www.dropbox.com/request/wSqdWLxzdEA79WYOPoNr).
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
 
