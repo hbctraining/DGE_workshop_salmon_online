@@ -8,10 +8,9 @@ Approximate time: 20 minutes
 
 ## Learning Objectives 
 
-* Extract results using the LRT and compare to Wald test
-* Export results to file
+* Discuss time course analyses with DESeq2
 
-## Time course analyses with LRT
+## Time course analyses
 
 The LRT test can be especially helpful when performing time course analyses. We can use the LRT to explore whether there are any significant differences in treatment effect between any of the timepoints. 
 
