@@ -61,7 +61,8 @@
 ### Self-Learning Part 3
 1. Time course analysis
 1. Gene annotation
-1. Functional analysis
+1. [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
+1. [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
 
 ### Assignment #3
 * R script
