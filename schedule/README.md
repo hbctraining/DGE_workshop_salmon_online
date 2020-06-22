@@ -56,7 +56,7 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:15 | Self-learning lessons discussion | Meeta/Mary/Radhika |
-| 11:15 - 12:00 | Likelihood Ratio Test results | Meeta |
+| 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Meeta |
 
 ### Self-Learning Part 3
 1. Time course analysis
