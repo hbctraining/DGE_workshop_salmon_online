@@ -109,7 +109,7 @@ Instead of using variance as the measure of variation in the data (*since varian
 | Mean expression increases | Dispersion decreases |
 
 
-For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation (`Var / μ`). So 0.01 dispersion means 10% variation around the mean expected across biological replicates. The dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value.** In the plot below, each black dot is a gene, and the dispersion is plotted against the mean expression (across within-group replicates) for each gene.
+For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation (`standard deviation / μ`). So 0.01 dispersion means 10% variation around the mean expected across biological replicates. The dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value.** In the plot below, each black dot is a gene, and the dispersion is plotted against the mean expression (across within-group replicates) for each gene.
 
 <p align="center">
 <img src="../img/deseq_dispersion1.png" width="400">
