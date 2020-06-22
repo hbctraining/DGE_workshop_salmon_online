@@ -1,3 +1,19 @@
+---
+title: "Functional Analysis for RNA-seq"
+author: "Mary Piper, Radhika Khetani"
+date: "Wednesday, June 3rd, 2020"
+---
+
+Approximate time: 40 minutes
+
+Learning Objectives:
+-------------------
+
+*  Discuss functional analysis using over-representation analysis, functional class scoring, and pathway topology methods
+*  Explore functional analysis tools for functional class scoring methods
+
+# Functional analysis 
+
 ## Functional class scoring
 
 Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring methods. 
