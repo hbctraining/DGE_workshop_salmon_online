@@ -14,13 +14,13 @@ Learning Objectives:
 
 # Functional analysis 
 
-## Functional class scoring
-
 Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring methods. 
 
 <p align="center"> 
 <img src="../img/pathway_analysis.png" width="600">
 </p> 
+
+## Functional class scoring
 
 Functional class scoring (FCS) tools, such as [GSEA](https://www.pnas.org/content/102/43/15545), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
 
