@@ -164,7 +164,7 @@ The `DESeq()` function calculates, for every gene and for every sample, a diagno
 
 ```r
 # Filter genes that have an extreme outlier
-res_tableOE[which(res_tableOE$pvalue == NA & res_tableOE$padj == NA),] %>% 
+res_tableOE[which(is.na(res_tableOE$pvalue) & is.na(res_tableOE$padj)),] %>% 
 data.frame() %>% 
 View()
 ```
@@ -186,7 +186,7 @@ At a user-specified value (`alpha = 0.05`), DESeq2 evaluates the change in the n
 
 ```r
 # Filter genes below the low mean threshold
-res_tableOE[which(res_tableOE$pvalue != NA & res_tableOE$padj == NA),] %>% 
+res_tableOE[which(!is.na(res_tableOE$pvalue) & is.na(res_tableOE$padj)),] %>% 
 data.frame() %>% 
 View()
 ```
