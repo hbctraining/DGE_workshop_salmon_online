@@ -55,9 +55,8 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:20 | Questions about self-learning lessons |  |
-| 10:20 - 11:30 | In-class exercises |  |
-| 11:30 - 12:00 | LRT until time course analysis |  |
+| 10:00 - 11:15 | Self-learning lessons discussion | Meeta/Mary/Radhika |
+| 11:15 - 12:00 | Likelihood Ratio Test results | Meeta |
 
 ### Self-Learning Part 3
 1. Time course analysis
