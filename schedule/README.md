@@ -48,6 +48,7 @@
 * Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Monday before the next class using [this link](https://www.dropbox.com/request/wSqdWLxzdEA79WYOPoNr).
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
+* [Answer Key](DGE_assignment_2_answer_key.R)
 
 ---
 
@@ -65,8 +66,8 @@
 1. [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
 
 ### Assignment #3
-* R script
-* Dropbox link
+* All exercises from above lessons have been put together in R script format
+* Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Monday before the next class using [this link](https://www.dropbox.com/request/MGMcCQeiNAT4nZvfdFx1)
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
 
