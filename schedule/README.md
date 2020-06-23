@@ -59,8 +59,8 @@
 | 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Meeta |
 
 ### Self-Learning Part 3
-1. Time course analysis
-1. Gene annotation
+1. [Time course analysis](../lessons/08b_time_course_analyses.md)
+1. [Gene annotation](../lessons/genomic_annotation.md)
 1. [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
 1. [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
 
@@ -84,11 +84,19 @@
 ### Final Exercises
 * Exercises
 
+
+## Resources
+We have covered the inner workings of DESeq2 in a fair amount of detail such that when using this package you have a good understanding of what is going on under the hood. For more information on topics covered, we encourage you to take a look at the following resources:
+
+* [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#theory-behind-deseq2)
+* GitHub book on [RNA-seq gene level analysis](http://genomicsclass.github.io/book/pages/rnaseq_gene_level.html)
+* [Bioconductor support site](https://support.bioconductor.org/t/deseq2/) (posts tagged with `deseq2`) 
+
 ## Building on this workshop
 * [Single-cell RNA-seq workshop](https://hbctraining.github.io/scRNA-seq/)
 * [RMarkdown](https://hbctraining.github.io/Training-modules/Rmarkdown/)
 * [Ggplot2 for functional analysis](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
 
-## Resources
+## Other helpful links
 * [Online learning resources](https://hbctraining.github.io/bioinformatics_online/lists/online_trainings.html)
 * [All hbctraining materials](https://hbctraining.github.io/main)
