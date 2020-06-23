@@ -19,7 +19,7 @@
 
 4. Which of the following statements about gene-level filtering is **NOT TRUE** ?
 
-	1. If a gene has no expression in any one the samples it is not tested for differential expression.
+	1. If a gene has zero expression in all of the samples it is not tested for differential expression.
 	1. For independent filtering that is applied in DESeq2, the low mean threshold is empirically determined from your data.
 	1. Gene-level filtering will reduce the number of genes being tested and therefor decrease the total number of differentially expressed genes that are identified.
 	1. A Cook's distance is computed for each gene in each sample to help identify genes with an extreme outlier count.
