@@ -80,9 +80,6 @@
 | 11:15 - 11:45 | Discussion, Q & A |  |
 | 11:45 - 12:00 | [Wrap Up](../lectures/R_nanocourse_wrapup_online.pdf) |  |
 
-### Final Exercises
-* Exercises
-
 
 ## Resources
 We have covered the inner workings of DESeq2 in a fair amount of detail such that when using this package you have a good understanding of what is going on under the hood. For more information on topics covered, we encourage you to take a look at the following resources:
