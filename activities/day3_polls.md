@@ -36,4 +36,9 @@
 
 	1. True
 	1. False
+	
+7. When using a heatmap to observe the differences in patterns of gene expression between samplegroups it is more informative to plot the normalized expression values, rather than the scaled Z-scores for each gene.
+
+	1. True
+	1. False
 
