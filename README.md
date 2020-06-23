@@ -22,24 +22,6 @@ This repository has teaching materials for a **2-day**, hands-on **Introduction 
 ### Lessons
 **[Click here](schedule) for links to lessons and the suggested schedule**
 
-# Differential gene expression workshop
-
-| Audience | Computational Skills | Prerequisites | Duration |
-:----------|:----------|:----------|:----------|
-| Biologists | Intermediate R | Introduction to R | 2-day workshop (~12 hours of trainer-led time)|
-
-This repository has teaching materials for a **2-day**, hands-on **Introduction to differential gene expression (DGE) analysis** workshop. The workshop will lead participants through performing a differential gene expression analysis workflow on RNA-seq count data using R/RStudio. Working knowledge of R is required or completion of the [Introduction to R workshop](https://github.com/hbctraining/Intro-to-R).
-
-### Learning Objectives
-
-- QC on count data using Principal Component Analysis (PCA) and hierarchical clustering
-- Using DESeq2 to obtain a list of significantly different genes
-- Visualizing expression patterns of differentially expressed genes
-- Performing functional analysis on gene lists with R-based tools
-
-> These materials are developed for a trainer-led workshop, but also amenable to self-guided learning.
-
-
 ### Installation Requirements
 
 Download the most recent versions of R and RStudio for your laptop:
