@@ -9,7 +9,7 @@ Approximate time: 60 minutes
 ## Learning Objectives 
 
 * Extract results using the LRT and compare to Wald test
-* Export results to file
+* Identify shared expression profiles from the LRT significant gene list
 
 
 ## Exploring results from the Likelihood ratio test (LRT)
