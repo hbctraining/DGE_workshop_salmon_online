@@ -75,10 +75,10 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 11:00 | Questions about self-learning lessons |  |
-| 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) |  |
-| 11:15 - 11:45 | Discussion, Q & A |  |
-| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup.pdf) |  |
+| 10:00 - 11:00 | Questions about self-learning lessons | Mary/Meeta |
+| 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Radhika |
+| 11:15 - 11:45 | Discussion, Q & A | All |
+| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup.pdf) | Radhika |
 
 
 ## Resources
