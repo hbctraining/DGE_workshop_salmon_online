@@ -91,7 +91,8 @@ We have detailed the various steps in a differential expression analysis workflo
 	# Shrink the log2 fold changes to be more accurate
 	res <- lfcShrink(dds, 
 			 contrast = contrast, 
-			 res=res)
+			 res = res,
+			 type = "normal")
 	```
 
 7. Output significant results:
