@@ -78,7 +78,7 @@
 | 10:00 - 11:00 | Questions about self-learning lessons |  |
 | 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) |  |
 | 11:15 - 11:45 | Discussion, Q & A |  |
-| 11:45 - 12:00 | [Wrap Up](../lectures/R_nanocourse_wrapup_online.pdf) |  |
+| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup.pdf) |  |
 
 
 ## Resources
@@ -96,3 +96,5 @@ We have covered the inner workings of DESeq2 in a fair amount of detail such tha
 ## Other helpful links
 * [Online learning resources](https://hbctraining.github.io/bioinformatics_online/lists/online_trainings.html)
 * [All hbctraining materials](https://hbctraining.github.io/main)
+* 
+* 
