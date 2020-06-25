@@ -96,5 +96,3 @@ We have covered the inner workings of DESeq2 in a fair amount of detail such tha
 ## Other helpful links
 * [Online learning resources](https://hbctraining.github.io/bioinformatics_online/lists/online_trainings.html)
 * [All hbctraining materials](https://hbctraining.github.io/main)
-* 
-* 
