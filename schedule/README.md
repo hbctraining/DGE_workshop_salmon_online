@@ -33,7 +33,7 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 11:00 | Self-learning lessons discussion | Radhika/Jihe |
+| 10:00 - 11:00 | Self-learning lessons discussion | Radhika |
 | 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Vishal |
 | 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
@@ -56,7 +56,7 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 11:15 | Self-learning lessons discussion | Meeta/Mary/Radhika |
+| 10:00 - 11:15 | Self-learning lessons discussion | Meeta/Vishal/Radhika |
 | 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Meeta |
 
 ### Self-Learning Part 3
