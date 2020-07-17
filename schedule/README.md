@@ -10,7 +10,7 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop.pdf) | Radhika |
-| 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | Mary |
+| 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | Dr. Vishal Thapar |
 | 10:45 - 11:15 | RNA-seq pre-reading discussion | Meeta/Mary |
 | 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
 
@@ -34,7 +34,7 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:00 | Self-learning lessons discussion | Radhika/Jihe |
-| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Mary |
+| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  |  Dr. Vishal Thapar |
 | 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
 ### Self-Learning Part 2
