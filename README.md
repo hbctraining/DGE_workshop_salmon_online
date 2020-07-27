@@ -71,8 +71,6 @@ org.Hs.eg.db
 pathview
 DEGreport
 tximport
-AnnotationDbi
-EnsDb.Hsapiens.v86
 AnnotationHub
 ensembldb
 ```
@@ -94,8 +92,6 @@ library(org.Hs.eg.db)
 library(DOSE)
 library(pathview)
 library(tximport)
-library(AnnotationDbi)
-library(EnsDb.Hsapiens.v86)
 library(AnnotationHub)
 library(ensembldb)
 ```
