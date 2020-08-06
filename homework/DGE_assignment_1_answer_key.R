@@ -31,6 +31,10 @@ data_reordered <- data[, idx]
 
 data_reordered <- data[, match(rownames(meta), colnames(data))]
 
+## OR
+
+txi$counts <- txi$counts[, match(rownames(meta), colnames(txi$counts))]
+
 #### Sample-level QC
 # 1. What does the above plot tell you about the similarity of samples?
 # Ans: Samples from different experimental groups are different, while replicates within the same group are similar.
