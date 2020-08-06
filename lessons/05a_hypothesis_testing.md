@@ -52,7 +52,6 @@ DESeq2 implements the Wald test by:
 The **model fit and Wald test were already run previously as part of the `DESeq()` function**:
 
 ```r
-
 ## DO NOT RUN THIS CODE
 
 ## Create DESeq2Dataset object
@@ -89,7 +88,6 @@ To use the LRT, we use the `DESeq()` function but this time adding two arguments
 2. the 'reduced' model
 
 ```r
-
 # The full model was specified previously with the `design = ~ sampletype`:
 # dds <- DESeqDataSetFromTximport(txi, colData = meta, ~ sampletype)
 
