@@ -21,10 +21,11 @@
 1. [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
 
 ### Assignment #1
-* All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_1.R)
+* All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_1.R).
 * Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Wednesday before the next class using [this link](https://www.dropbox.com/request/ud9JHqxu4OlfAT0X45k1).
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
+* **[Answer Key](../homework/DGE_assignment_1_answer_key.R)**
 
 ---
 
