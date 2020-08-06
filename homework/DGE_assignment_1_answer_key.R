@@ -2,6 +2,7 @@
 
 #### RNA-seq counts distribution
 # 1. Evaluate the relationship between mean and variance for the control replicates (Irrel_kd samples). Note the differences or similarities in the plot compared to the one using the overexpression replicates.
+
 mean_counts_ctrl <- apply(data[,1:3], 1, mean)        #select column 1 to 3, which correspond to Irrel_kd samples
 variance_counts_ctrl <- apply(data[,1:3], 1, var)
 df_ctrl <- data.frame(mean_counts_ctrl, variance_counts_ctrl)
@@ -22,8 +23,13 @@ ggplot(df_ctrl) +
 
 #### Count normalization
 # 1. Suppose we have sample names matching in the counts matrix and metadata file, but they are in different order. Write the line(s) of code to create a new matrix with columns re-ordered such that they are identical to the row names of the metadata.
-idx <- match(rownames(meta), colnames(txi$counts))
-txi$counts <- txi$counts[, idx]
+
+idx <- match(rownames(meta), colnames(data))
+data_reordered <- data[, idx]
+
+## OR
+
+data_reordered <- data[, match(rownames(meta), colnames(data))]
 
 #### Sample-level QC
 # 1. What does the above plot tell you about the similarity of samples?
