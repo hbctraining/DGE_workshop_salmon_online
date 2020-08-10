@@ -164,9 +164,11 @@ The `DESeq()` function calculates, for every gene and for every sample, a diagno
 
 ```r
 # Filter genes that have an extreme outlier
-res_tableOE[which(is.na(res_tableOE$pvalue) & is.na(res_tableOE$padj)),] %>% 
-data.frame() %>% 
-View()
+res_tableOE[which(is.na(res_tableOE$pvalue) & 
+                    is.na(res_tableOE$padj) &
+                    res_tableOE$baseMean > 0),] %>% 
+  data.frame() %>% 
+  View()
 ```
 
 > **If a gene contains a sample with an extreme count outlier then the p-value and adjusted p-value will be set to NA.** 
@@ -186,9 +188,11 @@ At a user-specified value (`alpha = 0.05`), DESeq2 evaluates the change in the n
 
 ```r
 # Filter genes below the low mean threshold
-res_tableOE[which(!is.na(res_tableOE$pvalue) & is.na(res_tableOE$padj)),] %>% 
-data.frame() %>% 
-View()
+res_tableOE[which(!is.na(res_tableOE$pvalue) & 
+                    is.na(res_tableOE$padj) & 
+                    res_tableOE$baseMean > 0),] %>% 
+  data.frame() %>% 
+  View()
 ```
 
 > **If a gene is filtered by independent filtering, then only the adjusted p-value will be set to NA.** 
