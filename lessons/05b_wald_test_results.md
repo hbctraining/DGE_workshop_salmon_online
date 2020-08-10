@@ -240,19 +240,24 @@ To generate the shrunken log2 fold change estimates, you have to run an addition
 res_tableOE_unshrunken <- res_tableOE
 
 # Apply fold change shrinkage
-res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE, type = "normal")
+res_tableOE <- lfcShrink(dds, contrast=contrast_oe, type = "normal")
 ```
 
 **Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
 
+
 > ### Different types of shrinkage estimation
-> When you run `lfcShrink()` as we have above you will see the text below appear in your console:
+> Depending on the version of DESeq2 you are using the default method for shrinkage estimation will differ. The defaults can be changed by adding the argument `type` in the `lfcShrink()` function as we have above. Specifying the "normal" method may result in the following text to appear in your console:
 > 
 > ```using 'normal' for LFC shrinkage, the Normal prior from Love et al (2014). Note that type='apeglm' and type='ashr' have shown to have less bias than type='normal'.```
 > 
-> Recently, the authors have implemented options for different methods for shrinkage estimation. It has been shown that in most situations these methods have [less bias than the 'normal` method](https://bioconductor.org/packages/devel/bioc/vignettes/apeglm/inst/doc/apeglm.html) we have used by default. 
+> Normal is the method initially used in DESeq2. Recently, the authors have implemented options for different methods for shrinkage estimation. It has been shown that in most situations these methods have [less bias than the 'normal` method](https://bioconductor.org/packages/devel/bioc/vignettes/apeglm/inst/doc/apeglm.html) we have used by default. 
 > 
 > However when using these methods, rather than using the `contrast` argument you will be required to specify `coef`. Using contrast forms an expanded model matrix, treating all factor levels equally, and averages over all distances between all pairs of factor levels to estimate the prior. Using coef, means looking only at that column of the model matrix (so usually that would be one level against the reference level) and estimates the prior for that coefficient from the distribution of those MLE of coefficients. When using coef, the shrinkage depends on which level is chosen as reference.
+>
+> For example if using apeglm you will want to run the following code:
+>
+> ```res_table_apeglm <- lfcShrink(dds, coef="sampletype_MOV10_overexpression_vs_control", type="apeglm")```
 > 
 > For more information on shrinkage, the DESeq2 vignette has an [Extended section on shrinkage estimators](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#extended-section-on-shrinkage-estimators) that is quite useful.
 
