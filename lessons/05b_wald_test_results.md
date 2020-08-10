@@ -257,7 +257,9 @@ res_tableOE <- lfcShrink(dds, contrast=contrast_oe, type = "normal")
 >
 > For example if using apeglm you will want to run the following code:
 >
-> ```res_table_apeglm <- lfcShrink(dds, coef="sampletype_MOV10_overexpression_vs_control", type="apeglm")```
+> ```
+> res_table_apeglm <- lfcShrink(dds, coef="sampletype_MOV10_overexpression_vs_control", type="apeglm")
+> ```
 > 
 > For more information on shrinkage, the DESeq2 vignette has an [Extended section on shrinkage estimators](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#extended-section-on-shrinkage-estimators) that is quite useful.
 
