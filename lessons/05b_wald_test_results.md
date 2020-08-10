@@ -240,7 +240,7 @@ To generate the shrunken log2 fold change estimates, you have to run an addition
 res_tableOE_unshrunken <- res_tableOE
 
 # Apply fold change shrinkage
-res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE)
+res_tableOE <- lfcShrink(dds, contrast=contrast_oe, res=res_tableOE, type = "normal")
 ```
 
 **Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
