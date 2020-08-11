@@ -48,6 +48,7 @@
 * Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Monday before the next class using [this link](https://www.dropbox.com/request/c4Tt3OQC3nwCVEva3wBL).
 * [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
 * Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
+* **[Answer Key](../homework/DGE_assignment_2_answer_key.R)**
 
 ---
 
