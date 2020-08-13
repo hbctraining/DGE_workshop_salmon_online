@@ -78,7 +78,7 @@
 | 10:00 - 11:00 | Questions about self-learning lessons | Radhika |
 | 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Vishal |
 | 11:15 - 11:45 | Discussion, Q & A | All |
-| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_dfhcc.pdf) | Radhika |
+| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_dfhcc.pdf) | Meeta |
 
 
 ## Resources
