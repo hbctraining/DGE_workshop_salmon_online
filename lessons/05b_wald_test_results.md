@@ -282,7 +282,7 @@ plotMA(res_tableOE_unshrunken, ylim=c(-2,2))
 plotMA(res_tableOE, ylim=c(-2,2))
 ```
 
-On the right you have the unshrunken fold change values plotted and you can see the abundance of scatter for the the lowly expressed genes. That is, many of the low expressors exhibit very high fold changes. After shrinkage, we see the fold changes are much smaller estimates.
+On the left you have the unshrunken fold change values plotted and you can see the abundance of scatter for the the lowly expressed genes. That is, many of the low expressors exhibit very high fold changes. After shrinkage, we see the fold changes are much smaller estimates.
 
 <p float="left">
   <img src="../img/maplot_unshrunken.png" width="400">
