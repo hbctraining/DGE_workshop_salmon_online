@@ -76,7 +76,7 @@ For the **Likelihood Ratio Test** is also performed on parameters that have been
 </p>
 
 * m1 is the reduced model (i.e the design formula with your main factor term removed)
-* m2 is the full model (i.e. the full design formula your provided when creating your `dds` object`)
+* m2 is the full model (i.e. the full design formula your provided when creating your `dds` object)
 
 > _This type of test can be especially useful in analyzing time course experiments_. 
 
@@ -101,7 +101,7 @@ Since our 'full' model only has one factor (`sampletype`), the 'reduced' model (
 
 **Exercise**
 
-You are studying brain maturation and growth patterns in mouse cortex and have obtained RNA-seq data for a total of 31 mice. These samples were acquired at 9 developmental stages during the postnatal period of 2-40 days of growth, with at least three  replicates at each stage. You also have sex information for these mice (16 males and 15 females).
+You are studying brain maturation and growth patterns in mouse cortex and have obtained RNA-seq data for a total of 31 mice. These samples were acquired at 9 developmental stages during the postnatal period of 2-40 days of growth, with at least three replicates at each stage. You also have sex information for these mice (16 males and 15 females).
 
 1. What is an appropriate hypothesis test if you are testing for expression differences across the developmental stages? 
 2. Provide the line of code used to create the `dds` object. 
@@ -112,7 +112,7 @@ You are studying brain maturation and growth patterns in mouse cortex and have o
 
 ## Multiple test correction
 
-Regardless of whether we use the Wald test or the LRT, each gene that has been tested will be associated with a p-value. It is this result which we use to determine which genes are considered significantly differntially expressed. However, **we cannot use the p-value directly.**
+Regardless of whether we use the Wald test or the LRT, each gene that has been tested will be associated with a p-value. It is this result which we use to determine which genes are considered significantly differentially expressed. However, **we cannot use the p-value directly.**
 
 ### What does the p-value mean?
 
