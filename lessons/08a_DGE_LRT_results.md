@@ -20,7 +20,7 @@ Generally, this test will result in a larger number of genes than the individual
 
 ## The `results()` table
 
-To extract the results from our `dds_lrt` object we can us the same `results()` function we had used with the Wald test. _There is no need for contrasts since we are not making a pair-wise comparison._
+To extract the results from our `dds_lrt` object we can use the same `results()` function we had used with the Wald test. _There is no need for contrasts since we are not making a pair-wise comparison._
 
 ```r
 # Extract results for LRT
@@ -110,7 +110,7 @@ We now have this list of ~7K significant genes that we know are changing in some
 
 A good next step is to identify groups of genes that share a pattern of expression change across the sample groups (levels). To do this we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a **hierarchical clustering approach based on pair-wise correlations** between genes, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
 
-Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). In out case, it may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only the top 1000 genes sorted by p-adjusted value. 
+Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). In our case, it may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only the top 1000 genes sorted by p-adjusted value. 
 
 ```r
 # Subset results for faster cluster finding (for classroom demo purposes)
@@ -134,7 +134,7 @@ The rlog transformed counts for the significant genes are input to `degPatterns`
 clusters <- degPatterns(cluster_rlog, metadata = meta, time = "sampletype", col=NULL)
 ```
 
-Once the clustering is finished running, you will get your command prompt back in the console and you should see a figure appear in in your plot window. The genes have been clustered into four different groups. For each group of genes, we have a boxplot illustrating expression change across the different sample groups. A line graph is overlayed to illustrate the trend in expression change.
+Once the clustering is finished running, you will get your command prompt back in the console and you should see a figure appear in your plot window. The genes have been clustered into four different groups. For each group of genes, we have a boxplot illustrating expression change across the different sample groups. A line graph is overlayed to illustrate the trend in expression change.
 
 
 <p align="center">
@@ -148,7 +148,7 @@ Suppose we are interested in the genes which show a decreased expression in the 
 # What type of data structure is the `clusters` output?
 class(clusters)
 ```
-We can see what objects are stored in the list by using `names(clusters)`. There is a dataframe stored inside. This the main result so let's take a look at it. The first column contains the genes, and the second column contains the cluster number to which they belong.
+We can see what objects are stored in the list by using `names(clusters)`. There is a dataframe stored inside. This is the main result so let's take a look at it. The first column contains the genes, and the second column contains the cluster number to which they belong.
 
 ```r
 # Let's see what is stored in the `df` component
@@ -164,7 +164,7 @@ group1 <- clusters$df %>%
           filter(cluster == 1)
 ```
 
-After extracting a group of genes, we can use annotation packages to obtain additional information. We can also use these lists of genes as input to downstream functional analysis tools to obtain more biological insisght and see whether the groups of genes share a specific function. 
+After extracting a group of genes, we can use annotation packages to obtain additional information. We can also use these lists of genes as input to downstream functional analysis tools to obtain more biological insight and see whether the groups of genes share a specific function. 
 
 
 ---
