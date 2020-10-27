@@ -39,7 +39,7 @@ We have detailed the various steps in a differential expression analysis workflo
 					design = ~ condition)
 	```
 	
-3. Exploratory data analysis (PCA & heirarchical clustering) - identifying outliers and sources of variation in the data:
+3. Exploratory data analysis (PCA & hierarchical clustering) - identifying outliers and sources of variation in the data:
 	
 	```r
 	# Transform counts for data visualization
