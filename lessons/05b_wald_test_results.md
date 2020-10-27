@@ -8,7 +8,7 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Discuss the steps required to generate a results table for pairwise comaprisons (Wald test)
+* Discuss the steps required to generate a results table for pairwise comparisons (Wald test)
 * Summarize the different levels of gene filtering 
 * Explain log fold change shrinkage
 
@@ -72,7 +72,7 @@ Now that we have our contrast created, we can use it as input to the `results()`
 ```r
 ?results
 ```
-You will see we have the option to provide a wide array of arguments and tweak things from the defaults as needed. As we go through the lesson we will keep coming back to the help doumentation to discuss some arguments that are good to know about.
+You will see we have the option to provide a wide array of arguments and tweak things from the defaults as needed. As we go through the lesson we will keep coming back to the help documentation to discuss some arguments that are good to know about.
  
 ```r
 ## Extract results for MOV10 overexpression vs control
@@ -129,9 +129,9 @@ mcols(res_tableOE, use.names=T)
 
 ## P-values
 
-The p-value is a probability value used to determine whether there is evidence to reject the null hypothesis. **A smaller p-value means that there is stronger evidence in favor of the alternative hypothesis**. However, because we are performing a test for each inidividual gene we need to correct these p-values for multiple testing.
+The p-value is a probability value used to determine whether there is evidence to reject the null hypothesis. **A smaller p-value means that there is stronger evidence in favor of the alternative hypothesis**. However, because we are performing a test for each individual gene we need to correct these p-values for multiple testing.
 
-**The `padj` column** in the results table represents the p-value adjusted for multiple testing, and is the most important column of the results. Typically, a threshold such as `padj` < 0.05 is a good starting point for identifying significant genes. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
+**The `padj` column** in the results table represents the p-value adjusted for multiple testing, and is the most important column of the results. Typically, a threshold such as `padj` < 0.05 is a good starting point for identifying significant genes. The default method for **multiple test correction** in DESeq2 is an implementation of the Benjamini-Hochberg false discovery rate (FDR). There are other corrections methods available and can be changed by adding the `pAdjustMethod` argument to the `results()` function.
 
 ### Gene-level filtering
 
@@ -176,7 +176,7 @@ res_tableOE[which(is.na(res_tableOE$pvalue) &
 
 **3. Genes with a low mean normalized counts**
 
-DESeq2 defines a low mean threshold, that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered for muliple testing. This is based on the notion that genes with very low counts are not likely to see significant differences typically due to high dispersion.
+DESeq2 defines a low mean threshold, that is empirically determined from your data, in which the fraction of significant genes can be increased by reducing the number of genes that are considered for multiple testing. This is based on the notion that genes with very low counts are not likely to see significant differences typically due to high dispersion.
 
 <p align="center">
 <img src="../img/indep_filt_scatterplus.png" width="800">
