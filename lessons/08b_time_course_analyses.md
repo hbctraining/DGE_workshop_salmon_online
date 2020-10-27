@@ -43,13 +43,13 @@ For this figure, we are depicting the type of **genes that will not be identifie
 <img src="../img/lrt_time_nodiff.png" width="300">
 </p>
 
-The type of **gene expression patterns we do expect** the LRT to return are those that exhibit differences in the effect of treatment over time. In the example below, GeneX displays a differnt expression pattern over time for the two treatment groups.
+The type of **gene expression patterns we do expect** the LRT to return are those that exhibit differences in the effect of treatment over time. In the example below, GeneX displays a different expression pattern over time for the two treatment groups.
 
 <p align="center">
 <img src="../img/lrt_time_yesdiff.png" width="300">
 </p>
 
-Continuing with our example dataset, after running the LRT we can determine the set of significant genes using a threshold of `padj` < 0.05. The next step would be to sort those genes into groups based on shared expression patterns, and we could do this using `degPatterns()`. Here, you will notice that we make use of the `col` argument since we have two groups that we are comapring to one another.
+Continuing with our example dataset, after running the LRT we can determine the set of significant genes using a threshold of `padj` < 0.05. The next step would be to sort those genes into groups based on shared expression patterns, and we could do this using `degPatterns()`. Here, you will notice that we make use of the `col` argument since we have two groups that we are comparing to one another.
 
 ```r
 clusters <- degPatterns(cluster_rlog, metadata = meta, time="time", col="treatment")
