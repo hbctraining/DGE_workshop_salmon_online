@@ -1,6 +1,6 @@
 ---
 title: "R refresher"
-author: "Meeta Mistry, Radhika Khetani, Mary Piper"
+author: "Meeta Mistry, Radhika Khetani, Mary Piper, Jihe Liu"
 ---
 
 Approximate time: 45 minutes
