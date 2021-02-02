@@ -2,13 +2,15 @@
 
 | Audience | Computational skills required| Duration |
 :----------|:----------|:----------|
-| Biologists | [Introduction to R](https://hbctraining.github.io/Intro-to-R/) | 2-day workshop (~10 hours of trainer-led time)|
+| Biologists | [Introduction to R](https://hbctraining.github.io/Intro-to-R/) | 3-session online workshop (~7.5 hours of trainer-led time)|
 
 ### Description
 
 This repository has teaching materials for a **2-day**, hands-on **Introduction to differential gene expression (DGE) analysis** workshop. The workshop will lead participants through performing a differential gene expression analysis workflow on RNA-seq count data using R/RStudio. Working knowledge of R is required or completion of the [Introduction to R workshop](https://hbctraining.github.io/Intro-to-R/). 
 
 > **NOTE:** Materials in this repo are very similar to those presented in the [DGE workshop](https://hbctraining.github.io/DGE_workshop/). The slight difference is due to the use of 'pseudocounts' generated from transcriptome mapping, rather than raw counts obtained from the typical workflow.
+
+**Note for Trainers:** Please note that the schedule linked below assumes that learners will spend between 3-4 hours on reading through, and completing exercises from selected lessons between classes. The online component of the workshop focuses on more exercises and discussion/Q & A.
 
 ### Learning Objectives
 
