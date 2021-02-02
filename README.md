@@ -12,14 +12,14 @@ This repository has teaching materials for a **2-day**, hands-on **Introduction 
 
 **Note for Trainers:** Please note that the schedule linked below assumes that learners will spend between 3-4 hours on reading through, and completing exercises from selected lessons between classes. The online component of the workshop focuses on more exercises and discussion/Q & A.
 
+> These materials were developed for a trainer-led workshop, but are also amenable to self-guided learning.
+
 ### Learning Objectives
 
 - QC on count data using Principal Component Analysis (PCA) and hierarchical clustering
 - Using DESeq2 to obtain a list of significantly different genes
 - Visualizing expression patterns of differentially expressed genes
 - Performing functional analysis on gene lists with R-based tools
-
-> These materials are developed for a trainer-led workshop, but also amenable to self-guided learning.
 
 ### Lessons
 **[Click here](schedule) for links to lessons and the suggested schedule**
