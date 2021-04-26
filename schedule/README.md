@@ -9,9 +9,9 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_dfhcc.pdf) | Radhika |
-| 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | Vishal |
-| 10:45 - 11:15 | RNA-seq pre-reading discussion | Radhika/Vishal |
+| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_dfhcc.pdf) | Jihe |
+| 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | Radhika |
+| 10:45 - 11:15 | RNA-seq pre-reading discussion | Radhika |
 | 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
 
 ### Self-Learning Part 1
@@ -33,8 +33,8 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 11:00 | Self-learning lessons discussion | Radhika |
-| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Vishal |
+| 10:00 - 11:00 | Self-learning lessons discussion | All |
+| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Jihe |
 | 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
 ### Self-Learning Part 2
@@ -56,7 +56,7 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 11:15 | Self-learning lessons discussion | Meeta/Vishal/Radhika |
+| 10:00 - 11:15 | Self-learning lessons discussion | All |
 | 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Meeta |
 
 ### Self-Learning Part 3
@@ -76,9 +76,9 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:00 | Questions about self-learning lessons | All |
-| 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Vishal |
+| 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Radhika |
 | 11:15 - 11:45 | Discussion, Q & A | All |
-| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_dfhcc.pdf) | Meeta |
+| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_dfhcc.pdf) | Jihe |
 
 
 ## Resources
