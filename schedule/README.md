@@ -14,18 +14,21 @@
 | 10:45 - 11:15 | RNA-seq pre-reading discussion | Radhika |
 | 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
 
-### Self-Learning Part 1
+### Before the next class:
 
-1. [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
-1. [Count normalization](../lessons/02_DGE_count_normalization.md)
-1. [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
+1. Please **study the contents** and **work through all the code** within the following lessons:
+  * [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
+  * [Count normalization](../lessons/02_DGE_count_normalization.md)
+  * [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
 
-### Assignment #1
-* All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_1.R).
-* Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Wednesday before the next class using [this link](https://www.dropbox.com/request/ud9JHqxu4OlfAT0X45k1).
-* [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
-* Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
-* **[Answer Key](../homework/DGE_assignment_1_answer_key.R)**
+2. **Complete the exercises**:
+   * Each lesson above contain exercises; please go through each of them.
+   * **Copy over** your code from the exercises into a text file. 
+   * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/ud9JHqxu4OlfAT0X45k1) the **day before the next class**.
+
+### Questions?
+* ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
+* Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
 
 ---
 
@@ -37,18 +40,22 @@
 | 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Jihe |
 | 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
-### Self-Learning Part 2
-1. [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
-1. [Wald test results](../lessons/05b_wald_test_results.md)
-1. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
-1. [Visualization](../lessons/06_DGE_visualizing_results.md)
+### Before the next class:
 
-### Assignment #2
-* All exercises from above lessons have been put together in [R script format](../homework/DGE_assignment_2.R)
-* Add your solutions to the exercises in the downloaded .R file and upload the saved file to Dropbox on the Monday before the next class using [this link](https://www.dropbox.com/request/c4Tt3OQC3nwCVEva3wBL).
-* [Email us](mailto:hbctraining@hsph.harvard.edu) about questions regarding the homework that you need answered before the next class.
-* Post questions that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945).
-* **[Answer Key](../homework/DGE_assignment_2_answer_key.R)**
+1. Please **study the contents** and **work through all the code** within the following lessons:
+    * [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
+    * [Wald test results](../lessons/05b_wald_test_results.md)
+    * [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
+    * [Visualization](../lessons/06_DGE_visualizing_results.md)
+
+2. **Complete the exercises**:
+   * Each lesson above contain exercises; please go through each of them.
+   * **Copy over** your code from the exercises into a text file. 
+   * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/ud9JHqxu4OlfAT0X45k1) the **day before the next class**.
+
+### Questions?
+* ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
+* Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
 
 ---
 
@@ -59,15 +66,18 @@
 | 10:00 - 11:15 | Self-learning lessons discussion | All |
 | 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Meeta |
 
-### Self-Learning Part 3
-1. [Time course analysis](../lessons/08b_time_course_analyses.md)
-1. [Gene annotation](../lessons/genomic_annotation.md)
-1. [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
-1. [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
+### Before the next class:
 
-### Assignment #3
-* There is no assignment submission for *Self-Learning Part 3*
-* Post questions from the self learning materials that you would like to have reviewed in class [here](https://PollEv.com/hbctraining945) or [email us](mailto:hbctraining@hsph.harvard.edu).
+1. Please **study the contents** and **work through all the code** within the following lessons:
+    * [Time course analysis](../lessons/08b_time_course_analyses.md)
+    * [Gene annotation](../lessons/genomic_annotation.md)
+    * [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
+    * [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
+
+2. **There is no assignment submission**
+
+### Questions?
+* Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
 
 ---
 
