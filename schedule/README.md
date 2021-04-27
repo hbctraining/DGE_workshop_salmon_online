@@ -9,7 +9,7 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_dfhcc.pdf) | Jihe |
+| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_all.pdf) | Jihe |
 | 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | Radhika |
 | 10:45 - 11:15 | RNA-seq pre-reading discussion | Radhika |
 | 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
