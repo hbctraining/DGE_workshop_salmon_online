@@ -233,6 +233,8 @@ LFC shrinkage uses **information from all genes** to generate more accurate esti
 
 In the figure above, we have an example using two genes green gene and purple gene. For each gene the expression values are plotted for each sample in the two different mouse strains (C57BL/6J and DBA/2J). Both genes have the same mean values for the two sample groups, but the green gene has little variation within group while the purple gene has high levels of variation. For the green gene with low within group variation, the **unshrunken LFC estimate** (vertex of the green **solid line**) is very similar to the shrunken LFC estimate (vertex of the green dotted line). However, LFC estimates for the purple gene are quite different due to the high dispersion. So even though two genes can have similar normalized count values, they can have differing degrees of LFC shrinkage. Notice the **LFC estimates are shrunken toward the prior (black solid line)**.
 
+**Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
+
 To generate the shrunken log2 fold change estimates, you have to run an additional step on your results object (that we will create below) with the function `lfcShrink()`.
 
 ```r
@@ -240,28 +242,15 @@ To generate the shrunken log2 fold change estimates, you have to run an addition
 res_tableOE_unshrunken <- res_tableOE
 
 # Apply fold change shrinkage
-res_tableOE <- lfcShrink(dds, contrast=contrast_oe, type = "normal")
+res_tableOE <- lfcShrink(dds, coef="sampletype_MOV10_overexpression_vs_control", type="apeglm")
 ```
 
-**Shrinking the log2 fold changes will not change the total number of genes that are identified as significantly differentially expressed.** The shrinkage of fold change is to help with downstream assessment of results. For example, if you wanted to subset your significant genes based on fold change for further evaluation, you may want to use shruken values. Additionally, for functional analysis tools such as GSEA which require fold change values as input you would want to provide shrunken values.
+Depending on the version of DESeq2 you are using the default method for shrinkage estimation will differ. The defaults can be changed by adding the argument `type` in the `lfcShrink()` function as we have above. For most recent versions of DESeq2, `type="normal"` is the default and what was the only method in earlier versions. Recently, the authors have implemented options for different methods for shrinkage estimation. It has been shown that in most situations these methods have [less bias than the 'normal` method](https://bioconductor.org/packages/devel/bioc/vignettes/apeglm/inst/doc/apeglm.html) we have used by default. 
 
+When using these methods, rather than using the `contrast` argument you will be required to specify `coef`. Using contrast forms an expanded model matrix, treating all factor levels equally, and averages over all distances between all pairs of factor levels to estimate the prior. Using coef, means looking only at that column of the model matrix (so usually that would be one level against the reference level) and estimates the prior for that coefficient from the distribution of those MLE of coefficients. When using coef, the shrinkage depends on which level is chosen as reference.
 
-> ### Different types of shrinkage estimation
-> Depending on the version of DESeq2 you are using the default method for shrinkage estimation will differ. The defaults can be changed by adding the argument `type` in the `lfcShrink()` function as we have above. Specifying the "normal" method may result in the following text to appear in your console:
-> 
-> ```using 'normal' for LFC shrinkage, the Normal prior from Love et al (2014). Note that type='apeglm' and type='ashr' have shown to have less bias than type='normal'.```
-> 
-> Normal is the method initially used in DESeq2. Recently, the authors have implemented options for different methods for shrinkage estimation. It has been shown that in most situations these methods have [less bias than the 'normal` method](https://bioconductor.org/packages/devel/bioc/vignettes/apeglm/inst/doc/apeglm.html) we have used by default. 
-> 
-> However when using these methods, rather than using the `contrast` argument you will be required to specify `coef`. Using contrast forms an expanded model matrix, treating all factor levels equally, and averages over all distances between all pairs of factor levels to estimate the prior. Using coef, means looking only at that column of the model matrix (so usually that would be one level against the reference level) and estimates the prior for that coefficient from the distribution of those MLE of coefficients. When using coef, the shrinkage depends on which level is chosen as reference.
->
-> For example if using apeglm you will want to run the following code:
->
-> ```
-> res_table_apeglm <- lfcShrink(dds, coef="sampletype_MOV10_overexpression_vs_control", type="apeglm")
-> ```
-> 
 > For more information on shrinkage, the DESeq2 vignette has an [Extended section on shrinkage estimators](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#extended-section-on-shrinkage-estimators) that is quite useful.
+
 
 
 ## MA plot
