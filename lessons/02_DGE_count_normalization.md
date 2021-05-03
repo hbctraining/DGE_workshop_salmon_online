@@ -4,6 +4,12 @@ author: "Meeta Mistry, Radhika Khetani, Mary Piper, Jihe Liu"
 date: "May 20, 2020"
 ---
 
+***
+
+[Previous Lesson](01c_RNAseq_count_distribution.md)
+
+***
+
 Approximate time: 60 minutes
 
 ## Learning Objectives 
@@ -228,6 +234,13 @@ write.table(normalized_counts, file="data/normalized_counts.txt", sep="\t", quot
 ```
 
 > **NOTE:** DESeq2 doesn't actually use normalized counts, rather it uses the raw counts and models the normalization inside the Generalized Linear Model (GLM). These normalized counts will be useful for downstream visualization of results, but cannot be used as input to DESeq2 or any other tools that perform differential expression analysis that use the negative binomial model.
+> 
+
+***
+
+[Next Lesson](03_DGE_QC_analysis.md)
+
+***
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
