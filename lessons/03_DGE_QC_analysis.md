@@ -4,6 +4,12 @@ author: "Meeta Mistry, Radhika Khetani, Mary Piper"
 date: "October 18, 2019"
 ---
 
+***
+
+[Previous Lesson](02_DGE_count_normalization.md)
+
+***
+
 Approximate time: 80 minutes
 
 ## Learning Objectives 
@@ -241,6 +247,12 @@ Overall, we observe pretty high correlations across the board ( > 0.999) suggest
 > ```       
 > Curious about all of the available [color palettes offered by the RColorBrewer package](http://www.r-graph-gallery.com/38-rcolorbrewers-palettes/)? Try typing in your console `display.brewer.all()` and see what happens!
 > 
+
+***
+
+[Next Lesson](04a_design_formulas.md)
+
+***
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
