@@ -207,7 +207,7 @@ meta <- data.frame(sampletype, row.names = colnames(txi$counts))
 
 ***
 
-[Next Lesson](lessons/01c_RNAseq_count_distribution.md)
+[Next Lesson](01c_RNAseq_count_distribution.md)
 
 ***
 
