@@ -3,7 +3,7 @@
 ## Pre-reading
 
 1. [Workflow (raw data to counts)](../lessons/01a_RNAseq_processing_workflow.md)
-1. [Experimental design considerations](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html)
+1. [Experimental design considerations](../lessons/experimental_planning_considerations.md)
 
 ## Day 1
 
