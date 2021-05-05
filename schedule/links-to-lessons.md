@@ -1,78 +1,60 @@
-# Introduction to R
+# Differential Gene Expression Analysis (bulk RNA-seq Part II)
 
 ## Learning Objectives
 
-1. **R syntax**: Understand the different 'parts of speech'.
-2. **Data types structures in R**: Describe the various data types and data structures.
-3. **Data inspection and wrangling**: Demonstrate the utilization of functions and indices to inspect and subset data from various data structures.
-4. **Visualizing data**: Demonstrate the use of the ggplot2 package to create plots for easy data visualization.
+1. - Perform, explain and interpret QC on count data using Principal Component Analysis (PCA) and hierarchical clustering
+2. - Implement DESeq2 to obtain a list of significantly different genes
+3. - Perform and explain functional analysis on gene lists with R-based tools
 
 ## Installations
 
-Download the most recent versions of R and RStudio:
-
- - [R](https://cran.r-project.org/) 
- - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+[Follow the instructions linked here](../README.md#installation-requirements) to download R and RStudio + Install Packages from CRAN and Bioconductor
 
 ## Lessons
 
-### Part 1
-1. [Introduction to R and RStudio](../lessons/01_introR-R-and-RStudio.md)
-2. [R Syntax and Data Structure](https://hbctraining.github.io/Intro-to-R-flipped/lessons/02_introR-syntax-and-data-structures.html)
-3. [Functions and Arguments](../lessons/03_introR-functions-and-arguments.md)
-4. [Reading in and inspecting data](../lessons/06_reading_and_data_inspection.md)
+### Part 1 (Getting Started)
+1. [Workflow (raw data to counts)](../lessons/01a_RNAseq_processing_workflow.md)
+1. [Experimental design considerations](../lessons/experimental_planning_considerations.md)
+1. [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md)
      
-* [Solution to exercises in above lessons](../homework/day1_hw_answer-key.R)
-          
-| [Practice exercises I](../activities/Day2_activities.md) | [Answer key I](../activities/Day2_activities_answer_key.R) |
+***
+
+### Part II (QC and setting up for DESeq2)
+1. [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
+1. [Count normalization](../lessons/02_DGE_count_normalization.md)
+1. [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
+1. [Design formulas](../lessons/04a_design_formulas.md)
+1. [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md)
 
 ***
 
-### Part II
-5. [Data Wrangling: Subsetting Vectors and Factors](../lessons/05_introR-data-wrangling.md)
-5. [Packages and libraries](../lessons/04_introR_packages.md)
-6. [Data wrangling: data frames, matrices and lists](../lessons/07_introR-data-wrangling2.md)
-7. [The %in% operator](../lessons/08_identifying-matching-elements.md)
-8. [Reordering and matching](../lessons/09_reordering-to-match-datasets.md)
-9. [Setting up a data frame to plot (+ the `map()` function)](../lessons/10_setting_up_to_plot.md)
-     
-* [Solution to exercises in above lessons](../homework/day2_hw_answer-key.R)
-
-| [Practice exercises II](../activities/Day3_activities.md) | [Answer key II](../activities/Day3_activities_answer_key.R) |
-              
-***
-
-### Part III
-10. [Plotting with the ggplot2 package](../lessons/11_ggplot2.md)
-1. [Using custom functions for consistent plots](../lessons/11b_Custom_Functions_ggplot2.md)
-1. [Generating a boxplot with ggplot2](../lessons/12_boxplot_exercise.md)
-1. [Writing to file and exporting plots](../lessons/13_exporting_data_and_plots.md)
-1. [Finding help](../lessons/14_finding_help.md)
-1. [Tidyverse](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/intro_tidyverse.html)
-    
-* [Solution to exercises in above lessons](../homework/day1_hw_answer-key.R)
-    
-| [Practice exercises III](../activities/Day4_activities.md) | [Answer key III](../activities/Day4_activities_answer_key.R) |
-
-| [Practice exercises IV](https://hbctraining.github.io/Intro-to-R/homework/Intro_to_R_hw.html) | [Answer key IV](../Intro-to-R/homework/Intro_to_R_key.md) |
-
-*** 
+### Part III (DESeq2)
+1. [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
+1. [Wald test results](../lessons/05b_wald_test_results.md)
+1. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
+1. [Visualization](../lessons/06_DGE_visualizing_results.md)
+1. [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md)
+1. [Time course analysis](../lessons/08b_time_course_analyses.md)
 
 ***
 
-## Building on the basic R knowledge
-* [DGE workshop](https://hbctraining.github.io/DGE_workshop_salmon/)
+### Part IV(Functional Analysis)
+1. [Gene annotation](../lessons/genomic_annotation.md)
+1. [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
+1. [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
+
+***
+   
+[Workflow Summary](../lessons/07_DGE_summarizing_workflow.md)
+
+***
+
+## Building on this workshop
 * [Single-cell RNA-seq workshop](https://hbctraining.github.io/scRNA-seq/)
 * [RMarkdown](https://hbctraining.github.io/Training-modules/Rmarkdown/)
-* [Functional analysis](https://hbctraining.github.io/Training-modules/DGE-functional-analysis/)
-* [More ggplot2](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
-* [ggplot2 cookbook](http://www.cookbook-r.com/Graphs/)
+* [Ggplot2 for functional analysis](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
 
 ## Resources
-* [Online learning resources](https://hbctraining.github.io/bioinformatics_online/lists/online_trainings.html)
-* [All hbctraining materials](https://hbctraining.github.io/main)
-
-## Cheatsheets
-* [base R cheatsheet](../img/base-r.pdf)
-* [RStudio cheatsheet](https://rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)
-* [ggplot2 cheatsheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+* [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#theory-behind-deseq2)
+* GitHub book on [RNA-seq gene level analysis](http://genomicsclass.github.io/book/pages/rnaseq_gene_level.html)
+* [Bioconductor support site](https://support.bioconductor.org/t/deseq2/) (posts tagged with `deseq2`) 
