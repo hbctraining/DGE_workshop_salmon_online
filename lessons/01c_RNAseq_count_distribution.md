@@ -4,6 +4,12 @@ author: "Meeta Mistry, Radhika Khetani, Mary Piper"
 date: "May 15, 2020"
 ---
 
+***
+
+[Previous Lesson](01b_DGE_setup_and_overview.md)
+
+***
+
 [GEO]: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE51443 "Gene Expression Omnibus"
 [SRA]: https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP031507 "Sequence Read Archive"
 
@@ -181,6 +187,13 @@ We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.11
 </p>
 
 We will go in-depth into each of these steps in the following lessons, but additional details and helpful suggestions regarding DESeq2 can be found in the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
+
+***
+
+[Next Lesson](02_DGE_count_normalization.md)
+
+***
+
 
 ***
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
