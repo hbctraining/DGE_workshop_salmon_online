@@ -18,7 +18,8 @@ This repository has teaching materials for a hands-on **Introduction to differen
 - Performing functional analysis on gene lists with R-based tools
 
 ### Lessons
-**[Click here](schedule) for links to lessons and the suggested schedule**
+* [Workshop schedule (trainer-led learning)](schedule/)
+* [Self-learning](schedule/links-to-lessons.md)
 
 ### Installation Requirements
 
