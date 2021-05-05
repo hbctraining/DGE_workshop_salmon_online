@@ -2,9 +2,9 @@
 
 ## Learning Objectives
 
-1. - Perform, explain and interpret QC on count data using Principal Component Analysis (PCA) and hierarchical clustering
-2. - Implement DESeq2 to obtain a list of significantly different genes
-3. - Perform and explain functional analysis on gene lists with R-based tools
+- Perform, explain and interpret QC on count data using Principal Component Analysis (PCA) and hierarchical clustering
+- Implement DESeq2 to obtain a list of significantly different genes
+- Perform and explain functional analysis on gene lists with R-based tools
 
 ## Installations
 
