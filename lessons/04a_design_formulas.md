@@ -51,7 +51,7 @@ If you want to examine the expression differences between treatments, and you kn
 
 `design <- ~ sex + age + treatment`
 
-The tilde (`~`) should always proceed your factors and tells DESeq2 to model the counts using the following formula. Note the **factors included in the design formula need to match the column names in the metadata**. 
+The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. Note the **factors included in the design formula need to match the column names in the metadata**. 
 
 ***
 **Exercises**
@@ -111,7 +111,7 @@ final dispersion estimates
 fitting model and testing
 ``` 
 
-We will discuss what is occurring in each of these steps in the next lessons, but the code to execute these steps is encompassed in the two lines above.
+We will discuss what is occurring in each of these steps in the next few lessons, but the code to execute these steps is encompassed in the two lines above.
 
 > **NOTE:** There are individual functions available in DESeq2 that would allow us to carry out each step in the workflow in a step-wise manner, rather than a single call. We demonstrated one example when generating size factors to create a normalized matrix. By calling `DESeq()`, the individual functions for each step are run for you.
 
