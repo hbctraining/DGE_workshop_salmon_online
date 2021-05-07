@@ -30,6 +30,8 @@
 * ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
 * Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
 
+### [Answer Key](../homework/DGE_assignment_1_answer_key.R)
+
 ---
 
 ## Day 2
