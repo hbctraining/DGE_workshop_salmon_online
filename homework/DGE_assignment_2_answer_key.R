@@ -52,9 +52,7 @@ res_tableKD <- results(dds, contrast=contrast_kd, alpha = 0.05)
 
 # 3. Shrink the LFC estimates using lfcShrink() and assign it back to res_tableKD.
 
-res_tableKD <- lfcShrink(dds, contrast=contrast_kd, type = "normal") #latest version of DESeq2
-## OR
-res_tableKD <- lfcShrink(dds, contrast=contrast_kd, res=res_tableKD) #older versions of DESeq2
+res_tableKD <- lfcShrink(dds, coef="sampletype_MOV10_knockdown_vs_control", type="apeglm")
 
 #### Summarizing results and extracting significant gene lists
 # MOV10 Differential Expression Analysis: Control versus Knockdown
