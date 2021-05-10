@@ -1,15 +1,24 @@
 #### Assignment 2 ####
 
 #### Design formula
-# 1. How would the design formula be structured to perform the following analyses?
+## Exercise
+# 1. Suppose you wanted to study the expression differences between the two age groups in the metadata shown above, and major sources of variation were sex and treatment, how would the design formula be written?
+# Ans: design = ~ sex + treatment + age
 
-# 2. Test for the effect of treatment.
+# 2. Based on our Mov10 metadata dataframe, which factors could we include in our design formula?
+# Ans: design = ~ sampletype
+
+# 3. What would you do if you wanted to include a factor in your design formula that is not in your metadata?
+# Ans: Add that factor into your metadata.
+
+## Exercise: How would the design formula be structured to perform the following analyses?
+# 1. Test for the effect of treatment.
 # Ans: design = ~ treatment
 
-# 3. Test for the effect of genotype, while regressing out the variation due to treatment.
+# 2. Test for the effect of genotype, while regressing out the variation due to treatment.
 # Ans: design = ~ treatment + genotype
 
-# 4. Test for the effect of genotype on the treatment effects.
+# 3. Test for the effect of genotype on the treatment effects.
 # Ans: design = ~ genotype + treatment + genotype:treatment
 
 #### Hypothesis testing
