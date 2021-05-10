@@ -67,5 +67,5 @@ sigKD <- res_tableKD_tb %>%
   filter(padj < padj.cutoff)
 
 # 2. How many genes are differentially expressed in the Knockdown compared to Control? How does this compare to the overexpression significant gene list (in terms of numbers)?
-# Ans: There are 2,810 genes differentially expressed in the Knockdown compared to Control, and 4,808 genes differentially expressed in the Overexpression compared to Control. Therefore, less genes are present in the Knockdown significant gene list.
+# Ans: There are 2,827 genes differentially expressed in the Knockdown compared to Control, and 4,774 genes differentially expressed in the Overexpression compared to Control. Therefore, less genes are present in the Knockdown significant gene list.
 
