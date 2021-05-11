@@ -159,7 +159,6 @@ Since we are interested in Group 1, we can filter the dataframe to keep only tho
 
 ```r
 # Extract the Group 1 genes
-cluster_groups <- clusters$df
 group1 <- clusters$df %>%
           filter(cluster == 1)
 ```
