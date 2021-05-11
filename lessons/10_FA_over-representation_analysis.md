@@ -122,8 +122,6 @@ res_ids <- left_join(res_tableOE_tb, annotations_ahb, by=c("gene"="gene_id"))
 >
 > _To read in the object, you can run the following code:_
 > `annotations_ahb <- read.csv("annotations_ahb.csv")`
->
-
 
 To perform the over-representation analysis, we need a list of background genes and a list of significant genes. For our background dataset we will use all genes tested for differential expression (all genes in our results table). For our significant gene list we will use genes with p-adjusted values less than 0.05 (we could include a fold change threshold too if we have many DE genes).
 
@@ -164,7 +162,6 @@ cluster_summary <- data.frame(ego)
 write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 ```
 
-
 <p align="center">  
 <img src="../img/cluster_summary.png" width="700">
 </p>             
@@ -173,6 +170,25 @@ write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 > The complementary function to `save()` is the function `load()`, e.g. `ego <- load(file="results/ego.rda")`.
 >
 > *This is a useful set of functions to know, since it enables one to preserve analyses at specific stages and reload them when needed.* More information about these functions can be found [here](https://www.r-bloggers.com/load-save-and-rda-files/) & [here](http://rpubs.com/euclid/387778).
+
+***
+
+> **NOTE:** **You can also perform GO enrichment analysis with only the up or down regulated genes** in addition to performing it for the full list of significant genes. This can be useful to identify GO terms impacted in one direction and not the other. If very few genes are in any of these lists (< 50, roughly) it may not be possible to get any significant GO terms.
+> ```
+> ## Extract upregulated genes
+> sigOE_up <- dplyr::filter(res_ids, padj < 0.05 & log2foldchange > 0)
+> 
+> sigOE_up_genes <- as.character(sigOE_up$gene)
+> 
+> ## Extract downregulated genes
+> sigOE_down <- dplyr::filter(res_ids, padj < 0.05 & log2foldchange < 0)
+>  
+> sigOE_down_genes <- as.character(sigOE_down$gene)
+> ```
+> 
+> You can then create `ego_up` & `ego_down` objects by running the `enrichGO()` function for `gene = sigOE_up_genes` or `gene = sigOE_down_genes`.
+
+***
 
 ### Visualizing clusterProfiler results
 clusterProfiler has a variety of options for viewing the over-represented GO terms. We will explore the dotplot, enrichment plot, and the category netplot.
