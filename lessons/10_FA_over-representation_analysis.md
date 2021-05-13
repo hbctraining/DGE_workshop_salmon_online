@@ -109,6 +109,7 @@ Then load the following libraries:
 library(DOSE)
 library(pathview)
 library(clusterProfiler)
+library(org.Hs.eg.db)
 ```
 
 For the different steps in the functional analysis, we require Ensembl and Entrez IDs. We will use the gene annotations that we generated previously to merge with our differential expression results.
