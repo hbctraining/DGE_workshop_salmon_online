@@ -164,7 +164,6 @@ cluster_summary <- data.frame(ego)
 write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 ```
 
-
 <p align="center">  
 <img src="../img/cluster_summary.png" width="700">
 </p>             
@@ -195,6 +194,9 @@ dotplot(ego, showCategory=50)
 The next plot is the **enrichment GO plot**, which shows the relationship between the top 50 most significantly enriched GO terms (padj.), by grouping similar terms together. The color represents the p-values relative to the other displayed terms (brighter red is more significant) and the size of the terms represents the number of genes that are significant from our list.
 
 ```r
+## Set up for emapplot
+ego <- enrichplot::pairwise_termsim(ego)
+
 ## Enrichmap clusters the 50 most significant (by padj) GO terms to visualize relationships between terms
 emapplot(ego, showCategory = 50)
 ```
@@ -206,6 +208,8 @@ emapplot(ego, showCategory = 50)
 </p> 
   
 Finally, the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the pvalues of the terms, with the more significant terms being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
+
+> **Note** - You may need to install the `ggnewscale` package using `install.packages("ggnewscale")` for the `cnetplot()` function to work.
 
 ```r
 ## To color genes by log2 fold changes, we need to extract the log2 fold changes from our results table creating a named vector
