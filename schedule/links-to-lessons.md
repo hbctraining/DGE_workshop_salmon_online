@@ -58,6 +58,7 @@
 * [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#theory-behind-deseq2)
 * GitHub book on [RNA-seq gene level analysis](http://genomicsclass.github.io/book/pages/rnaseq_gene_level.html)
 * [Bioconductor support site](https://support.bioconductor.org/t/deseq2/) (posts tagged with `deseq2`) 
+* [Functional analysis visualization](https://yulab-smu.top/biomedical-knowledge-mining-book/enrichplot.html)
 
 ****
 
