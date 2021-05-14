@@ -38,7 +38,7 @@
 
 ***
 
-### Part IV(Functional Analysis)
+### Part IV (Functional Analysis)
 1. [Gene annotation](../lessons/genomic_annotation.md)
 1. [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
 1. [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
