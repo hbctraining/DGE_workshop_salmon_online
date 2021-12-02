@@ -151,9 +151,9 @@ tx2gene <- read.delim("tx2gene_grch38_ens94.txt")
 tx2gene %>% View()
 ```
 
-**`tx2gene` is a three-column dataframe** linking transcript ID (column 1) to gene ID (column 2) to gene symbol (column 3). We will take the first two columns as input to `tximport`. The column names are not relevant, but the column order is (i.e trasncript ID must be first).
+**`tx2gene` is a three-column dataframe** linking transcript ID (column 1) to gene ID (column 2) to gene symbol (column 3). We will take the first two columns as input to `tximport`. The column names are not relevant, but the column order is (i.e transcript ID must be first).
 
-Now we are ready to **run `tximport`**. Note that although there is a column in our `quant.sf` files that corresponds to the estimated count value for each transcript, those valuse are correlated by effective length. What we want to do is use the `countsFromAbundance=“lengthScaledTPM”` argument. This will use the TPM column, and compute quantities that are on the same scale as original counts, except no longer correlated with transcript length across samples.
+Now we are ready to **run `tximport`**. Note that although there is a column in our `quant.sf` files that corresponds to the estimated count value for each transcript, those values are correlated by effective length. What we want to do is use the `countsFromAbundance=“lengthScaledTPM”` argument. This will use the TPM column, and compute quantities that are on the same scale as original counts, except no longer correlated with transcript length across samples.
 
 ```R
 ?tximport   # let's take a look at the arguments for the tximport function
