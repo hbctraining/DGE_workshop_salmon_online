@@ -88,4 +88,4 @@ Now that we have created our metadata data frame, it's often a good idea to get 
     - Create a list called `project1` with the `meta` and `counts` objects, as well as a new vector with all the sample names extracted from one of the 2 data frames.
 
 
-[Rscript with answers](https://hbctraining.github.io/DGE_workshop_salmon/exercises/refresher_answers.R)
+[Rscript with answers](https://hbctraining.github.io/DGE_workshop_salmon_online/exercises/refresher_answers.R)
