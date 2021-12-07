@@ -49,7 +49,7 @@ For example, suppose you have the following metadata:
   
 If you want to examine the expression differences between treatments, and you know that major sources of variation include `sex` and `age`, then your design formula would be:
 
-`design <- ~ sex + age + treatment`
+`design = ~ sex + age + treatment`
 
 The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. Note the **factors included in the design formula need to match the column names in the metadata**. 
 
@@ -66,7 +66,7 @@ The tilde (`~`) should always precede your factors and tells DESeq2 to model the
 
 DESeq2 also allows for the analysis of complex designs. You can explore interactions or 'the difference of differences' by specifying for it in the design formula. For example, if you wanted to explore the effect of sex on the treatment effect, you could specify for it in the design formula as follows: 
 
-`design <- ~ sex + age + treatment + sex:treatment`
+`design = ~ sex + age + treatment + sex:treatment`
 
 Since the interaction term `sex:treatment` is last in the formula, the results output from DESeq2 will output results for this term. 
 
