@@ -128,7 +128,7 @@ There are a few common approaches for multiple test correction:
 - **FDR/Benjamini-Hochberg:** Benjamini and Hochberg (1995) defined the concept of False Discovery Rate (FDR) and created an algorithm to control the expected FDR below a specified level given a list of independent p-values. [More info about BH](https://www.statisticshowto.com/benjamini-hochberg-procedure/).
 - **Q-value / Storey method:** The minimum FDR that can be attained when calling that feature significant. For example, if gene X has a q-value of 0.013 it means that 1.3% of genes that show p-values at least as small as gene X are false positives.
 
-DESeq2 helps reduce the number of genes tested by removing those genes unlikely to be significantly DE prior to testing, such as those with low number of counts and outlier samples ([gene-level QC](05b_wald_test_results.md#gene-level-filtering)). However, multiple test correction is also implemented. The default is an **interpretation of the BH method for controlling the FDR in which genes are ranked by p-value, then each ranked p-value is mulitplied by m/rank**.
+DESeq2 helps reduce the number of genes tested by removing those genes unlikely to be significantly DE prior to testing, such as those with low number of counts and outlier samples ([gene-level QC](05b_wald_test_results.md#gene-level-filtering)). However, multiple test correction is also implemented to reduce the False Discovery Rate using an interpretation of the Benjamini-Hochberg procedure.
 
 **So what does FDR < 0.05 mean?** 
 
