@@ -76,7 +76,7 @@ For the **Likelihood Ratio Test** is also performed on parameters that have been
 </p>
 
 * m1 is the reduced model (i.e the design formula with your main factor term removed)
-* m2 is the full model (i.e. the full design formula your provided when creating your `dds` object)
+* m2 is the full model (i.e. the full design formula you provided when creating your `dds` object)
 
 > _This type of test can be especially useful in analyzing time course experiments_. 
 
