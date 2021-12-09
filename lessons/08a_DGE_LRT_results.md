@@ -8,7 +8,8 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Extract results using the LRT and compare to Wald test
+* Apply the Likelihood Ratio Test (LRT) for hypothesis testing
+* Compare results generated from the LRT to results obtained using the Wald test
 * Identify shared expression profiles from the LRT significant gene list
 
 
