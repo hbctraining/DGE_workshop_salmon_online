@@ -14,9 +14,10 @@ Approximate time: 80 minutes
 
 ## Learning Objectives 
 
-* Transforming counts for unsupervised clustering methods
-* Evaluating quality of samples using Principal Components Analysis
-* Hierarchical clustering of samples in the dataset 
+* Recognize the importance of methods for count data transformation
+* Describe the PCA (principal component analysis) technique
+* Interpret different examples of PCA plots
+* Evaluate sample quality using PCA and hierachical clustering 
 
 # Quality Control
 
