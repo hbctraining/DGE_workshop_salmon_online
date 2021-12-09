@@ -10,7 +10,8 @@ Approximate time: 60 minutes
 
 * Desribe the process of model fitting 
 * Compare two methods for hypothesis testing (Wald test vs. LRT)
-* Explain the need for multiple testing and introduce different methods
+* Recongnize the importance of multiple test correction
+* Identify different methods for multiple test correction
 
 
 # DESeq2: Model fitting and Hypothesis testing 
