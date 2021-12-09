@@ -17,9 +17,10 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Explore the characteristics of RNA-seq count data
-* Evaluate the mean-variance relationship in RNA-seq count data
-* Understand the importance of biological replicates
+* Describe the characteristics of RNA-seq count data
+* Compare different mathematical models for count data 
+* Identify the most appropriate model for RNA-seq count data 
+* Explain the benefits of biological replicates for identifying true differences between sample groups
 
 # Exploring RNA-seq count data
 
