@@ -8,8 +8,9 @@ Approximate time: 30 minutes
 
 ## Learning Objectives 
 
-* Executing the differential expression analysis workflow with DESeq2
-* Constructing design formulas appropriate for a given experimental design
+* Demonstrate the use of the design formula with simple and complex designs
+* Construct R code to execute the differential expression analysis workflow with DESeq2
+
 
 # Differential expression analysis with DESeq2
 
