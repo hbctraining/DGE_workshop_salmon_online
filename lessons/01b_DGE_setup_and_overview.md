@@ -13,7 +13,8 @@ Approximate time: 60 minutes
 
 * Describe the RNA-seq and the differential gene expression analysis workflow
 * Explain the experiment and its objectives
-* Describe how to set up an RNA-seq project in R 
+* Create a project in R 
+* Setup for the analysis of RNA-seq data
 
 
 # Differential gene expression analysis
