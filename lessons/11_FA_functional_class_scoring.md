@@ -9,8 +9,10 @@ Approximate time: 40 minutes
 Learning Objectives:
 -------------------
 
-*  Discuss functional analysis using over-representation analysis, functional class scoring, and pathway topology methods
-*  Explore functional analysis tools for functional class scoring methods
+*  Discuss functional class scoring, and pathway topology methods
+*  Construct a GSEA analysis using GO and KEGG gene sets
+*  Examine results of a GSEA using pathwview package
+*  List other tools and resources for identifying genes of novel pathways or networks
 
 # Functional analysis 
 
