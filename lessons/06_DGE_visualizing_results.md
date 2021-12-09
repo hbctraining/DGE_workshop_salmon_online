@@ -8,9 +8,10 @@ Approximate time: 75 minutes
 
 ## Learning Objectives 
 
-* Exploring expression data using data visualization
-* Using volcano plots to evaluate relationships between DEG statistics
-* Plotting expression of significant genes using heatmaps
+* Setup results for application of visualization techniques
+* Describe different data visualization useful for exploring results from a DGE analysis
+* Create a volcano plot to evaluate relationship amongst DGE statistics
+* Create a heatmap to illustrate expression changes of differentially expressed genes
 
 ## Visualizing the results
 
