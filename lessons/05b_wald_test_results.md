@@ -55,7 +55,6 @@ Alternatively, if you **only had two factor levels you could do nothing** and no
 To start, we want to evaluate **expression changes between the MOV10 overexpression samples and the control samples**. As such we will use the first method for specifcying contrasts and create a character vector:
 
 ```r
- 
 ## Define contrasts for MOV10 overexpression
 contrast_oe <- c("sampletype", "MOV10_overexpression", "control")
 ```
