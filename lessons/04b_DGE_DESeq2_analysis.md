@@ -8,8 +8,10 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* Understanding the different steps in a differential expression analysis in the context of DESeq2
-* Exploring the importance of dispersion during differential expression analysis, and using the plots of the dispersion values to explore assumptions of the NB model
+* Explain the different steps involved in running `DESeq()`
+* Examine size factors and undertand the source of differences
+* Inspect gene-level dispersion estimates 
+* Recognize the importance of dispersion during differential expression analysis
 
 
 ## DESeq2 differential gene expression analysis workflow
