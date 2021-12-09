@@ -8,8 +8,8 @@ Approximate time: 20 minutes
 
 ## Learning Objectives 
 
-* Summarizing significant differentially expressed genes for each comparison
-* Extracting lists of significant genes
+* Evaluate the number of differentially expressed genes produced for each comparison
+* Construct R objects containing significant genes from each comparison
 
 
 ## Summarizing results
