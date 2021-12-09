@@ -9,9 +9,9 @@ Approximate time: 30 minutes
 Learning Objectives:
 -------------------
 
-* Utilize genomic annotation databases to perform functional analysis on gene lists
-* Understand the types of information stored in different databases 
-* Explore the pros and cons of several popular R packages for retrieval of genomic annotations
+* Discuss the available genomic annotation databases and the different types if information stored
+* Compare and contrast the tools available for accessing genomic annotation databases 
+* Apply various R packages for retrieval of genomic annotations
 
 # Genomic annotations
 
