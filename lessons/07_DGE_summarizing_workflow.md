@@ -8,7 +8,7 @@ Approximate time: 15 minutes
 
 ## Learning Objectives 
 
-* Understand the commands needed to run a complete differential expression analysis using DESeq2
+* Identify the R commands needed to run a complete differential expression analysis using DESeq2
 
 ## Summary of differential expression analysis workflow
 
