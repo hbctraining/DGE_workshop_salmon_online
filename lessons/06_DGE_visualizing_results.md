@@ -8,7 +8,7 @@ Approximate time: 75 minutes
 
 ## Learning Objectives 
 
-* Setup results for application of visualization techniques
+* Setup results data for application of visualization techniques
 * Describe different data visualization useful for exploring results from a DGE analysis
 * Create a volcano plot to evaluate relationship amongst DGE statistics
 * Create a heatmap to illustrate expression changes of differentially expressed genes
