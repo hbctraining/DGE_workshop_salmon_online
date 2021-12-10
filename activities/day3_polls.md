@@ -28,8 +28,8 @@
 
 	1. LFC shrinkage uses information from the significant genes to generate more accurate estimates.
 	1. Shrinking the log fold changes will reduce the total number of genes identified as significant at padj < 0.05.
-	1. Shrinkage of the LFC estimates is useful when the information for a gene is low, which includes low mean expression or high dispersion.
-	1. **LFC shrinkage is applied by default in DESeq2**. 
+	1. **Shrinkage of the LFC estimates is useful when the information for a gene is low, which includes low mean expression or high dispersion**.
+	1. LFC shrinkage is applied by default in DESeq2. 
 
 
 6. To identify significant differentially expressed genes, you will need to set an adjusted p-value threshold and a fold change threshold. 
