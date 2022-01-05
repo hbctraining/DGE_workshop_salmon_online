@@ -1,0 +1,480 @@
+---
+title: "Differential Expression Report: Experiment Title"
+author: "Analyst name"
+contact: analyst_email@hsph.harvard.edu
+project: PI Bulk RNA-seq Analysis
+date: "`r Sys.Date()`"
+output:
+   html_document:
+      code_folding: hide
+      df_print: paged
+      highlights: pygments
+      number_sections: true
+      self_contained: true
+      theme: default
+      toc: true
+      toc_float:
+         collapsed: true
+         smooth_scroll: true
+    fig_width: 6
+    fig_height: 5         
+---
+
+# Overview
+
+- **Principal Investigator:** PI name
+- **Researcher:** Researcher name - often the person of main contact
+- **Experiment:** Experiment description in one sentence
+- **Experimental details:** Important details of the experiment, often acquired during the initial meeting. Could have subsections, such as:
+  
+  - **Hypotheses:**
+  - **Experimental Design:**
+  - **Experimental Goals:**
+  - **Expectations:**
+
+-**DE analysis:** This report is specifically exploring ...
+
+```{r setup, echo = FALSE, cache = FALSE}
+knitr::opts_chunk$set(dev = c('png', 'cairo_pdf'),
+                      fig.align = 'center', 
+                      fig.height = 5, 
+                      fig.width = 7,
+                      pdf.options(encoding = "ISOLatin9.enc"),
+                      fig.path='figures/',
+                      warning=FALSE, 
+                      message=FALSE,
+                      cache = FALSE,
+                      dev = c("png", "pdf"),
+                      error = TRUE,
+                      highlight = TRUE,
+                      prompt = FALSE,
+                      tidy = FALSE)
+```
+
+```{r load-libraries}
+# Load libraries
+library(SummarizedExperiment)
+library(gridExtra)
+library(DESeq2)
+library(tidyverse)
+library(ggrepel)
+library(viridisLite)
+library(knitr)
+library(DESeq2)
+library(ggrepel)
+library(biomaRt)
+library(pheatmap)
+library(RColorBrewer)
+
+# Set ggplot2 default theme
+ggplot2::theme_set(theme_light(base_size = 14))
+```
+
+# Metadata
+
+The metadata for each of the samples in this analysis is given in the table below. *Include here if we have subset the samples or removed any samples due to quality issues.*
+
+```{r  show-metadata}
+# Read in bcbio object
+se <- readRDS("data/bcbio-se.rds")
+
+# Extract metadata from object
+metadata <- colData(se) %>%
+  data.frame()
+
+# Extract count data from object
+counts <- assays(se)[["raw"]] %>%
+  data.frame()
+
+### Check that all samples are in the same order
+# all(colnames(counts) == rownames(metadata))
+```
+
+```{r gene_annotations}
+# Get gene annotations based on reference data version used for alignment/quantification from BiomaRt
+
+# Specify the Ensembl release ## dataset used by bcbio (check archives if needed)
+
+# List current versions of datasets
+#ensembl <- useMart(biomart = "ENSEMBL_MART_ENSEMBL")
+#datasets <- listDatasets(ensembl)
+
+# Identify the proper archive to use for corresponding Ensembl release
+#archives <- listEnsemblArchives()
+
+# This is example code for using the Ensembl 99 release for the human genome
+ensembl <- useMart(biomart = "ENSEMBL_MART_ENSEMBL",
+                   dataset = "hsapiens_gene_ensembl",
+                   host = "jan2020.archive.ensembl.org")
+
+## Build biomaRt query
+# filters = listFilters(ensembl)
+# attributes = listAttributes(ensembl)
+
+gene_annotations <- getBM(attributes=c('ensembl_gene_id', 'entrezgene_id', 'gene_biotype', 'external_gene_name', 'description'), 
+      filters = 'ensembl_gene_id', 
+      values = rownames(counts), 
+      mart = ensembl)
+
+knitr::kable(dplyr::filter(metadata), format = "html", row.names = FALSE)  %>%
+        kableExtra::kable_styling() %>%         
+        kableExtra::scroll_box(width = "100%", height = "300px")
+
+
+```
+
+# Differential Gene Expression Analysis
+
+Differential gene expression analysis of count data was performed using the Bioconductor R package, DESeq2, which fits the count data to a negative binomial model.
+
+Prior to identifying differentially expressed genes, clustering of the samples was performed using PCA and hierarchical clustering to determine whether there are any sample outliers to be removed or large sources of variation to account for in the DESeq2 design formula. 
+
+Then, the data was fit to the model and the dispersion was assessed to explore the fit of the count data to the model.
+
+Following the exploration of these quality control plots, we identified the differentially expressed genes. We explored these genes using several tables and plots.
+
+## Sample clustering
+
+To explore the similarity of our samples, we performed sample-level QC using Principal Component Analysis (PCA) and hierarchical clustering methods. These methods allow us to:
+
+- Check how similar the replicates are to each other (clustering) and to make sure that the experimental condition is a major source of variation in the data
+
+- Identify other major sources of variation that we might need to control for (regress out) in our design formula
+
+- Identify any samples behaving like outliers; we can further explore potential outliers to determine whether they need to be removed prior to DE analysis
+
+These unsupervised clustering methods are run using log2 transformed normalized counts. The log2 transformation improves the distances/clustering for visualization. Instead of using an ordinary log2 transform, we will be using regularized log transform (rlog), to avoid any bias from the abundance of low-count genes.
+
+### PCA 
+
+Principal Component Analysis (PCA) is a technique used to emphasize variation and bring out strong patterns in a dataset (dimensionality reduction). PC1 and PC2 represent the sources of greatest variation in the dataset. We would expect our biological replicates to exhibit similar expression profiles and cluster together. In addition, we would anticipate our `condition` to be one of the largest sources of variation in our data, driving separation of the sample groups by PC1 and/or PC2. 
+
+The samples do/do not cluster by PCA. PC1 separates by ... PC2 looks to represent variation due to ...
+
+```{r pca_all, message=FALSE, warning=FALSE, width = 5, cache = FALSE}
+# Create DESeq2Dataset object
+dds <- DESeqDataSetFromMatrix(counts, 
+                              colData = metadata, 
+                              design = ~ condition)
+
+# Transform counts for data visualization (unsupervised analysis)
+rld <- rlog(dds, blind=TRUE)
+
+
+# Generate matrix of transformed counts
+rld_mat <- assay(rld)
+
+# Perform the PCA using DESeq2 function
+plotPCA(rld)
+
+
+#### Perform your own PCA ########
+#
+# # Perform your own PCA
+# pc <- t(rld_mat)  %>% 
+#   prcomp()
+# 
+# # Bind the metadata to the PCs and use this as inout to ggplot2
+# df <- cbind(metadata, pc$x) 
+# df$name <- rownames(df)
+# 
+# ggplot(df, aes(x=PC1, 
+#                y=PC2, 
+#                color=condition)) + 
+#   geom_point(size = 3) +
+#   theme_bw() +
+#   theme(plot.title=element_text(hjust=0.5),
+#         axis.text=element_text(size=12),
+#         axis.title=element_text(size=14,face="bold"),
+#         legend.title = element_text(size = 14,face="bold"),
+#         legend.text = element_text(size = 12))
+```
+
+### Hierarchical clustering
+
+Similar to PCA, hierarchical clustering is another, complementary, method for identifying strong patterns in a dataset and potential outliers. The heatmap displays the correlation of gene expression for all pairwise combinations of samples in the dataset. Since the majority of genes are not differentially expressed, samples generally have high correlations with each other (values higher than 0.80). Samples below 0.80 may indicate an outlier in your data and/or sample contamination.
+
+The hierarchical tree along the axes indicates which samples are more similar to each other, i.e. cluster together. The color blocks at the top indicate substructure in the data, and you would expect to see your replicates cluster together as a block for each sample group. Our expectation would be that the samples cluster together similar to the groupings we've observed in the PCA plot.
+
+The biological replicates do/do not cluster together using hierarchical clustering ...
+
+```{r heatmap, fig.width = 10L, fig.height = 10L}
+# Correlation matrix
+rld_cor <- cor(rld_mat)
+
+# Create annotation file for samples
+annotation <- metadata[, c("treatment", "patient_id")]
+
+# Change colors
+heat.colors <- brewer.pal(6, "Blues")
+
+# Plot heatmap
+pheatmap(rld_cor, annotation = annotation, border=NA, color = heat.colors)
+```
+
+## Dispersion estimates
+
+We often look at the dispersion plot to get a good idea of whether or not our data is a good fit for the model. Dispersion is a metric for variance which also takes into consideration mean expression. A dispersion value is estimated for each individual gene, then 'shrunken' to a more accurate value based on expected variation for the mean value. Finally, the shrunken dispersion value is used in the final GLM fit. From this plot we see the unshrunken (black) and shrunken (blue) dispersion values for every gene and that:
+
+* There is an expected inverse relationship between dispersion and mean expression
+
+* There is a reasonable amount of shrinkage, due to the smaller sample sizes per group
+
+**The data are a good fit for the model, giving us confidence in the results we generate.**
+
+```{r DE}
+# Run DESeq2
+dds <- DESeq(dds)
+
+# Dispersion plot
+plotDispEsts(dds)
+```
+
+## Differentially expressed genes {.tabset}
+
+Using a Wald test, we tested for significant differences between __ and __ using an adjusted p-value cut-off of 0.05. We regressed out the variation due to __ and tested for differences due to __ (design formula: `~ __ + __`). The log2 fold changes are for the __ condition relative to the __ condition. **Therefore, positive logFC means that expression is higher in __ samples than __ samples.** 
+
+There were ## significant differentially expressed genes identified between the __ and __ conditions. Of these genes, ## were up-regulated and ## were down-regulated. 
+
+
+```{r summary}
+# Determine the coefficient names
+#resultsNames(dds)
+
+# Extract results
+res <- results(dds,
+               contrast=c("treatment", "siADAMTS14_TGFb", "siNT_TGFb"))
+
+#data.frame(res) %>% data.frame() %>% arrange(padj) %>% head()
+
+# Shrink the log2 fold changes to be more accurate for sample sizes and experimental variation
+shrunken_res <- lfcShrink(dds,
+          res = res,
+          coef = "treatment_siADAMTS14_TGFb_vs_siNT_TGFb", 
+          type = "apeglm")
+
+# Create a results tibble
+res_tb <- shrunken_res %>%
+  data.frame() %>%
+  rownames_to_column(var="gene") %>% 
+  as_tibble() %>% 
+  left_join(gene_annotations, 
+            by= c("gene" =  "ensembl_gene_id"))
+
+res_tb <- res_tb %>%
+  dplyr::rename(gene_symbol = external_gene_name,
+         ensembl_id = gene) %>%
+  dplyr::select(ensembl_id:padj, gene_symbol, description)
+
+# Write to file
+write.csv(res_tb, 
+          file="results/PI_cond1_vs_cond2_all_DE_results.csv", 
+          row.names=F, 
+          quote = FALSE)
+
+# Subset to return genes with padj < 0.05
+sig_genes <- res_tb %>%
+        filter(padj < 0.05) %>%
+        arrange(padj)
+        
+
+# Write to file
+write.csv(sig_genes, file="./results/PI_cond1_vs_cond2_sig_DE_results.csv", row.names=F, quote = FALSE)
+
+normalized_counts <- data.frame(counts(dds, normalized = TRUE)) %>%
+  rownames_to_column("ensembl_id")
+
+results_counts <- left_join(normalized_counts, 
+                            res_tb, 
+                            by = "ensembl_id")
+
+write.csv(results_counts, 
+          file="results/PI_cond1_vs_cond2_all_DE_results_with_norm_counts.csv", 
+          row.names=F, 
+          quote = FALSE)
+
+
+# Get summary of DE results
+summary(res, 
+        alpha = 0.05)
+```
+
+There are three plots below used to assess our results.
+
+### MA plot 
+
+The MA plot explores the mean expression level of the genes with the fold change, highlighting the genes that are differentially expressed (padj < 0.05) using colored data points. We hope to see a good number of differentially expressed genes that span the range of expression values. ...Comments and observations...
+
+```{r ma-plot, fig.align="center"}
+# Plot shrunken values
+plotMA(res, 
+       alpha = 0.05, 
+       main = "Shrunken LFC")
+```
+
+
+### Volcano plots
+
+At a padj < 0.05, we find there are `r nrow(res[which(res$padj < 0.05),])` significant genes identified. Here, we plot the log2 foldchange of the genes against the log10 adjusted p-value. The points highighted in red are genes that have padj < 0.05 and black are non-significant. 
+
+...Comments and observations...
+
+```{r volcano-plot, fig.align="center"}
+
+res_tb <- res_tb %>% 
+  mutate(threshold = padj < 0.05 )
+
+## Volcano plot
+ggplot(res_tb) +
+    geom_point(aes(log2FoldChange, y = -log10(padj), colour = threshold)) +
+    geom_text_repel(aes(x = log2FoldChange, y = -log10(padj), label=ifelse(-log10(padj) > 75, as.character(gene_name),'')),hjust=0,vjust=0) +
+    ylim(c(0,100)) +
+    xlab("log2 fold change") + 
+    ylab("-log10 adjusted p-value") +
+  theme_bw() +
+    theme(legend.position = "none",
+          plot.title = element_text(size = rel(1.5), hjust = 0.5),
+          axis.title = element_text(size = rel(1.25))) 
+```
+
+### Heatmap
+
+This plot shows only differentially expressed genes (padj < 0.05) on a per-sample basis. We have scaled the data by row and used the `ward.D2` method for clustering. We hope to see our differentially expressed genes cluster by sample group with similar expression patterns across all replicates. ...Comments and observations...
+
+```{r heatmap-de}
+# Extract significant genes
+sigGenes <- res_tb$ensgene[which(res_tb$threshold)]
+
+### Extract normalized expression for significant genes 
+normalized_counts <- counts(dds, normalized=TRUE)
+norm_sig <- normalized_counts[sigGenes,] 
+meta <- colData(se)[,"condition", drop=F] %>% data.frame()
+
+### Set a color palette
+heat_colors <- colorRampPalette(c("blue", "black", "yellow"))(100)
+anno_colors <- list(condition=c(KO="#20A387FF",control="#453788FF"))
+
+### Run pheatmap using the metadata data frame for the annotation (11 x 5)
+pheatmap(norm_sig, 
+    color = heat_colors, 
+    cluster_rows = T, 
+    show_rownames = F,
+    annotation = meta, 
+    annotation_colors = anno_colors,
+    border_color = NA, 
+    fontsize = 10, 
+    scale = "row", 
+    fontsize_row = 10, 
+    height = 20)
+```
+
+## Table of significant DE genes {.tabset}
+
+All significant results are displayed in the full table below. Alternatively, the significant genes can be viewed separately as up- and down-regulated in the other tabs. The DEG tables are sorted by BH-adjusted P value, and contain the following columns:
+
+- `ensembl_id`: Ensembl ID for gene
+- `gene_symbol`: gene symbol
+- `baseMean`: Mean of the normalized counts per gene for all samples.
+- `log2FoldChange`: the shrunken log2 fold change values for __ relative to __ samples
+- `pvalue`: Walt test *P* value.
+- `padj`: BH adjusted Wald test *P* value (corrected for multiple comparisons; aka FDR).
+- `description`: gene description
+
+### All significant genes
+
+```{r all_sig_genes}
+sanitize_datatable(data.frame(sig_genes)[,c("ensembl_id", "gene_symbol", "baseMean", "log2FoldChange", "pvalue", "padj", "description")])
+
+# knitr::kable(data.frame(sig_genes), format = "html", row.names = FALSE)  %>%
+#         kableExtra::kable_styling() %>%         
+#         kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
+
+### Up-regulated genes
+
+```{r upgenes}
+sigUp <- res_tb %>% 
+  dplyr::filter(padj < 0.05 & log2FoldChange > 0) %>% 
+  arrange(desc(log2FoldChange))  %>% 
+  mutate_if(is.numeric, round, digits = 4)
+
+sanitize_datatable(sigUp[,c("ensembl_id", "gene_symbol", "baseMean", "log2FoldChange", "pvalue", "padj", "description")])
+```
+
+### Down-regulated genes
+
+```{r downgenes}
+sigDown <- res_tb %>% 
+  dplyr::filter(padj < 0.05 & log2FoldChange < 0) %>% 
+  arrange(log2FoldChange) %>% 
+  mutate_if(is.numeric, round, digits = 4)
+
+sanitize_datatable(sigDown[,c("ensembl_id", "gene_symbol", "baseMean", "log2FoldChange", "pvalue", "padj", "description")])
+```
+
+## Conclusions
+
+## File Download
+
+Below, we provide a selection of output files from this anlaysis.
+
+1. [**Results from DESeq2 analysis**](./results/PI_cond1_vs_cond2_all_genes.csv): These files report DE statistics for all genes that were tested. The result tables are sorted by BH-adjusted P value, and contain the following columns:
+
+- `ensgene`: Ensembl ID for gene
+- `baseMean`: Mean of the normalized counts per gene for all samples.
+- `log2FoldChange`: the shrunken log2 fold change values for VWR relative to sedentary mice
+- `lfcSE`: standard error of the log2 fold changes
+- `stat`: Wald statistic.
+- `pvalue`: Walt test *P* value.
+- `padj`: BH adjusted Wald test *P* value (corrected for multiple comparisons; aka FDR).
+- `symbol`: gene symbol
+- `biotype`: gene biotype
+- `description`: gene description
+
+2. [**Significant results from DESeq2 analysis**](./results/PI_cond1_vs_cond2_sig_genes.csv): This file is a subset of all DESeq2 results, containing only the significant genes using an alpha < 0.05.
+
+3. [**Normalized counts**](./results/PI_cond1_vs_cond2_normalized_counts.csv): This file contains the normalized counts (using the median of ratios method) for all genes in all samples.
+
+4. [**rlog transformed counts**](./results/PI_cond1_vs_cond2_rlog_counts.csv): This file contains counts that have been transformed using the `rlog()` function. This function transforms the count data to the log2 scale in a way which minimizes differences between samples for rows with small counts, and which normalizes with respect to library size. The rlog transformation produces a similar variance stabilizing effect as `vst()`. **These are a suitable input for visualization methods.**
+
+5. [**Combined results with normalized counts**](./results/PI_cond1_vs_cond2_all_DE_results_with_norm_counts.csv): This file contains all DEseq2 results combined with the normalized counts for each sample.
+
+
+```{r create-dataout, echo=FALSE, eval=FALSE}
+# Write out all results
+write.csv(res_tb, 
+          file = "results/PI_cond1_vs_cond2_res_allgenes.csv",
+          quote=F, row.names = F)
+
+# Write out normalized count matrix
+write.csv(counts(dds, normalized = TRUE),
+          file = "results/PI_cond1_vs_cond2_normalized_counts.csv",
+          quote=F)
+
+# Write out vst matrix
+write.csv(assay(rld),
+          file = "results/PI_cond1_vs_cond2_vst_counts.csv",
+          quote=F)
+
+# Write out combined matrix
+norm_counts <- counts(dds, normalized = TRUE) %>% 
+  data.frame() %>% 
+  rownames_to_column(var="ensgene")
+
+write.csv(left_join(norm_counts, res_tb),
+          file = "results/PI_cond1_vs_cond2_res_combined_normcounts.csv",
+          quote=F)
+
+
+```
+
+
+## R Session 
+
+Below is the output of the R session used to generate this report. Included is information on R version, OS, and versions of packages installed and used.
+
+```{r sessionInfo}
+# Get session information
+sessionInfo()
+```
