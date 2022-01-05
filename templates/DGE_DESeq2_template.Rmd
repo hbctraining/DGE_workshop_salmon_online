@@ -160,13 +160,14 @@ dds <- DESeqDataSetFromMatrix(counts,
 # Transform counts for data visualization (unsupervised analysis)
 rld <- rlog(dds, blind=TRUE)
 
-
 # Generate matrix of transformed counts
 rld_mat <- assay(rld)
 
 # Perform the PCA using DESeq2 function
 plotPCA(rld)
 
+# Write transformed counts to file
+write.csv(rld_mat, "results/PI_cond1_vs_cond2_rlog_counts", quote = FALSE)
 
 #### Perform your own PCA ########
 #
@@ -243,14 +244,17 @@ There were ## significant differentially expressed genes identified between the 
 
 # Extract results
 res <- results(dds,
-               contrast=c("treatment", "siADAMTS14_TGFb", "siNT_TGFb"))
+               contrast=c("condition", "cond_compare", "cond_base")) 
+
+# Instead of 'contrast' argument, you could use 'name' argument               
+               
 
 #data.frame(res) %>% data.frame() %>% arrange(padj) %>% head()
 
 # Shrink the log2 fold changes to be more accurate for sample sizes and experimental variation
 shrunken_res <- lfcShrink(dds,
           res = res,
-          coef = "treatment_siADAMTS14_TGFb_vs_siNT_TGFb", 
+          coef = "condition___", 
           type = "apeglm")
 
 # Create a results tibble
@@ -372,14 +376,14 @@ pheatmap(norm_sig,
 
 All significant results are displayed in the full table below. Alternatively, the significant genes can be viewed separately as up- and down-regulated in the other tabs. The DEG tables are sorted by BH-adjusted P value, and contain the following columns:
 
-- `ensembl_id`: Ensembl ID for gene
-- `gene_symbol`: gene symbol
-- `baseMean`: Mean of the normalized counts per gene for all samples.
-- `log2FoldChange`: the shrunken log2 fold change values for __ relative to __ samples
-- `pvalue`: Walt test *P* value.
-- `padj`: BH adjusted Wald test *P* value (corrected for multiple comparisons; aka FDR).
-- `description`: gene description
-
+   - `ensembl_id`: Ensembl ID for gene
+   - `gene_symbol`: gene symbol
+   - `baseMean`: Mean of the normalized counts per gene for all samples.
+   - `log2FoldChange`: the shrunken log2 fold change values for __ relative to __ samples
+   - `pvalue`: Walt test *P* value.
+   - `padj`: BH adjusted Wald test *P* value (corrected for multiple comparisons; aka FDR).
+   - `description`: gene description
+   
 ### All significant genes
 
 ```{r all_sig_genes}
@@ -420,18 +424,18 @@ sanitize_datatable(sigDown[,c("ensembl_id", "gene_symbol", "baseMean", "log2Fold
 Below, we provide a selection of output files from this anlaysis.
 
 1. [**Results from DESeq2 analysis**](./results/PI_cond1_vs_cond2_all_genes.csv): These files report DE statistics for all genes that were tested. The result tables are sorted by BH-adjusted P value, and contain the following columns:
-
-- `ensgene`: Ensembl ID for gene
-- `baseMean`: Mean of the normalized counts per gene for all samples.
-- `log2FoldChange`: the shrunken log2 fold change values for VWR relative to sedentary mice
-- `lfcSE`: standard error of the log2 fold changes
-- `stat`: Wald statistic.
-- `pvalue`: Walt test *P* value.
-- `padj`: BH adjusted Wald test *P* value (corrected for multiple comparisons; aka FDR).
-- `symbol`: gene symbol
-- `biotype`: gene biotype
-- `description`: gene description
-
+   
+   - `ensgene`: Ensembl ID for gene
+   - `baseMean`: Mean of the normalized counts per gene for all samples.
+   - `log2FoldChange`: the shrunken log2 fold change values for VWR relative to sedentary mice
+   - `lfcSE`: standard error of the log2 fold changes
+   - `stat`: Wald statistic.
+   - `pvalue`: Walt test *P* value.
+   - `padj`: BH adjusted Wald test *P* value (corrected for multiple comparisons; aka FDR).
+   - `symbol`: gene symbol
+   - `biotype`: gene biotype
+   - `description`: gene description
+   
 2. [**Significant results from DESeq2 analysis**](./results/PI_cond1_vs_cond2_sig_genes.csv): This file is a subset of all DESeq2 results, containing only the significant genes using an alpha < 0.05.
 
 3. [**Normalized counts**](./results/PI_cond1_vs_cond2_normalized_counts.csv): This file contains the normalized counts (using the median of ratios method) for all genes in all samples.
@@ -440,34 +444,6 @@ Below, we provide a selection of output files from this anlaysis.
 
 5. [**Combined results with normalized counts**](./results/PI_cond1_vs_cond2_all_DE_results_with_norm_counts.csv): This file contains all DEseq2 results combined with the normalized counts for each sample.
 
-
-```{r create-dataout, echo=FALSE, eval=FALSE}
-# Write out all results
-write.csv(res_tb, 
-          file = "results/PI_cond1_vs_cond2_res_allgenes.csv",
-          quote=F, row.names = F)
-
-# Write out normalized count matrix
-write.csv(counts(dds, normalized = TRUE),
-          file = "results/PI_cond1_vs_cond2_normalized_counts.csv",
-          quote=F)
-
-# Write out vst matrix
-write.csv(assay(rld),
-          file = "results/PI_cond1_vs_cond2_vst_counts.csv",
-          quote=F)
-
-# Write out combined matrix
-norm_counts <- counts(dds, normalized = TRUE) %>% 
-  data.frame() %>% 
-  rownames_to_column(var="ensgene")
-
-write.csv(left_join(norm_counts, res_tb),
-          file = "results/PI_cond1_vs_cond2_res_combined_normcounts.csv",
-          quote=F)
-
-
-```
 
 
 ## R Session 
