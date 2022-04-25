@@ -188,6 +188,8 @@ gseaGO_results <- gseaGO@result
 gseaplot(gseaGO, geneSetID = 'GO:0007423')
 ```
 
+> **NOTE:** After running the code above you might find there are **no significant terms** returned along with a message like `no term enriched under specific pvalueCutoff...`. If this is the case, try running the same code above, but with **increased number of permutations** (i.e. `nPerm = 10000`). This may take a bit longer to run, but can increase the number of terms that meet significance.
+
 There are other gene sets available for GSEA analysis in clusterProfiler (Disease Ontology, Reactome pathways, etc.). In addition, it is possible to supply your own gene set GMT file, such as a GMT for [MSigDB](http://software.broadinstitute.org/gsea/msigdb/index.jsp) using special clusterProfiler functions as shown below:
 
 ```r
