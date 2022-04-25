@@ -119,7 +119,7 @@ gseaKEGG <- gseKEGG(geneList = foldchanges, # ordered named vector of fold chang
 gseaKEGG_results <- gseaKEGG@result
 ```
  
-> **Note:** The `nPerm` argument was left at its default value of 1000. This parameter specifies how many times this randomization (for perumtations) is done. The more randomizations that are performed, the more precise the FDR q-value estimation will be individual terms/pathways. Therefore, if you are finding few or no terms enriched you might want to try increasing this number.
+> _**NOTE:** The `nPerm` argument was left at its default value of 1000. This parameter specifies how many times this randomization (for perumtations) is done. The more randomizations that are performed, the more precise the FDR q-value estimation will be individual terms/pathways. Therefore, if you are finding few or no terms enriched you might want to try increasing this number._
 
 
 **How many pathways are enriched?** View the enriched pathways:
