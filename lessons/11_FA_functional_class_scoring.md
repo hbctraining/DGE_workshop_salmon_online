@@ -97,6 +97,13 @@ The GSEA output will yield the core genes in the gene sets that most highly cont
 
 #### Performing GSEA
 
+First, we will set the seed so that we all obtain the same result:
+
+```r
+set.seed(123456)
+```
+> _**NOTE:** The permutations are performed using random reordering, so every time we run the function we will get slightly different results. If we would like to use the same permutations every time we run a function, then we use the `set.seed(123456)` function prior to running. The input to `set.seed()` can be any number, but if you would want the same results, then you would need to use the same number as the lesson._
+
 To perform the GSEA using KEGG gene sets with clusterProfiler, we can use the `gseKEGG()` function:
 
 ```r
@@ -111,8 +118,9 @@ gseaKEGG <- gseKEGG(geneList = foldchanges, # ordered named vector of fold chang
 ## Extract the GSEA results
 gseaKEGG_results <- gseaKEGG@result
 ```
+ 
+> **Note:** The `nPerm` argument was left at its default value of 1000. This parameter specifies how many times this randomization (for perumtations) is done. The more randomizations that are performed, the more precise the FDR q-value estimation will be individual terms/pathways. Therefore, if you are finding few or no terms enriched you might want to try increasing this number.
 
->**NOTE:** The organisms with KEGG pathway information are listed [here](http://www.genome.jp/kegg/catalog/org_list.html).
 
 **How many pathways are enriched?** View the enriched pathways:
 
@@ -123,19 +131,20 @@ View(gseaKEGG_results)
 write.csv(gseaKEGG_results, "results/gseaOE_kegg.csv", quote=F)
 ```
 
-> _**NOTE:** We will all get different results for the GSEA because the permutations performed use random reordering. If we would like to use the same permutations every time we run a function (i.e. we would like the same results every time we run the function), then we could use the `set.seed(123456)` function prior to running. The input to `set.seed()` could be any number, but if you would want the same results, then you would need to use the same number as input._
+>**NOTE:** The organisms with KEGG pathway information are listed [here](http://www.genome.jp/kegg/catalog/org_list.html).
+
 
 Explore the GSEA plot of enrichment of one of the pathways in the ranked list:
 
 ```r
 ## Plot the GSEA plot for a single enriched pathway, `hsa03040`
-gseaplot(gseaKEGG, geneSetID = 'hsa03040')
+gseaplot(gseaKEGG, geneSetID = 'hsa03008')
 ```
 <p align="center"> 
-<img src="../img/gsea_kegg_hsa03040.png" width="600">
+<img src="../img/gsea_kegg_hsa03008.png" width="600">
 </p>
 
-In this plot, the lines in plot represent the genes in the gene set 'hsa03040', and where they occur among the log2 fold changes. The largest positive log2 fold changes are on the left-hand side of the plot, while the largest negative log2 fold changes are on the right. The top plot shows the magnitude of the log2 fold changes for each gene, while the bottom plot shows the running sum, with the enrichment score peaking at the red dotted line (which is among the negative log2 fold changes).
+In this plot, the lines in plot represent the genes in the gene set 'hsa03008', and where they occur among the log2 fold changes. The largest positive log2 fold changes are on the left-hand side of the plot, while the largest negative log2 fold changes are on the right. The top plot shows the magnitude of the log2 fold changes for each gene, while the bottom plot shows the running sum, with the enrichment score peaking at the red dotted line (which is among the negative log2 fold changes). This suggests the down-regulation of this pathway.
 
 Use the [Pathview R package](http://bioconductor.org/packages/release/bioc/html/pathview.html) to integrate the KEGG pathway data from clusterProfiler into pathway images:
 
@@ -144,7 +153,7 @@ detach("package:dplyr", unload=TRUE) # first unload dplyr to avoid conflicts
 
 ## Output images for a single significant KEGG pathway
 pathview(gene.data = foldchanges,
-              pathway.id = "hsa03040",
+              pathway.id = "hsa03008",
               species = "hsa",
               limit = list(gene = 2, # value gives the max/min limit for foldchanges
               cpd = 1))
@@ -152,7 +161,7 @@ pathview(gene.data = foldchanges,
 >**NOTE:** If the below error message occurs: `Error in detach("package:dplyr", unload = T) : invalid 'name' argument`, that means the dplyr package is not currently loaded. Ignore the message and continue to run pathview command.
 
 <p align="center"> 
-<img src="../img/hsa03040.pathview.png" width="800">
+<img src="../img/hsa03008.pathview.png" width="800">
 </p>
 
 
@@ -171,24 +180,6 @@ pathview(gene.data = foldchanges,
 >            get_kegg_plots)
 > ```
 
-Instead of exploring enrichment of KEGG gene sets, we can also explore the enrichment of BP Gene Ontology terms using gene set enrichment analysis: 
-
-```r
-# GSEA using gene sets associated with BP Gene Ontology terms
-gseaGO <- gseGO(geneList = foldchanges, 
-              OrgDb = org.Hs.eg.db, 
-              ont = 'BP', 
-              nPerm = 1000, 
-              minGSSize = 20, 
-              pvalueCutoff = 0.05,
-              verbose = FALSE) 
-
-gseaGO_results <- gseaGO@result
-
-gseaplot(gseaGO, geneSetID = 'GO:0007423')
-```
-
-> **NOTE:** After running the code above you might find there are **no significant terms** returned along with a message like `no term enriched under specific pvalueCutoff...`. If this is the case, try running the same code above, but with **increased number of permutations** (i.e. `nPerm = 10000`). This may take a bit longer to run, but can increase the number of terms that meet significance.
 
 There are other gene sets available for GSEA analysis in clusterProfiler (Disease Ontology, Reactome pathways, etc.). In addition, it is possible to supply your own gene set GMT file, such as a GMT for [MSigDB](http://software.broadinstitute.org/gsea/msigdb/index.jsp) using special clusterProfiler functions as shown below:
 
