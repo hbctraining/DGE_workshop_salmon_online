@@ -10,9 +10,9 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_all.pdf) | Radhika |
-| 10:30 - 10:45 | [R refresher Q & A](../lessons/R_refresher.md) | All |
-| 10:45 - 11:15 | RNA-seq pre-reading discussion | All |
-| 11:15 - 12:00 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
+| 10:30 - 11:00 | RNA-seq pre-reading discussion | All |
+| 11:00 - 11:45 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Meeta |
+| 11:45 - 12:00 | Overview of self-learning materials and homework submission | All |
 
 ### Before the next class:
 
