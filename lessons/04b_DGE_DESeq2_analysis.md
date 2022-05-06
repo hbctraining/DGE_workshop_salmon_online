@@ -94,38 +94,51 @@ The next step in the differential expression analysis is the estimation of gene-
 
 In RNA-seq count data, we know:
 
-1. To determine differentially expressed genes, we need to identify genes that have significantly different mean expression between groups **given the variation within the groups** (between replicates). 
-2. The variation within group (between replicates) needs to account for the fact that variance increases with the mean expression, as shown in the plot below (each black dot is a gene).
+1. To determine differentially expressed genes, we evaluate the **variation of expression between groups (of interest) and compare that to the variation within the groups** (between replicates). 
+2. For each individual gene, **the mean is not equal to the variance.** Genes that are highly expressed will have a more consistent level of variations, but it will be higher than the mean. Lowly expressed genes will exhibit variation that hovers around the mean (but with a higher amount of variability). This complicated relationship means that **we cannot just use the observed variance to account for within-group variation**. 
 
 <p align="center">
 <img src="../img/deseq_mean_variance2.png" width="600">
 </p>
 
-**To accurately identify DE genes, DESeq2 needs to account for the relationship between the variance and mean.** We don't want all of our DE genes to be genes with low counts because the variance is lower for lowly expressed genes.
 
-Instead of using variance as the measure of variation in the data (*since variance correlates with gene expression level*), DESeq2 uses a measure of variation called **dispersion, which accounts for a gene's variance and mean expression level**. Dispersion is calculated by `Var = μ + α*μ^2`, where `α` = dispersion, `Var` = variance, and `μ` = mean, giving the relationship:
+**What is dispersion?**
+
+The dispersion parameter **models the within-group variability by describing how much the variance deviates from the mean**. A dispersion of 1 would indicate that there is no deviance from the mean (i.e mean == variance). Of course this not typical of RNA-seq data, given there always biological variability present across replicates.
+
+We know that the variance has the following relationship with the mean and variance:
+
+<img src="https://render.githubusercontent.com/render/math?math=Var_{ij} = \mu_{ij}  %2B\!  \alpha_{i} \mu_{ij}^2">
+
+Now let's rearrange formula so that we can see what the dispersion parameter equates to so we can better understand it's relationship with mean and variance:
+
+<img src="https://render.githubusercontent.com/render/math?math=\sqrt\alpha_{i} = \frac{Var_{ij} - \mu_{ij}}{\mu_{ij}} ">
+
+Which is also the same as:
+
+<img src="https://render.githubusercontent.com/render/math?math=\sqrt\alpha_{i} = \frac{Var_{ij}}{\mu_{ij}} - 1 ">
+
+In this way, the dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value.** 
+
 
 | | Effect on dispersion |
 |:---:|:---:|
 | Variance increases | Dispersion increases |
 | Mean expression increases | Dispersion decreases |
 
+> _NOTE: For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation (the subtraction of one will be negligible)._ 
 
-For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation. So 0.01 dispersion means 10% variation around the mean expected across biological replicates. The dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value.** In the plot below, each black dot is a gene, and the dispersion is plotted against the mean expression (across within-group replicates) for each gene.
+
+**Dispersion values in DESeq2**
+
+DESeq2 estimates the dispersion for each gene based on the gene's expression level (mean counts of within-group replicates) and observed variance across replicates. Below, we have a dispersion plot where each black dot is a gene, and the dispersion is plotted against the mean expression for each gene. You can see the inverse relationship between mean and dispersion. The black dots are dispersion estimates given the data we have. With only a few (3-6) replicates per group, the **estimates of variation for each gene are often unreliable**. 
+
+To address this problem, DESeq2 **shares information across genes** to generate more accurate estimates of variation based on the mean expression level of the gene using a method called 'shrinkage'. **DESeq2 assumes that genes with similar expression levels should have similar dispersion.** Blue dots represent shrunken dispersion values.
 
 <p align="center">
 <img src="../img/deseq_dispersion1.png" width="400">
 </p>
 
-**How does the dispersion relate to our model?** 
-
-To accurately model sequencing counts, we need to generate accurate estimates of within-group variation (variation between replicates of the same sample group) for each gene. With only a few (3-6) replicates per group, the **estimates of variation for each gene are often unreliable**. 
-
-To address this problem, DESeq2 **shares information across genes** to generate more accurate estimates of variation based on the mean expression level of the gene using a method called 'shrinkage'. **DESeq2 assumes that genes with similar expression levels should have similar dispersion.** 
-
-**Estimating the dispersion for each gene separately:**
-
-DESeq2 estimates the dispersion for each gene based on the gene's expression level (mean counts of within-group replicates) and variance. 
 
 ### Step 3: Fit curve to gene-wise dispersion estimates
 
