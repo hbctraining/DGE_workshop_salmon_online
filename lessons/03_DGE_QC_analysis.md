@@ -59,7 +59,7 @@ These unsupervised clustering methods are run using **log2 transformed normalize
 
 Principal Component Analysis (PCA) is a technique used to emphasize variation and bring out strong patterns in a dataset (dimensionality reduction). This is a very important technique used in the QC and analysis of both bulk and single-cell RNAseq data. 
 
-To better understand how it works, **please go through [this YouTube video from StatQuest](https://www.youtube.com/watch?v=_UVHneBUBW0) that explains PCA**. After you have gone through the video, please proceed with the interpretation section below.
+To better understand how it works, **please go through [this YouTube video from StatQuest](https://www.youtube.com/watch?v=_UVHneBUBW0) that explains PCA**. Alternatively, we have **prepared a [PCA lesson](principal_component_analysis.md)**. After you have gone through the material, please proceed with the interpretation section below.
 
 ***
 ***
