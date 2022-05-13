@@ -32,7 +32,7 @@
 	1. LFC shrinkage is applied by default in DESeq2. 
 
 
-6. To identify significant differentially expressed genes, you will need to set an adjusted p-value threshold and a fold change threshold. 
+6. To identify significant differentially expressed genes, you will always need to set both an adjusted p-value threshold and a fold change threshold. 
 
 	1. True
 	1. **False**
