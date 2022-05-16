@@ -16,7 +16,7 @@ Despite the popularity of static measurement of gene expression, time-course cap
 
 For example, suppose we have an experiment looking at the effect of treatment over time on mice of two different genotypes. We could use a design formula for our 'full model' that would include the major sources of variation in our data: `genotype`, `treatment`, `time`, and our main condition of interest, which is the difference in the effect of treatment over time (`treatment:time`).
 
-> **NOTE:** This is just example code for our hypothetical experiment. You **do not need to run this code**.
+> **NOTE:** This is just example code for our hypothetical experiment. You **should not run this code**.
 
 ```r
 ## DO NOT RUN
