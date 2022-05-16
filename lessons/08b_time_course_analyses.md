@@ -19,18 +19,24 @@ For example, suppose we have an experiment looking at the effect of treatment ov
 > **NOTE:** This is just example code for our hypothetical experiment. You **do not need to run this code**.
 
 ```r
+## DO NOT RUN
+
 full_model <- ~ genotype + treatment + time + treatment:time
 ```
 
 To perform the LRT test, we also need to provide a reduced model, that is the full model without the `treatment:time` term:
 
 ```r
+## DO NOT RUN
+
 reduced_model <- ~ genotype + treatment + time
 ```
 
 Then, we could run the LRT by using the following code:
 
 ```r
+## DO NOT RUN
+
 dds <- DESeqDataSetFromMatrix(countData = raw_counts, colData = metadata, design = ~ genotype + treatment + time + treatment:time)
 
 dds_lrt_time <- DESeq(dds, test="LRT", reduced = ~ genotype + treatment + time)
