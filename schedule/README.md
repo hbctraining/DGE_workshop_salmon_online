@@ -106,7 +106,7 @@ We have covered the inner workings of DESeq2 in a fair amount of detail such tha
 ## Building on this workshop
 * [Single-cell RNA-seq workshop](https://hbctraining.github.io/scRNA-seq/)
 * [RMarkdown](https://hbctraining.github.io/Training-modules/Rmarkdown/)
-* [Ggplot2 for functional analysis](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/ggplot2.html)
+* [ggplot2 for functional analysis](https://hbctraining.github.io/Training-modules/Tidyverse_ggplot2/lessons/03_ggplot2.html)
 
 ## Other helpful links
 * [Online learning resources](https://hbctraining.github.io/bioinformatics_online/lists/online_trainings.html)
