@@ -14,33 +14,28 @@ Learning Objectives:
 *  Examine results of a GSEA using pathwview package
 *  List other tools and resources for identifying genes of novel pathways or networks
 
-# Functional analysis 
+## Functional analysis using functional class scoring 
 
-Over-representation analysis is only a single type of functional analysis method that is available for teasing apart the biological processes important to your condition of interest. Other types of analyses can be equally important or informative, including functional class scoring methods. 
+In addition to over-representation analysis, there are other types of analyses can be equally important or informative for obtaining some biological insight from your results. The **hypothesis behind functional class scoring (FCS) methods** is that although large changes in individual genes can have significant effects on pathways (and will be detected via ORA methods), **weaker but coordinated changes in sets of functionally related genes (i.e., pathways) can also have significant effect**s.  Thus, rather than setting an arbitrary threshold to identify 'significant genes', **all genes are considered** in the analysis. The gene-level statistics from the dataset are aggregated to generate a single pathway-level statistic and statistical significance of each pathway is reported. This type of analysis can be particularly helpful if the differential expression analysis only outputs a small list of significant DE genes. 
 
 <p align="center"> 
 <img src="../img/pathway_analysis.png" width="600">
 </p> 
 
-## Functional class scoring
 
-Functional class scoring (FCS) tools, such as [GSEA](https://www.pnas.org/content/102/43/15545), most often use the gene-level statistics or log2 fold changes for all genes from the differential expression results, then look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
+## Gene set enrichment analysis using clusterProfiler and Pathview
+
+One commonly used tool which is classified under Functional class scoring (FCS), is [GSEA](https://www.pnas.org/content/102/43/15545). Gene set enrichment analysis utilizes the gene-level statistics or log2 fold changes for all genes to look to see whether gene sets for particular biological pathways are enriched among the large positive or negative fold changes. 
 
 <p align="center"> 
 <img src="../img/gsea_theory.png" width="600">
 </p> 
   
-The hypothesis of FCS methods is that although large changes in individual genes can have significant effects on pathways (and will be detected via ORA methods), weaker but coordinated changes in sets of functionally related genes (i.e., pathways) can also have significant effects.  Thus, rather than setting an arbitrary threshold to identify 'significant genes', **all genes are considered** in the analysis. The gene-level statistics from the dataset are aggregated to generate a single pathway-level statistic and statistical significance of each pathway is reported. This type of analysis can be particularly helpful if the differential expression analysis only outputs a small list of significant DE genes. 
+Gene sets are pre-defined groups of genes, which are functionally related. Commonly used gene sets include those derived from KEGG pathways, Gene Ontology terms, MSigDB, Reactome, or gene groups that share some other functional annotations, etc. [[1](../../resources/pathway_tools.pdf)]. 
 
-### Gene set enrichment analysis using clusterProfiler and Pathview
+### Preparation for GSEA
 
-Using the log2 fold changes obtained from the differential expression analysis for every gene, gene set enrichment analysis and pathway analysis can be performed using clusterProfiler and Pathview tools.
-
-For a gene set or pathway analysis using clusterProfiler, coordinated differential expression over gene sets is tested instead of changes of individual genes. "Gene sets are pre-defined groups of genes, which are functionally related. Commonly used gene sets include those derived from KEGG pathways, Gene Ontology terms, MSigDB, Reactome, or gene groups that share some other functional annotations, etc. Consistent perturbations over such gene sets frequently suggest mechanistic changes" [[1](../../resources/pathway_tools.pdf)]. 
-
-#### Preparation for GSEA
-
-clusterProfiler offers several functions to perform GSEA using different genes sets, including but not limited to GO, KEGG, and MSigDb. We will use the KEGG gene sets, which identify genes using their Entrez IDs. Therefore, to perform the analysis, we will need to acquire the Entrez IDs. We will also need to remove the Entrez ID NA values and duplicates (due to gene ID conversion) prior to the analysis:
+The clusterProfiler package offers several functions to perform GSEA using different genes sets, including but not limited to GO, KEGG, and MSigDb. We will use the KEGG gene sets in our examples below. The KEGG gene sets are defined using the Entrez identifiers, thus to perform the analysis we will need to acquire the corresponding Entrez IDs for our genes. We will also need to remove any genes that do not have an Entrez ID (NA values) and any duplicates (due to gene ID conversion) that may exist:
 
 ```r
 ## Remove any NA values (reduces the data by quite a bit)
@@ -50,7 +45,7 @@ res_entrez <- dplyr::filter(res_ids, entrezid != "NA")
 res_entrez <- res_entrez[which(duplicated(res_entrez$entrezid) == F), ]
 ```
 
-Finally, extract and name the fold changes:
+GSEA will use the log2 fold changes obtained from the differential expression analysis for every gene, to perform the analysis. We will obtain a vector of fold changes for input to clusterProfiler, in addition to the associated Entrez IDs:
 
 ```r
 ## Extract the foldchanges
@@ -69,7 +64,7 @@ foldchanges <- sort(foldchanges, decreasing = TRUE)
 head(foldchanges)
 ```
 
-#### Theory of GSEA
+### Theory of GSEA
 
 Now we are ready to perform GSEA. The details regarding GSEA can be found in the [PNAS paper](https://www.pnas.org/content/102/43/15545) by Subramanian et al. We will describe briefly the steps outlined in the paper below:
 
@@ -95,7 +90,7 @@ After all gene sets are tested, the enrichment scores are normalized for the siz
 
 The GSEA output will yield the core genes in the gene sets that most highly contribute to the enrichment score. The genes output are generally the genes at or before the running sum reaches its maximum value (eg. the most influential genes driving the differences between conditions for that gene set).
 
-#### Performing GSEA
+### Performing GSEA
 
 First, we will set the seed so that we all obtain the same result:
 
@@ -180,25 +175,50 @@ pathview(gene.data = foldchanges,
 >            get_kegg_plots)
 > ```
 
+### Incorpororating other gene sets for GSEA
 
-There are other gene sets available for GSEA analysis in clusterProfiler (Disease Ontology, Reactome pathways, etc.). In addition, it is possible to supply your own gene set GMT file, such as a GMT for [MSigDB](http://software.broadinstitute.org/gsea/msigdb/index.jsp) using special clusterProfiler functions as shown below:
+There are other gene sets available for GSEA analysis in clusterProfiler (Disease Ontology, Reactome pathways, etc.). In addition, it is possible to supply your own gene set GMT file, and use that as input.
+
+The Molecular Signatures Database (also known as [MSigDB](http://software.broadinstitute.org/gsea/msigdb/index.jsp)) is a collection of annotated gene sets. It contains 8 major collections:
+
+* H: hallmark gene sets
+* C1: positional gene sets
+* C2: curated gene sets
+* C3: motif gene sets
+* C4: computational gene sets
+* C5: GO gene sets
+* C6: oncogenic signatures
+* C7: immunologic signatures
+
+Users can download GMT files from Broad Institute and use the read.gmt() function to parse the files. Alternatively, there is an R package that already packed the MSigDB gene sets in tidy data format that can be used directly with clusterProfiler. The `msigdbr` package supports severa species and some example code is provided below:
 
 ```r
 # DO NOT RUN
 
-BiocManager::install("GSEABase")
-library(GSEABase)
+library(msigdbr)
+msigdbr_show_species()
 
-# Load in GMT file of gene sets (we downloaded from the Broad Institute for MSigDB)
+##  [1] "Anolis carolinensis"             "Bos taurus"                     
+##  [3] "Caenorhabditis elegans"          "Canis lupus familiaris"         
+##  [5] "Danio rerio"                     "Drosophila melanogaster"        
+##  [7] "Equus caballus"                  "Felis catus"                    
+##  [9] "Gallus gallus"                   "Homo sapiens"                   
+## [11] "Macaca mulatta"                  "Monodelphis domestica"          
+## [13] "Mus musculus"                    "Ornithorhynchus anatinus"       
+## [15] "Pan troglodytes"                 "Rattus norvegicus"              
+## [17] "Saccharomyces cerevisiae"        "Schizosaccharomyces pombe 972h-"
+## [19] "Sus scrofa"                      "Xenopus tropicalis"
 
-c2 <- read.gmt("/data/c2.cp.v6.0.entrez.gmt.txt")
+# Use a specific collection; example C6 oncogenic signatures
+m_t2g <- msigdbr(species = "Homo sapiens", category = "C6") %>% 
+  dplyr::select(gs_name, entrez_gene)
 
-msig <- GSEA(foldchanges, TERM2GENE=c2, verbose=FALSE)
+# Run GSEA
+msig_GSEA <- GSEA(foldchanges, TERM2GENE = m_t2g, verbose = FALSE)
 
-msig_df <- data.frame(msig)
 ```
 
-## Pathway topology tools
+## Functional analysis: Pathway topology tools
 
 <p align="center"> 
 <img src="../img/pathway_analysis.png" width="600">
@@ -208,7 +228,7 @@ The last main type of functional analysis technique is pathway topology analysis
 
 For instance, the [SPIA (Signaling Pathway Impact Analysis)](http://bioconductor.org/packages/release/bioc/html/SPIA.html) tool can be used to integrate the lists of differentially expressed genes, their fold changes, and pathway topology to identify affected pathways. We have step-by-step materials for using SPIA [available](pathway_topology.md).
 
-## Other Tools
+## Other Tools for Functional Analysis
 
 ### Co-expression clustering
 
