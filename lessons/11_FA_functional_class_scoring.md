@@ -99,7 +99,8 @@ set.seed(123456)
 ```
 > _**NOTE:** The permutations are performed using random reordering, so every time we run the function we will get slightly different results. If we would like to use the same permutations every time we run a function, then we use the `set.seed(123456)` function prior to running. The input to `set.seed()` can be any number, but if you would want the same results, then you would need to use the same number as the lesson._
 
-To perform the GSEA using KEGG gene sets with clusterProfiler, we can use the `gseKEGG()` function:
+To perform the GSEA using KEGG gene sets with clusterProfiler, we can use the `gseKEGG()` function. _The organisms with available KEGG pathway information are listed [here](http://www.genome.jp/kegg/catalog/org_list.html)._
+
 
 ```r
 ## GSEA using gene sets from KEGG pathways
@@ -112,24 +113,39 @@ gseaKEGG <- gseKEGG(geneList = foldchanges, # ordered named vector of fold chang
 
 ## Extract the GSEA results
 gseaKEGG_results <- gseaKEGG@result
+
+# Write results to file
+write.csv(gseaKEGG_results, "results/gseaOE_kegg.csv", quote=F)
 ```
  
 > _**NOTE:** The `nPerm` argument was left at its default value of 1000. This parameter specifies how many times this randomization (for perumtations) is done. The more randomizations that are performed, the more precise the FDR q-value estimation will be individual terms/pathways. Therefore, if you are finding few or no terms enriched you might want to try increasing this number._
 
 
-**How many pathways are enriched?** View the enriched pathways:
+**How many pathways are enriched?** _NOTE: The results may look slightly different for you._ 
 
 ```r
 ## Write GSEA results to file
 View(gseaKEGG_results)
-
-write.csv(gseaKEGG_results, "results/gseaOE_kegg.csv", quote=F)
 ```
 
->**NOTE:** The organisms with KEGG pathway information are listed [here](http://www.genome.jp/kegg/catalog/org_list.html).
+<p align="center"> 
+<img src="../img/gseaKEGGresults.png">
+</p>
+
+* The first few columns of the results table identify the pathway information
+* The following columns include the associated statistics
+* The last column will report which genes are part of the 'core enrichment'. These are the genes associated with the pathway which contributed to the observed enrichment score (i.e. in the extremes of the ranking). The genes are listed by EntrezID.
+
+> _**NOTE:** The DOSE package has a handy function which allows us to easily convert the list of Entrez identifiers into gene symbols. This is possible if and only if there is an OrgDb available for your organism. The function takes the gseaKEGG object as input and returns the same object with the gene symbols in the 'core enrichment' column._
+> 
+> ```
+> ## Example Code
+> gseaKEGG_geneSymbol <- setReadable(gseaKEGG, OrgDb = org.Hs.eg.db, keyType="ENTREZID")
+> ```
+> 
 
 
-Explore the GSEA plot of enrichment of one of the pathways in the ranked list:
+Let's explore the GSEA plot of enrichment of one of the pathways in the ranked list:
 
 ```r
 ## Plot the GSEA plot for a single enriched pathway, `hsa03040`
