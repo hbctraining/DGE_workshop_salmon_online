@@ -24,13 +24,11 @@
 2. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
    * **Copy over** your code from the exercises into a text file. 
-   * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/zINfm4a3gREZF9FWdIvM) the **day before the next class**.
+   * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/No9iPuFIJTL4oNJEpAZI) the **day before the next class**.
 
 ### Questions?
 * ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
 * Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
-
-#### [Answer Key](../homework/DGE_assignment_1_answer_key.R)
 
 ---
 
@@ -53,13 +51,11 @@
 2. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
    * **Copy over** your code from the exercises into a text file. 
-   * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/8ZtWH7bbDL42ifLnhemd) the **day before the next class**.
+   * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/C7qCKdcXcyOBsB9m0NDj) the **day before the next class**.
 
 ### Questions?
 * ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
 * Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
-
-#### [Answer Key](../homework/DGE_assignment_2_answer_key.R)
 
 ---
 
@@ -94,6 +90,9 @@
 | 11:15 - 11:45 | Discussion, Q & A | All |
 | 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_all.pdf) | Meeta |
 
+## Answer keys
+* [Day 1 Answer Key](../homework/DGE_assignment_1_answer_key.R)
+* [Day 2 Answer Key](../homework/DGE_assignment_2_answer_key.R)
 
 ## Resources
 We have covered the inner workings of DESeq2 in a fair amount of detail such that when using this package you have a good understanding of what is going on under the hood. For more information on topics covered, we encourage you to take a look at the following resources:
