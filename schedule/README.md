@@ -58,7 +58,7 @@ I. Please **study the contents** and **work through all the code** within the fo
          <br> We have run the analysis, and now it's time to explore the results!  <br><br>In this lesson you will:<br>
              - Learn how to extract results for specific group comparisons <br>
              - Explore the information presented in the results table (different statistics and their importance) <br>
-             - Understand the different levels of filtering that are applied in DESeq2 by default (and why they ae important) <br><br>
+             - Understand the different levels of filtering that are applied in DESeq2 by default (and why they are important) <br><br>
         </details>
         
         
@@ -71,7 +71,7 @@ I. Please **study the contents** and **work through all the code** within the fo
  4. [Visualization](../lessons/06_DGE_visualizing_results.md)
       <details>
        <summary><i>Click here for a preview of this lesson</i></summary>
-         <br>A picture is worth a thousand words. In our case, a figure is worth a thousand (or 30 thousand) data points. When working with large scale data, it can be helpful to visualize results and get a big picture persepctive of your findings. <br><br>In this lesson you will:<br>
+         <br>A picture is worth a thousand words. In our case, a figure is worth a thousand (or 30 thousand) data points. When working with large scale data, it can be helpful to visualize results and get a big picture perspective of your findings. <br><br>In this lesson you will:<br>
             - Explore different plots for data visualization <br>
             - Create a volcano plot to evaluate the relationship between different statistics from the results table <br>
             - Create a heatmap for visualization of differentially expressed genes <br><br>
