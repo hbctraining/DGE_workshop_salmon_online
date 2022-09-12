@@ -262,7 +262,7 @@ The way the tools perform clustering is by taking the entire expression matrix a
 * clusterProfiler - http://bioconductor.org/packages/release/bioc/html/clusterProfiler.html
 * GeneMANIA - http://www.genemania.org/
 * GenePattern -  http://www.broadinstitute.org/cancer/software/genepattern/ (need to register)
-* WebGestalt - http://bioinfo.vanderbilt.edu/webgestalt/ (need to register)
+* WebGestalt - http://www.webgestalt.org (need to register)
 * AmiGO - http://amigo.geneontology.org/amigo
 * ReviGO (visualizing GO analysis, input is GO terms) - http://revigo.irb.hr/ 
 * WGCNA - https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/
