@@ -42,13 +42,42 @@
 
 ### Before the next class:
 
-1. Please **study the contents** and **work through all the code** within the following lessons:
-    * [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
-    * [Wald test results](../lessons/05b_wald_test_results.md)
-    * [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
-    * [Visualization](../lessons/06_DGE_visualizing_results.md)
+I. Please **study the contents** and **work through all the code** within the following lessons:
+   1. [Description of steps for DESeq2](../lessons/04b_DGE_DESeq2_analysis.md)
+      <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br> The R code required to perform differential gene expression analysis is actually quite simple. Running the `DESeq()` function will carry out the various steps involved. It is important that you have some knowledge of what is happening under the hood, to be able to fully understand and interpret the results <br><br>In this lesson you will:<br>
+             - Examine size factors and learn about sources that cause observed variation in values <br>
+             - Explore the gene-wise dispersion estimates as they relate back the mean-variance relationship <br>
+             - Critically evaluate a dispersion plot <br><br>
+        </details>
 
-2. **Complete the exercises**:
+   2. [Wald test results](../lessons/05b_wald_test_results.md)
+      <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br> We have run the analysis, and now it's time to explore the results!  <br><br>In this lesson you will:<br>
+             - Learn how to extract results for specific group comparisons <br>
+             - Explore the information presented in the results table (different statistics and their importance) <br>
+             - Understand the different levels of filtering that are applied in DESeq2 by default (and why they are important) <br><br>
+        </details>
+        
+        
+   3. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
+      <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br> Once you have your results, it is useful to summarize the information. Here, we get a snapshot of the number of differentially expressed genes that are identified from the different comparisons. <br><br>
+        </details>
+        
+ 4. [Visualization](../lessons/06_DGE_visualizing_results.md)
+      <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>A picture is worth a thousand words. In our case, a figure is worth a thousand (or 30 thousand) data points. When working with large scale data, it can be helpful to visualize results and get a big picture perspective of your findings. <br><br>In this lesson you will:<br>
+            - Explore different plots for data visualization <br>
+            - Create a volcano plot to evaluate the relationship between different statistics from the results table <br>
+            - Create a heatmap for visualization of differentially expressed genes <br><br>
+        </details>
+
+II. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
    * **Copy over** your code from the exercises into a text file. 
    * **Upload the saved text file** to [Dropbox](https://www.dropbox.com/request/C7qCKdcXcyOBsB9m0NDj) the **day before the next class**.
