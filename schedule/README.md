@@ -70,9 +70,34 @@
 
 1. Please **study the contents** and **work through all the code** within the following lessons:
     * [Time course analysis](../lessons/08b_time_course_analyses.md)
+       <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>Sometimes we are interested in how a gene changes over time. The Likelihood Ratio Test (LRT) is paricularly well-suited for this task.<br><br>This lesson will cover:<br>
+             - Designing a LRT for a time-course analysis in DESeq2<br>
+             - Identifying patterns in our list of differentially expressed genes<br><br>
+        </details>
     * [Gene annotation](../lessons/genomic_annotation.md)
+        <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>Next-generation analyses rely on annotations to provide a description for defining genes, transcripts and/or proteins. These annotations are often stored in publicly available databases. <br><br>This lesson will cover:<br>
+             - Describing the various annotation databases<br>
+             - Accessing annotations from one of these databases using R<br><br>
+        </details>
     * [Functional analysis - over-representation analysis](../lessons/10_FA_over-representation_analysis.md)
+        <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>Oftentimes after completing an RNA-seq experiment, you will be left with a list of differentially expressed transcripts. You may be interested in knowing if these transcripts are enriched in certain biologically-relevant contexts. <br><br>This lesson will cover:<br>
+             - Describing how functional enrichment tools yield statistically enriched functional categories or interactions<br>
+             - Identifying enriched Gene Ontology terms using the R package, clusterProfiler <br><br>
+        </details>
     * [Functional analysis - functional class scoring / GSEA](../lessons/11_FA_functional_class_scoring.md)
+        <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br> While some functional analyses focus on large changes focused on a select few genes, functional class scoring (FCS) focuses on weaker but coordinated changes in sets of functionally related genes (i.e., pathways) that can also have significant effects. <br><br>This lesson will cover:<br>
+             - Designing a GSEA analysis using GO and/or KEGG gene sets<br>
+             - Evaluating the results of a GSEA analysis<br>
+             - Discussing other tools and resources for identifying genes of novel pathways or networks<br><br>
+        </details>
 
 2. **There is no assignment submission**
 
