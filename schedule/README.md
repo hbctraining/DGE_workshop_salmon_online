@@ -18,6 +18,13 @@
 
 1. Please **study the contents** and **work through all the code** within the following lessons:
   * [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
+  <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>Starting with the count matrix, we want to explore some characteristics of the RNA-seq data and evaluate the appropriate model to use. <br><br>This lesson will cover:<br>
+             - Describing charactericstics of the RNA-seq count data<br>
+             - Understanding different statistical methods to model the count data<br>
+             - Explaining the benefits of biological replicates<br><br>
+        </details>
   * [Count normalization](../lessons/02_DGE_count_normalization.md)
   * [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
 
