@@ -56,8 +56,8 @@ I. Please **study the contents** and **work through all the code** within the fo
       <details>
        <summary><i>Click here for a preview of this lesson</i></summary>
          <br> We have run the analysis, and now it's time to explore the results!  <br><br>In this lesson you will:<br>
-             - Learn how to extract results for specific group comparaisons <br>
-             - Explore the information presented in the results table <br>
+             - Learn how to extract results for specific group comparisons <br>
+             - Explore the information presented in the results table (different statistics and their importance) <br>
              - Understand the different levels of filtering that are applied in DESeq2 by default (and why they ae important) <br><br>
         </details>
         
@@ -65,15 +65,16 @@ I. Please **study the contents** and **work through all the code** within the fo
    3. [Summarizing results and extracting significant gene lists](../lessons/05c_summarizing_results.md)
       <details>
        <summary><i>Click here for a preview of this lesson</i></summary>
-         <br>Before we can begin the next steps of the workflow, we need to make sure you have a good understanding of two important concepts: normalization and Principal Components Analysis (PCA). These are two methods that will be utilized in the scRNA-seq analysis workflow, and this foundation will help you better navigate those steps.<br><br>
+         <br> Once you have your results, it is useful to summarize the information. Here, we get a snapshot of the number of differentially expressed genes that are identified from the different comparisons. <br><br>
         </details>
         
  4. [Visualization](../lessons/06_DGE_visualizing_results.md)
       <details>
        <summary><i>Click here for a preview of this lesson</i></summary>
-         <br>During the analysis we will be making lots of comparisons; between cells, between samples, or both. To make accurate comparisons of gene expression we need to first perform normalization. We also want to make sure that the differences we find are a true biolgical effect and not a result of other sources of unwanted variation . <br><br>In this lesson you will:<br>
-            - Assess your data for any unwanted variation<br>
-            - Normalize the data while also regressing out any identified sources of unwanted variation <br><br>
+         <br>A picture is worth a thousand words. In our case, a figure is worth a thousand (or 30 thousand) data points. When working with large scale data, it can be helpful to visualize results and get a big picture persepctive of your findings. <br><br>In this lesson you will:<br>
+            - Explore different plots for data visualization <br>
+            - Create a volcano plot to evaluate the relationship between different statistics from the results table <br>
+            - Create a heatmap for visualization of differentially expressed genes <br><br>
         </details>
 
 II. **Complete the exercises**:
