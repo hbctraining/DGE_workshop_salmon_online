@@ -1,7 +1,7 @@
 ---
 title: "Functional Analysis for RNA-seq"
-author: "Mary Piper, Radhika Khetani"
-date: "Wednesday, June 3rd, 2020"
+author: "Mary Piper, Radhika Khetani, Meeta Mistry, Jihe Liu, Will Gammerdinger"
+date: "Monday, September 12th, 2022"
 ---
 
 Approximate time: 120 minutes
@@ -11,7 +11,7 @@ Learning Objectives:
 
 *  Determine how functions are attributed to genes using Gene Ontology terms
 *  Describe the theory of how functional enrichment tools yield statistically enriched functions or interactions
-*  Discuss functional analysis using over-representation analysis, functional class scoring, and pathway topology methods
+*  Discuss functional analysis using over-representation analysis, and functional class scoring
 *  Identify popular functional analysis tools for over-representation analysis
 
 # Functional analysis 
