@@ -52,7 +52,7 @@ The statistical test that will determine whether something is actually over-repr
 
 ### Hypergeometric testing
 
-Using the example of the first functional category above, hypergeometric distribution is a probability distribution that describes the probability of 25 genes (k) being associated with "Functional category 1", for all genes in our gene list (n=1000), from a population of all of the genes in entire genome (N=13,000) which contains 35 genes (K) associated with "Functional category 1" [[4](https://en.wikipedia.org/wiki/Hypergeometric_distribution)].
+Using the example of the first functional category above, hypergeometric distribution is a probability distribution that describes the probability of 25 genes (k) being associated with "Functional category 1", for all genes in our gene list (n=1000), from a population of all of the genes in entire genome (N=13,000) which contains 35 genes (K) associated with "Functional category 1" [[2](https://en.wikipedia.org/wiki/Hypergeometric_distribution)].
 
 The calculation of probability of k successes follows the formula:
 
@@ -66,7 +66,7 @@ This test will result in an adjusted p-value (after multiple test correction) fo
 
 One of the most widely-used categorizations is the **Gene Ontology (GO)** established by the Gene Ontology project.
 
-"The Gene Ontology project is a collaborative effort to address the need for consistent descriptions of gene products across databases" [[2](http://geneontology.org/page/introduction-go-resource)]. The [Gene Ontology Consortium](http://geneontology.org/page/go-consortium-contributors-list) maintains the GO terms, and these GO terms are incorporated into gene annotations in many of the popular repositories for animal, plant, and microbial genomes. 
+"The Gene Ontology project is a collaborative effort to address the need for consistent descriptions of gene products across databases" [[3](http://geneontology.org/page/introduction-go-resource)]. The [Gene Ontology Consortium](http://geneontology.org/page/go-consortium-contributors-list) maintains the GO terms, and these GO terms are incorporated into gene annotations in many of the popular repositories for animal, plant, and microbial genomes. 
 
 Tools that investigate enrichment of biological functions or interactions often use the Gene Ontology (GO) categorizations, i.e. the GO terms to determine whether any have significantly modified representation in a given list of genes. Therefore, to best use and interpret the results from these functional analysis tools, it is helpful to have a good understanding of the GO terms themselves and their organization.
 
