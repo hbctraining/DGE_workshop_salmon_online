@@ -18,8 +18,32 @@
 
 1. Please **study the contents** and **work through all the code** within the following lessons:
   * [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
+     <details>
+          <summary><i>Click here for a preview of this lesson</i></summary>
+            <br>Starting with the count matrix, we want to explore some characteristics of the RNA-seq data and evaluate the appropriate model to use. <br><br>This lesson will cover:<br>
+                - Describing charactericstics of the RNA-seq count data<br>
+                - Understanding different statistical methods to model the count data<br>
+                - Explaining the benefits of biological replicates<br><br>
+           </details>
+        
   * [Count normalization](../lessons/02_DGE_count_normalization.md)
+     <details>
+          <summary><i>Click here for a preview of this lesson</i></summary>
+            <br>Count normalization is an import data pre-processing step before the differential expression analysis. <br><br>This lesson will cover:<br>
+                - Describing "uninteresting factors" to consider during normalization<br>
+                - Understanding different normalization methods and their corresponding use cases<br>
+                - Generating a matrix of normalized counts using DESeq2's median of ratios method<br><br>
+           </details>
+  
   * [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
+     <details>
+          <summary><i>Click here for a preview of this lesson</i></summary>
+            <br>Next, we want to check the quality of count data, to make sure that the samples are good. 
+            <br><br>This lesson will cover:<br>
+                - Understanding the importance of similarity analysis between samples<br>
+                - Describing Principal Component Analysis (PCA) and interpreting PCA plots from RNA-seq data<br>
+                - Performing hierarchical clustering and plotting correlation metrics<br><br>
+           </details>
 
 2. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
