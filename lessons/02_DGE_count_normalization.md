@@ -14,7 +14,7 @@ Approximate time: 60 minutes
 
 ## Learning Objectives 
 
-* List different "uninteresting factors" considered suring normalization
+* List different "uninteresting factors" considered during normalization
 * Describe some common normalization methods and recommendations for its use 
 * Create a `DESeqDataSet` object and discuss the structure of the object
 * Demonstrate how to normalize counts using DESeq2
