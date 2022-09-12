@@ -258,7 +258,7 @@ The way the tools perform clustering is by taking the entire expression matrix a
 ## Resources for functional analysis
 
 * g:Profiler - http://biit.cs.ut.ee/gprofiler/index.cgi 
-* DAVID - http://david.abcc.ncifcrf.gov/tools.jsp 
+* DAVID - https://david.ncifcrf.gov
 * clusterProfiler - http://bioconductor.org/packages/release/bioc/html/clusterProfiler.html
 * GeneMANIA - http://www.genemania.org/
 * GenePattern -  http://www.broadinstitute.org/cancer/software/genepattern/ (need to register)
