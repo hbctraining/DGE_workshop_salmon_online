@@ -25,8 +25,24 @@
              - Understanding different statistical methods to model the count data<br>
              - Explaining the benefits of biological replicates<br><br>
         </details>
+        
   * [Count normalization](../lessons/02_DGE_count_normalization.md)
+  <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>Count normalization is an import data pre-processing step before the differential expression analysis. <br><br>This lesson will cover:<br>
+             - Describing "uninteresting factors" to consider during normalization<br>
+             - Understanding different normalization methods and their corresponding user cases<br>
+             - Creating normalized count using the DESeq2 normalization method<br><br>
+        </details>
+  
   * [Sample-level QC](../lessons/03_DGE_QC_analysis.md) (PCA and hierarchical clustering)
+  <details>
+       <summary><i>Click here for a preview of this lesson</i></summary>
+         <br>Next, we want to perform some quality control of the count data, to make sure that the samples are good. <br><br>This lesson will cover:<br>
+             - Understanding the importance of sample-level quality controla<br>
+             - Describing the PCA technique and interpreting PCA plots<br>
+             - Explaining the hierarchical clustering plots<br><br>
+        </details>
 
 2. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
