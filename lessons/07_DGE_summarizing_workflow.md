@@ -122,4 +122,4 @@ We have detailed the various steps in a differential expression analysis workflo
 	sessionInfo()
 	```
 	
-	For better reproducibility, it can help to create **RMarkdown reports**, which save all code, results, and visualizations as nicely formatted html reports. We have available an [example html report](https://www.dropbox.com/s/xp7l0b46rvwmbya/workshop-example.html?dl=1) for perusal. To create these reports we have [additional materials](https://hbctraining.github.io/Training-modules/Rmarkdown/) available.
+	For better reproducibility, it can help to create **RMarkdown reports**, which save all code, results, and visualizations as nicely formatted html reports. To create these reports we have [additional materials](https://hbctraining.github.io/Training-modules/Rmarkdown/) available.
