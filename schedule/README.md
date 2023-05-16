@@ -17,6 +17,7 @@
 ### Before the next class:
 
 1. Please **study the contents** and **work through all the code** within the following lessons:
+
   * [RNA-seq counts distribution](../lessons/01c_RNAseq_count_distribution.md)
      <details>
           <summary><i>Click here for a preview of this lesson</i></summary>
