@@ -48,7 +48,6 @@
 
 2. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
-   * **Copy over** your code from the exercises into a text file. 
    * **Copy over** your solutions into the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScUcYzyiM_dAsgQdNx9ECzCX3lKrTHTwmUKux9u8VyP2JDLNQ/viewform?usp=sf_link) **the day before the next class**.
 
 ### Questions?
@@ -104,7 +103,6 @@ I. Please **study the contents** and **work through all the code** within the fo
 
 II. **Complete the exercises**:
    * Each lesson above contain exercises; please go through each of them.
-   * **Copy over** your code from the exercises into a text file. 
    * **Copy over** your solutions into the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfVELkIcVN4wyJ2aNrowgxiuat5uUXCXACj8QN4MfTK5Yr-Zw/viewform?usp=sf_link) **the day before the next class**.
 
 ### Questions?
