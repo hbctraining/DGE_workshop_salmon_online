@@ -133,7 +133,7 @@ For each transcript that was assayed in the reference, we have:
 
 
 > #### What exactly is the effective length?
-> The sequence composition of a transcript affects how many reads are sampled from it. While two transcripts might be of identical actual length, depending on the sequence composition we are more likely to generate fragments from one versus the other. The transcript that has a higer likelihood of being sampled, will end up with the larger effective length. The effective length is transcript length which has been "corrected" to include factors due to sequence-specific and GC biases.
+> The effective length for a transcript is the essentially **the number of possible start positions for a read or fragment within that transcript**. The sequence composition of a transcript affects how many reads are sampled from it. While two transcripts might be of identical actual length, depending on the sequence composition we are more likely to generate fragments from one versus the other. The transcript that has a higer likelihood of being sampled, will end up with the larger effective length. The effective length is transcript length which has been "corrected" to include factors due to sequence-specific and GC biases.
 
 We will be using the R Bioconductor package `tximport` to prepare the `quant.sf` files for DESeq2. The first thing we need to do is create a variable that contains the paths to each of our `quant.sf` files. Then we will **add names to our quant files which will allow us to easily distinguish between samples in the final output matrix**.
 
