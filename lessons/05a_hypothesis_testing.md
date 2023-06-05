@@ -43,7 +43,7 @@ The first step in hypothesis testing is to set up a **null hypothesis** for each
 
 ### Wald test
 
-In DESeq2, the **Wald test is the default used for hypothesis testing when comparing two groups**. The Wald test is a test usually performed on parameters that have been estimated by maximum likelihood. In our case we are testing each gene model coefficient (LFC) which was derived using parameters like dispersion, which were estimated using maximum likelihood. 
+In DESeq2, the **Wald test is the default used for hypothesis testing when comparing two groups**. The Wald test is a test usually performed on parameters that have been estimated by maximum likelihood. In our case we are testing each gene model coefficient (LFC) which was derived using parameters like dispersion, which were estimated using maximum likelihood. If there are more than 2 sample classes within a variable (for example, if you had low, medium, and high treatment levels) then DESeq2 will generate two pairwise comparisons when low is set as the control (see [here](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/05b_wald_test_results.html) for more info): low vs. medium, and low vs. high. 
 
 DESeq2 implements the Wald test by:
 * Taking the LFC and dividing it by its standard error, resulting in a z-statistic
@@ -102,12 +102,13 @@ Since our 'full' model only has one factor (`sampletype`), the 'reduced' model (
 
 **Exercise**
 
-You are studying brain maturation and growth patterns in mouse cortex and have obtained RNA-seq data for a total of 31 mice. These samples were acquired at 9 developmental stages during the postnatal period of 2-40 days of growth, with at least three replicates at each stage. You also have sex information for these mice (16 males and 15 females).
+You are studying brain maturation and growth patterns in mouse cortex and have obtained RNA-seq data for a total of 24 mice. These samples were acquired at 2 developmental stages (3 dpf and 10 dpf) and with or without treatment using a growth inhibitor (Monoamine oxidase (MAO) inhibitors). For each developmental stage and treatment combination you have 6 replicates. You also have sex information for these mice (12 males and 12 females).
 
-1. What is an appropriate hypothesis test if you are testing for expression differences across the developmental stages? 
-2. Provide the line of code used to create the `dds` object. 
-3. Provide the line of code used to run DESeq2.
-4. The results of the differential expression analysis run identifies a group of genes that spike in expression between the first and second timepoints with no change in expression thereafter. How would we go about obtaining fold changes for these genes? 
+1. What steps are necessary to take to decide what your model should be?
+2. What is an appropriate hypothesis test if you are testing for expression differences across the developmental stages? 
+3. Provide the line of code used to create the `dds` object. 
+4. Provide the line of code used to run DESeq2.
+5. Would you use a different hypothesis test if you had 3 developmental timepoints?  
 
 ***
 
