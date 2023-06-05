@@ -54,7 +54,7 @@ If you want to examine the expression differences between treatments, and you kn
 
 `design = ~ sex + age + treatment`
 
-The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. **There is no effect of order and the model '~ age + treatment + sex' will give the same results.Note the **factors included in the design formula need to match the column names in the metadata**. 
+The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. **There is no effect of order and the model '~ age + treatment + sex' will give the same results.** Note the **factors included in the design formula need to match the column names in the metadata**. 
 
 ***
 **Exercises**
