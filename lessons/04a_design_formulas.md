@@ -54,7 +54,7 @@ If you want to examine the expression differences between treatments, and you kn
 
 `design = ~ sex + age + treatment`
 
-The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. **There is no effect of order and the model '~ age + treatment + sex' will give the same results.** Note the **factors included in the design formula need to match the column names in the metadata**. 
+The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. **The order of the variables does not matter, the model '~ age + treatment + sex' will give the same results.** Note the **factors included in the design formula need to match the column names in the metadata**. 
 
 ***
 **Exercises**
@@ -70,8 +70,6 @@ The tilde (`~`) should always precede your factors and tells DESeq2 to model the
 DESeq2 also allows for the analysis of complex designs. You can explore interactions or 'the difference of differences' by specifying for it in the design formula. For example, if you wanted to explore the effect of sex on the treatment effect, you could specify for it in the design formula as follows: 
 
 `design = ~ sex + age + treatment + sex:treatment`
-
-Since the interaction term `sex:treatment` is last in the formula, the results output from DESeq2 will output results for this term. 
 
 There are additional recommendations for complex designs in the [DESeq2 vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions). In addition, [Limma documentation](http://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf) offers additional insight into creating more complex design formulas.
 
@@ -150,4 +148,6 @@ How would the design formula be structured to perform the following analyses?
 2. Test for the effect of `genotype`, while regressing out the variation due to `treatment`.
 
 3. Test for the effect of `genotype` on the `treatment` effects.
+
+
 ***
