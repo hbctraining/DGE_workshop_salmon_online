@@ -38,9 +38,11 @@ Differential expression analysis with DESeq2 involves multiple steps as displaye
 
 Prior to performing the differential expression analysis, it is a good idea to know what **sources of variation** are present in your data, either by exploration during the QC and/or prior knowledge. Once you know the major sources of variation, you can remove them prior to analysis or control for them in the statistical model by including them in your **design formula**. 
 
+**This step is critical as each additional factor in your design formula reduces your power. HOWEVER, failing to include important sources of variation can give you innacurate results.** 
+
 ### Design formula
 
-A design formula tells the statistical software the known sources of variation to control for, as well as, the factor of interest to test for during differential expression testing. For example, if you know that sex is a significant source of variation in your data, then `sex` should be included in your model. **The design formula should have all of the factors in your metadata that account for major sources of variation in your data. The last factor entered in the formula should be the condition of interest.**
+A design formula tells the statistical software which sources of variation to test for. This includes both your factor of interest as well as any additional covariates that are sources of variation. For example, if you know that sex is a significant source of variation in your data, then `sex` should be included in your model. **The design formula should have all of the factors in your metadata that account for major sources of variation in your data.**
 
 For example, suppose you have the following metadata:
 
@@ -52,7 +54,7 @@ If you want to examine the expression differences between treatments, and you kn
 
 `design = ~ sex + age + treatment`
 
-The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. Note the **factors included in the design formula need to match the column names in the metadata**. 
+The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. **There is no effect of order and the model '~ age + treatment + sex' will give the same results.Note the **factors included in the design formula need to match the column names in the metadata**. 
 
 ***
 **Exercises**
