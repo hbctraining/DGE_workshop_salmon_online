@@ -22,7 +22,7 @@
      <details>
           <summary><i>Click here for a preview of this lesson</i></summary>
             <br>Starting with the count matrix, we want to explore some characteristics of the RNA-seq data and evaluate the appropriate model to use. <br><br>This lesson will cover:<br>
-                - Describing charactericstics of the RNA-seq count data<br>
+                - Describing characteristics of the RNA-seq count data<br>
                 - Understanding different statistical methods to model the count data<br>
                 - Explaining the benefits of biological replicates<br><br>
            </details>
