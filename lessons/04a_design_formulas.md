@@ -34,6 +34,7 @@ Differential expression analysis with DESeq2 involves multiple steps as displaye
 > **NOTE:** DESeq2 is actively maintained by the developers and continuously being updated. As such, it is important that you note the version you are working with. Recently, there have been some rather **big changes implemented** that impact the output. To find out more detail about the specific **modifications made to methods described in the original 2014 paper**, take a look at [this section in the DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#methods-changes-since-the-2014-deseq2-paper). 
 >
 > Additional details on the statistical concepts underlying DESeq2 are elucidated nicely in Rafael Irizarry's [materials](https://rafalab.github.io/pages/harvardx.html) for the EdX course, "Data Analysis for the Life Sciences Series".
+
 ## Running DESeq2
 
 Prior to performing the differential expression analysis, it is a good idea to know what **sources of variation** are present in your data, either by exploration during the QC and/or prior knowledge. Once you know the major sources of variation, you can remove them prior to analysis or control for them in the statistical model by including them in your **design formula**. 
