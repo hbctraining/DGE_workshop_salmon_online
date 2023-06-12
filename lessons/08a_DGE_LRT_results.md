@@ -82,7 +82,7 @@ res_LRT_tb <- res_LRT %>%
 
 # Subset to return genes with padj < 0.05
 sigLRT_genes <- res_LRT_tb %>% 
-  filter(padj < padj.cutoff)
+  dplyr::filter(padj < padj.cutoff)
 
 # Get number of significant genes
 nrow(sigLRT_genes)
@@ -161,7 +161,7 @@ Since we are interested in Group 1, we can filter the dataframe to keep only tho
 ```r
 # Extract the Group 1 genes
 group1 <- clusters$df %>%
-          filter(cluster == 1)
+          dplyr::filter(cluster == 1)
 ```
 
 After extracting a group of genes, we can use annotation packages to obtain additional information. We can also use these lists of genes as input to downstream functional analysis tools to obtain more biological insight and see whether the groups of genes share a specific function. 
