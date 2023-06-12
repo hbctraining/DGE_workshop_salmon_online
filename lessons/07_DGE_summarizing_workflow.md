@@ -108,7 +108,7 @@ We have detailed the various steps in a differential expression analysis workflo
                   as_tibble()
 	
 	# Subset the significant results
-	sig_res <- filter(res_tbl, 
+	sig_res <- dplyr::filter(res_tbl, 
 			  padj < padj.cutoff)
 	```
 
