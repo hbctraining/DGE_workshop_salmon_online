@@ -48,7 +48,7 @@ Now we can subset that table to only keep the significant genes using our pre-de
 ```r
 # Subset the tibble to keep only significant genes
 sigOE <- res_tableOE_tb %>%
-        filter(padj < padj.cutoff)
+        dplyr::filter(padj < padj.cutoff)
 ```
 
 ```r
