@@ -96,8 +96,9 @@ In RNA-seq count data, we know:
 
 1. To determine differentially expressed genes, we evaluate the **variation of expression between groups (of interest) and compare that to the variation within the groups** (between replicates). 
 2. For each individual gene, **the mean is not equal to the variance.** 
- 	* Genes that are highly expressed will have a more consistent level of variations, but it will be higher than the mean. 
- 	* Lowly expressed genes will exhibit variation that hovers around the mean (but with a higher amount of variability). 
+
+  * Genes that are highly expressed will have a more consistent level of variations, but it will be higher than the mean. 
+  * Lowly expressed genes will exhibit variation that hovers around the mean (but with a higher amount of variability). 
  
 _This complicated relationship means that **we cannot just use the observed variance to account for within-group variation**._ Instead DESeq2 uses dispersion.
 
