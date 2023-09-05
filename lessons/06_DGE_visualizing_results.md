@@ -156,7 +156,7 @@ To generate a volcano plot, we first need to have a column in our results data i
 ## Obtain logical vector where TRUE values denote padj values < 0.05 and fold change > 1.5 in either direction
 
 res_tableOE_tb <- res_tableOE_tb %>% 
-                  mutate(threshold_OE = padj < 0.05 & abs(log2FoldChange) >= 0.58)
+                  dplyr::mutate(threshold_OE = padj < 0.05 & abs(log2FoldChange) >= 0.58)
 ```
 
 Now we can start plotting. The `geom_point` object is most applicable, as this is essentially a scatter plot:
@@ -185,10 +185,10 @@ First, we need to order the res_tableOE tibble by `padj`, and add an additional 
 res_tableOE_tb <- bind_cols(res_tableOE_tb, symbol=grch38annot$symbol[match(res_tableOE_tb$gene, grch38annot$ensgene)])
 
 ## Create an empty column to indicate which genes to label
-res_tableOE_tb <- res_tableOE_tb %>% mutate(genelabels = "")
+res_tableOE_tb <- res_tableOE_tb %>% dplyr::mutate(genelabels = "")
 
 ## Sort by padj values 
-res_tableOE_tb <- res_tableOE_tb %>% arrange(padj)
+res_tableOE_tb <- res_tableOE_tb %>% dplyr::arrange(padj)
 
 ## Populate the genelabels column with contents of the gene symbols column for the first 10 rows, i.e. the top 10 most significantly expressed genes
 res_tableOE_tb$genelabels[1:10] <- as.character(res_tableOE_tb$symbol[1:10])
