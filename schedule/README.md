@@ -154,6 +154,7 @@ II. **Complete the exercises**:
 2. **There is no assignment submission**
 
 ### Questions?
+* ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
 * Post any **conceptual questions** that you would like to have **reviewed in class** [here](https://PollEv.com/hbctraining945).
 
 ---
