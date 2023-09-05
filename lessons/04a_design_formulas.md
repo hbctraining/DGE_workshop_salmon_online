@@ -55,9 +55,14 @@ If you want to examine the expression differences between treatments, and you kn
 
 `design = ~ sex + age + treatment`
 
-The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. **The order of the variables does not matter, the model '~ age + treatment + sex' will give the same results.** Note the **factors included in the design formula need to match the column names in the metadata**. 
+The tilde (`~`) should always precede your factors and tells DESeq2 to model the counts using the following formula. Note the **factors included in the design formula need to match the column names in the metadata**. 
+
+> #### Does the order of variables matter?
+> In short, the order of variables in your design formula will not change the final results (i.e. the coefficients returned are the always the same). Typically, it has been best practice to list the variable that is your main effect in the last position of your design formula. In this way, the default result that is returned to you when using the `results()` function will be for your main effect. 
 
 ***
+
+
 **Exercises**
 
 1. Suppose you wanted to study the expression differences between the two age groups in the metadata shown above, and major sources of variation were `sex` and `treatment`, how would the design formula be written?
