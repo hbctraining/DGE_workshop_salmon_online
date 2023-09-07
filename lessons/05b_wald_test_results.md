@@ -21,7 +21,7 @@ By default DESeq2 uses the Wald test to identify genes that are differentially e
 
 ## Specifying contrasts
 
-In our dataset, we have three sample classes so we can make three possible pairwise comparisons:
+In our dataset, we have a single variable in our design formula which has three sample classes (levels) so we can make three possible pairwise comparisons:
 
 1. Control vs. Mov10 overexpression
 2. Control vs. Mov10 knockdown
@@ -30,6 +30,8 @@ In our dataset, we have three sample classes so we can make three possible pairw
 **We are really only interested in #1 and #2 from above**. When we intially created our `dds` object we had provided `~ sampletype` as our design formula, indicating that `sampletype` is our main factor of interest.
 
 To indicate which two sample classes we are interested in comparing, we need to specify **contrasts**. The contrasts are used as input to the DESeq2 `results()` function to extract the desired results. 
+
+> **_NOTE:_ If we run the `results()` function without specifying `contrast` or `name`, it will return the comparison of the last level of the last variable in the design formula over the first level of this variable.** If the order of levels are not specified, they are ordered alphabetically by DESeq2.
 
 Contrasts can be specified in two different ways (with the first method more commonly used):
 
