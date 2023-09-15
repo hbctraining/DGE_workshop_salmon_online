@@ -92,7 +92,7 @@ We have detailed the various steps in a differential expression analysis workflo
 	res <- lfcShrink(dds, 
 			 coef = "sampletype_group1_vs_group2", 
 			 type = "apeglm")	 
-         # The coef will be dependent on what your contras was. and should be identical to what is stored in resultsNames()
+         # The coef will be dependent on what your contrast was. and should be identical to what is stored in resultsNames()
 	```
 
 7. Output significant results:
