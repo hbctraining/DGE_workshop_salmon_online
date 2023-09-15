@@ -180,12 +180,12 @@ write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 > **NOTE:** **You can also perform GO enrichment analysis with only the up or down regulated genes** in addition to performing it for the full list of significant genes. This can be useful to identify GO terms impacted in one direction and not the other. If very few genes are in any of these lists (< 50, roughly) it may not be possible to get any significant GO terms.
 > ```
 > ## Extract upregulated genes
-> sigOE_up <- dplyr::filter(res_ids, padj < 0.05 & log2foldchange > 0)
+> sigOE_up <- dplyr::filter(res_ids, padj < 0.05 & log2FoldChange > 0)
 > 
 > sigOE_up_genes <- as.character(sigOE_up$gene)
 > 
 > ## Extract downregulated genes
-> sigOE_down <- dplyr::filter(res_ids, padj < 0.05 & log2foldchange < 0)
+> sigOE_down <- dplyr::filter(res_ids, padj < 0.05 & log2FoldChange < 0)
 >  
 > sigOE_down_genes <- as.character(sigOE_down$gene)
 > ```
