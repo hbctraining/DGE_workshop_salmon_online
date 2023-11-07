@@ -141,7 +141,7 @@ DESeq2 estimates the dispersion for each gene based on the gene's expression lev
 <img src="../img/deseq_dispersion1.png" width="400">
 </p>
 
-> _In this plot we have dispersion on the y-axis and mean normalized counts on the x-axis. Each black dot represents a gene and its intial dispersion estimate given the observed data. Simply looking at the trend of black dots, we observe an inverse relationship between mean and dispersion. More detail on the fitted red line and blue dots will be decribed later in this lesson._
+> _In this plot we have dispersion on the y-axis and mean normalized counts on the x-axis. Each black dot represents a gene and its intial maximum likelihood dispersion estimate (MLE) given the observed data. Simply looking at the trend of black dots, we observe an inverse relationship between mean and dispersion. More detail on the fitted red line and blue dots will be decribed later in this lesson._
 
 Since we have only a few (3-6) replicates per group, the **dispersion estimates for each gene are often unreliable**. As we walk through the next few steps, we will discuss how this issue is resolved.
 
@@ -167,7 +167,9 @@ The next step in the workflow is to shrink the gene-wise dispersion estimates to
 <img src="../img/deseq2_workflow_separate_shr.png" width="200">
 </p>
 
-**DESeq2 assumes that genes with similar expression levels should have similar dispersion.** As such the fitted curve provides a range of expected dispersion values a range of mean expression level. If the initial estimate (black dot) is much lower than the fitted curve then values are shrunken (blue dots) towards the red line. Dispersion estimates that are slightly above the curve are also shrunk toward the curve for better dispersion estimation; however, genes with **extremely high dispersion values are not** (see right side figure below; these genes are shown surrounded by blue circle). This is due to the likelihood that the gene does not follow the modeling assumptions and has higher variability than others for biological or technical reasons [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)].
+**DESeq2 assumes that genes with similar expression levels should have similar dispersion.** As such the fitted curve provides a range of expected dispersion values a range of mean expression level. 
+
+If the initial estimate (black dot) is much lower than the fitted curve then values are shrunken (blue dots) towards the red line. Dispersion estimates that are slightly above the curve are also shrunk toward the curve for better dispersion estimation; however, genes with **extremely high dispersion values are not** (see right side figure below; these genes are shown surrounded by blue circle). This is due to the likelihood that the gene does not follow the modeling assumptions and has higher variability than others for biological or technical reasons [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)].
 
 <p align="center">
 <img src="../img/deseq_dispersion2.png" width="600">
