@@ -137,14 +137,13 @@ Which is also the same as:
 
 DESeq2 estimates the dispersion for each gene based on the gene's expression level (mean counts of within-group replicates) and observed variance across replicates, as we demonstrated with the formula above. In this way, the dispersion estimates for genes with the same mean will differ only based on their variance. **Therefore, the dispersion estimates reflect the variance in gene expression for a given mean value.** 
 
-Below, we have a dispersion plot where each black dot is a gene, and the dispersion is plotted against the mean expression for each gene. You can see the inverse relationship between mean and dispersion, as we had described above. The black dots are dispersion estimates given the data we have. With only a few (3-6) replicates per group, the **estimates of variation for each gene are often unreliable**. 
-
-To address this problem, DESeq2 **shares information across genes** to generate more accurate estimates of variation based on the mean expression level of the gene using a method called 'shrinkage'. **DESeq2 assumes that genes with similar expression levels should have similar dispersion.** Blue dots represent shrunken dispersion values.
-
 <p align="center">
 <img src="../img/deseq_dispersion1.png" width="400">
 </p>
 
+_Figure Caption: In this plot we have dispersion on the y-axis and mean normalized counts on the x-axis. Each black dot represents a gene and its intial dispersion estimate given the observed data. Simply looking at the trend of black dots, we observe an inverse relationship between mean and dispersion, as described above._
+
+Since we have only a few (3-6) replicates per group, the **dispersion estimates for each gene are often unreliable**. As we walk through the next few steps, we will discuss how this issue is resolved.
 
 ### Step 3: Fit curve to gene-wise dispersion estimates
 
@@ -154,7 +153,7 @@ The next step in the workflow is to fit a curve to the gene-wise dispersion esti
 <img src="../img/deseq2_workflow_separate_fit.png" width="200">
 </p>
 	
-This curve is displayed as a red line in the figure below, which plots the estimate for the **expected dispersion value for genes of a given expression strength**. Each black dot is a gene with an associated mean expression level and maximum likelihood estimation (MLE) of the dispersion (Step 1).
+This curve is displayed as a red line in the same figure presented below. This fitted line allows DESeq2 to **utilize information across all genes to generate more accurate estimates** using a method called 'shrinkage' (described in Step 4).
 
 <p align="center">
 <img src="../img/deseq_dispersion1.png" width="400">
@@ -168,20 +167,32 @@ The next step in the workflow is to shrink the gene-wise dispersion estimates to
 <img src="../img/deseq2_workflow_separate_shr.png" width="200">
 </p>
 
-The curve allows for more accurate identification of differentially expressed genes when sample sizes are small, and the strength of the shrinkage for each gene depends on :
-	
-- how close gene dispersions are from the curve 
-- sample size (more samples = less shrinkage)
-
-**This shrinkage method is particularly important to reduce false positives in the differential expression analysis.** Genes with low dispersion estimates are shrunken towards the curve, and the more accurate, higher shrunken values are output for fitting of the model and differential expression testing. These shrunken estimates represent the within-group variation that is needed to determine whether the gene expression across groups is significantly different.
-
-Dispersion estimates that are slightly above the curve are also shrunk toward the curve for better dispersion estimation; however, genes with **extremely high dispersion values are not**. This is due to the likelihood that the gene does not follow the modeling assumptions and has higher variability than others for biological or technical reasons [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)]. Shrinking the values toward the curve could result in false positives, so these values are not shrunken. These genes are shown surrounded by blue circles below. 
+**DESeq2 assumes that genes with similar expression levels should have similar dispersion.** As such the fitted curve provides an expected dispersion value for a gene with a given mean expression level. If the initial estimate (black dot) is much lower than the fitted curve then values are shrunken (blue dots) towards the red line. Dispersion estimates that are slightly above the curve are also shrunk toward the curve for better dispersion estimation; however, genes with **extremely high dispersion values are not** (see right side figure below; these genes are shown surrounded by blue circle). This is due to the likelihood that the gene does not follow the modeling assumptions and has higher variability than others for biological or technical reasons [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)].
 
 <p align="center">
 <img src="../img/deseq_dispersion2.png" width="600">
 </p>
+
+The **strength of the shrinkage for each gene depends on**:
 	
-**This is a good plot to examine to ensure your data is a good fit for the DESeq2 model.** You expect your data to generally scatter around the curve, with the dispersion decreasing with increasing mean expression levels. If you see a cloud or different shapes, then you might want to explore your data more to see if you have contamination (mitochondrial, etc.) or outlier samples.  Note how much shrinkage you get across the whole range of means in the `plotDispEsts()` plot for any experiment with low degrees of freedom.
+- how close gene dispersions are from the curve 
+- sample size (more samples = less shrinkage)
+
+**This dispersion shrinkage method is particularly important to reduce false positives in the differential expression analysis.** This step allows for more accurate identification of differentially expressed genes when sample sizes are small. 
+
+### Interpretation of the dispersion plot
+
+To create this plot with your data, you use the function:
+
+```r
+plotDispEsts(dds)
+```
+ 
+**This is a good plot to examine to ensure your data is a good fit for the DESeq2 model.** Evaluate the plot to see if:
+
+* The data to generally scatter around the curve, with the dispersion decreasing with increasing mean expression levels.
+* How much shrinkage you get across the whole range of means in your data. For any experiment with low degrees of freedom, you will expect to see more shrinkage.
+* The data scatter in a cloud or different shapes, then you might want to explore your data more to see if you have contamination (mitochondrial, etc.) or outlier samples. 
 
 Examples of **worrisome dispersion plots** are shown below:
 
