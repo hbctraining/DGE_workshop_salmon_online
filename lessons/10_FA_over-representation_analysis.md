@@ -228,7 +228,7 @@ emapplot(ego, showCategory = 50)
 <img src="../img/emapplot_salmon.png" width="800">
 </p> 
   
-Finally, the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the pvalues of the terms, with the more significant terms being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
+Finally, the **category netplot** shows the relationships between the genes associated with the top five most significant GO terms and the fold changes of the significant genes associated with these terms (color). The size of the GO terms reflects the number of genes in the terms, with terms with more genes being larger. This plot is particularly useful for hypothesis generation in identifying genes that may be important to several of the most affected processes. 
 
 > **Note** - You may need to install the `ggnewscale` package using `install.packages("ggnewscale")` for the `cnetplot()` function to work.
 
@@ -240,9 +240,8 @@ names(OE_foldchanges) <- sigOE$gene
 
 ## Cnetplot details the genes associated with one or more terms - by default gives the top 5 significant terms (by padj)
 cnetplot(ego, 
-         categorySize="pvalue", 
          showCategory = 5, 
-         foldChange=OE_foldchanges, 
+         color.params=list(foldChange=OE_foldchanges),
          vertex.label.font=6)
          
 ## If some of the high fold changes are getting drowned out due to a large range, you could set a maximum fold change value
@@ -250,9 +249,8 @@ OE_foldchanges <- ifelse(OE_foldchanges > 2, 2, OE_foldchanges)
 OE_foldchanges <- ifelse(OE_foldchanges < -2, -2, OE_foldchanges)
 
 cnetplot(ego, 
-         categorySize="pvalue", 
          showCategory = 5, 
-         foldChange=OE_foldchanges, 
+         color.params=list(foldChange=OE_foldchanges),
          vertex.label.font=6)
 ```
 
