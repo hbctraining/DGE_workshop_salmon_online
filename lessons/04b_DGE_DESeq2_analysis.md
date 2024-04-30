@@ -111,20 +111,6 @@ _This complicated relationship means that **we cannot just use the observed vari
 
 The dispersion parameter **models the within-group variability by describing how much the variance deviates from the mean**. A dispersion of 1 would indicate that there is no deviance from the mean (i.e mean == variance). A typical RNA-seq dataset, will exhibit some amount of biological variability present across replicates and so we will always have dispersion values less than one.
 
-**How is the dispersion value derived?**
-
-In DESeq, we know that the variance of the counts for a given gene is modeled by the mean and dispersion:
-
-<img src="https://render.githubusercontent.com/render/math?math=Var_{ij} = \mu_{ij}  %2B\!  \alpha_{i} \mu_{ij}^2">
-
-Now let's rearrange formula so that we can see what the dispersion parameter equates to so we can better understand it's relationship with mean and variance:
-
-<img src="https://render.githubusercontent.com/render/math?math=\sqrt\alpha_{i} = \frac{Var_{ij} - \mu_{ij}}{\mu_{ij}} ">
-
-Which is also the same as:
-
-<img src="https://render.githubusercontent.com/render/math?math=\sqrt\alpha_{i} = \frac{Var_{ij}}{\mu_{ij}} - 1 ">
-
 | | Effect on dispersion |
 |:---:|:---:|
 | Variance increases | Dispersion increases |
