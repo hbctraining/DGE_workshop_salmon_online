@@ -106,7 +106,6 @@ To perform the GSEA using KEGG gene sets with clusterProfiler, we can use the `g
 ## GSEA using gene sets from KEGG pathways
 gseaKEGG <- gseKEGG(geneList = foldchanges, # ordered named vector of fold changes (Entrez IDs are the associated names)
               organism = "hsa", # supported organisms listed below
-              nPerm = 1000, # default number permutations
               minGSSize = 20, # minimum gene set size (# genes in set) - change to test more sets or recover sets with fewer # genes
               pvalueCutoff = 0.05, # padj cutoff value
               verbose = FALSE)
@@ -117,9 +116,6 @@ gseaKEGG_results <- gseaKEGG@result
 # Write results to file
 write.csv(gseaKEGG_results, "results/gseaOE_kegg.csv", quote=F)
 ```
- 
-> _**NOTE:** The `nPerm` argument was left at its default value of 1000. This parameter specifies how many times this randomization (for perumtations) is done. The more randomizations that are performed, the more precise the FDR q-value estimation will be individual terms/pathways. Therefore, if you are finding few or no terms enriched you might want to try increasing this number._
-
 
 **How many pathways are enriched?** _NOTE: The results may look slightly different for you._ 
 
@@ -170,6 +166,8 @@ pathview(gene.data = foldchanges,
               cpd = 1))
 ```
 >**NOTE:** If the below error message occurs: `Error in detach("package:dplyr", unload = T) : invalid 'name' argument`, that means the dplyr package is not currently loaded. Ignore the message and continue to run pathview command.
+
+>**NOTE:** pathview may not display in your R Plots window. Instead, you may see a message such as `Info: Working in directory /Users/yourname/Desktop/DEanalysis` and `Info: Writing image file hsa03008.pathview.png`. This indicates that the image has instead been saved to that directory. You can open the pathview file to view it.
 
 <p align="center"> 
 <img src="../img/hsa03008.pathview.png" width="800">
