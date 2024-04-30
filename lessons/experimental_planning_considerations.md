@@ -182,7 +182,7 @@ Your experiment has three different treatment groups, A, B, and C. Due to the le
   | sample11 | C | M | 3 |
   | sample12 | C | M | 4 |
 
-[Answer Key](https://www.dropbox.com/s/524mevuyba34l5b/exp_design_table.xlsx?dl=1)
+[Answer Key](https://www.dropbox.com/scl/fi/qifgipe1esic1avu3an7c/exp_design_table.xlsx?rlkey=9hq0834lzl6jnrfn58wfz1qh0&dl=1)
 
 ***    
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
