@@ -9,7 +9,7 @@ Approximate time: 60 minutes
 ## Learning Objectives 
 
 * Explain the different steps involved in running `DESeq()`
-* Examine size factors and undertand the source of differences
+* Examine size factors and understand the source of differences
 * Inspect gene-level dispersion estimates 
 * Recognize the importance of dispersion during differential expression analysis
 
@@ -115,9 +115,6 @@ The dispersion parameter **models the within-group variability by describing how
 |:---:|:---:|
 | Variance increases | Dispersion increases |
 | Mean expression increases | Dispersion decreases |
-
-> _NOTE: For genes with moderate to high count values, the square root of dispersion will be equal to the coefficient of variation (the subtraction of one will be negligible)._ 
-
 
 **Dispersion values in DESeq2**
 
