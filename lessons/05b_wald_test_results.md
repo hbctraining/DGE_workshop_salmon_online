@@ -43,7 +43,7 @@ Contrasts can be specified in two different ways (with the first method more com
 	results(dds, contrast = contrast)
 ```
 
-2. Contrasts can be given as a **list of 2 character vectors**: the names of the fold changes for the level of ineterest, and the names of the fold changes for the base level. These names should match identically to the elements of `resultsNames(object)`. *This method can be useful for combining interaction terms and main effects.*
+2. Contrasts can be given as a **list of 2 character vectors**: the names of the fold changes for the level of interest, and the names of the fold changes for the base level. These names should match identically to the elements of `resultsNames(object)`. *This method can be useful for combining interaction terms and main effects.*
 
 ```r
 	# DO NOT RUN!
