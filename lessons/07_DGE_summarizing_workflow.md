@@ -62,7 +62,7 @@ We have detailed the various steps in a differential expression analysis workflo
 4. Run DESeq2:
 
 	```r
-		# **Optional step** - Re-create DESeq2 dataset if the design formula has changed after QC analysis in include other sources of variation using "dds <- DESeqDataSetFromTximport(txi, colData = metadata, design = ~ covaraite + condition)"
+		# **Optional step** - Re-create DESeq2 dataset if the design formula has changed after QC analysis in include other sources of variation using "dds <- DESeqDataSetFromTximport(txi, colData = metadata, design = ~ covariate + condition)"
 
 	# Run DESeq2 differential expression analysis
 	dds <- DESeq(dds)
