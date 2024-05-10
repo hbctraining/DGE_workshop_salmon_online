@@ -41,7 +41,7 @@ dds <- DESeqDataSetFromMatrix(countData = raw_counts, colData = metadata, design
 
 dds_lrt_time <- DESeq(dds, test="LRT", reduced = ~ genotype + treatment + time)
 ```
-To understand what kind of gene expression patterns will be identified as differentially expressed, we have a few examples below.  In the plots below we have gene expression on the x-axis and Time on the y-axis. In this dataset there are two samples for each time point, one having undergone some treatment (red) and the other without (blue). 
+To understand what kind of gene expression patterns will be identified as differentially expressed, we have a few examples below.  In the plots below we have Time on the x-axis and gene expression on the y-axis. In this dataset there are two samples for each time point, one having undergone some treatment (red) and the other without (blue). 
 
 For this figure, we are depicting the type of **genes that will not be identified as differentially expressed.** Here, we observe that GeneX is differentially expressed between the time points, however there is no difference in that expression pattern between the treatment groups.
 
