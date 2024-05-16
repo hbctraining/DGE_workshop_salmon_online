@@ -250,7 +250,7 @@ Co-expression clustering is often used to identify genes of novel pathways or ne
 
 You can visualize co-expression clustering using heatmaps, which should be viewed as suggestive only; serious classification of genes needs better methods.  
 
-The way the tools perform clustering is by taking the entire expression matrix and computing pair-wise co-expression values. A network is then generated from which we explore the topology to make inferences on gene co-regulation. The [WGCNA](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/) package (in R) is one example of a more sophisticated method for co-expression clustering.
+The way the tools perform clustering is by taking the entire expression matrix and computing pair-wise co-expression values. A network is then generated from which we explore the topology to make inferences on gene co-regulation. The [WGCNA]([https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/](https://web.archive.org/web/20230323144343/horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/)) package (in R) is one example of a more sophisticated method for co-expression clustering (please note however that it is no longer maintained).
 
 
 ## Resources for functional analysis
@@ -263,7 +263,7 @@ The way the tools perform clustering is by taking the entire expression matrix a
 * WebGestalt - http://www.webgestalt.org (need to register)
 * AmiGO - http://amigo.geneontology.org/amigo
 * ReviGO (visualizing GO analysis, input is GO terms) - http://revigo.irb.hr/ 
-* WGCNA - https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/
+* WGCNA - [https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/](https://web.archive.org/web/20230323144343/horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/) (no longer maintained)
 * GSEA - http://software.broadinstitute.org/gsea/index.jsp
 * SPIA - https://www.bioconductor.org/packages/release/bioc/html/SPIA.html
 * GAGE/Pathview - http://www.bioconductor.org/packages/release/bioc/html/gage.html
