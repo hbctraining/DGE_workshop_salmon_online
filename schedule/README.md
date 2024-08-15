@@ -163,7 +163,7 @@ II. **Complete the exercises**:
 | 10:00 - 11:00 | Questions about self-learning lessons | All |
 | 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Noor |
 | 11:15 - 11:45 | Discussion, Q & A | All |
-| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_all.pdf) | Meeta |
+| 11:45 - 12:00 | [Wrap Up](../lectures/workshop_wrapup_slides.pdf) | Meeta |
 
 ## Answer keys
 * [Day 1 Answer Key](../homework/DGE_assignment_1_answer_key.R)
