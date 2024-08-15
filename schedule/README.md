@@ -9,10 +9,10 @@
 
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
-| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_all.pdf) | Will |
+| 10:00 - 10:30 | [Workshop Introduction](../lectures/Intro_to_workshop_all.pdf) | Meeta |
 | 10:30 - 11:00 | RNA-seq pre-reading discussion | All |
-| 11:00 - 11:45 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Heather |
-| 11:45 - 12:00 | Overview of self-learning materials and homework submission | Will |
+| 11:00 - 11:45 | [Intro to DGE / setting up DGE analysis](../lessons/01b_DGE_setup_and_overview.md) | Noor |
+| 11:45 - 12:00 | Overview of self-learning materials and homework submission | Meeta |
 
 ### Before the next class:
 
@@ -60,8 +60,8 @@
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:00 | Self-learning lessons discussion | All |
-| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Heather |
-| 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Will |
+| 11:00 - 11:30 | [Design formulas](../lessons/04a_design_formulas.md)  | Noor |
+| 11:30 - 12:00 | [Hypothesis testing and multiple test correction](../lessons/05a_hypothesis_testing.md) | Meeta |
 
 ### Before the next class:
 
@@ -114,7 +114,7 @@ II. **Complete the exercises**:
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:15 | Self-learning lessons discussion | All |
-| 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Will |
+| 11:15 - 12:00 | [Likelihood Ratio Test results](../lessons/08a_DGE_LRT_results.md) | Meeta |
 
 ### Before the next class:
 
@@ -161,9 +161,9 @@ II. **Complete the exercises**:
 | Time            |  Topic  | Instructor |
 |:------------------------:|:------------------------------------------------:|:--------:|
 | 10:00 - 11:00 | Questions about self-learning lessons | All |
-| 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Heather |
+| 11:00 - 11:15 | [Summarizing workflow](../lessons/07_DGE_summarizing_workflow.md) | Noor |
 | 11:15 - 11:45 | Discussion, Q & A | All |
-| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_all.pdf) | Will |
+| 11:45 - 12:00 | [Wrap Up](../lectures/Workshop_wrapup_all.pdf) | Meeta |
 
 ## Answer keys
 * [Day 1 Answer Key](../homework/DGE_assignment_1_answer_key.R)
