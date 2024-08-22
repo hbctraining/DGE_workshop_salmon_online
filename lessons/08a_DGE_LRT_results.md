@@ -23,6 +23,14 @@ Generally, this test will result in a larger number of genes than the individual
 
 To extract the results from our `dds_lrt` object we can use the same `results()` function we had used with the Wald test. _There is no need for contrasts since we are not making a pair-wise comparison._
 
+> **NOTE:** In an [earlier lesson](05a_hypothesis_testing.md#likelihood-ratio-test-lrt) on hypothesis testing, we had you create the object `dds_lrt`. If you are **having trouble finding `dds_lrt`**, please run the code below:
+>
+> ```
+> # Likelihood ratio test
+> dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1)
+> ```
+> 
+
 ```r
 # Extract results for LRT
 res_LRT <- results(dds_lrt)
@@ -113,8 +121,8 @@ A good next step is to identify groups of genes that share a pattern of expressi
 
 Before we begin clustering, we will **first subset our rlog transformed normalized counts** to retain only the differentially expressed genes (padj < 0.05). In our case, it may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only the top 1000 genes sorted by p-adjusted value. 
 
-> ### Where do I get rlog transformed counts?
-> This rlog transformation was applied in an [earlier lesson](03_DGE_QC_analysis.md#transform-normalized-counts-for-the-mov10-dataset) when we performed QC analysis. If you do not see this in your environment, run the following code:
+> #### Where do I get rlog transformed counts?
+> This rlog transformation was applied in an [earlier lesson](03_DGE_QC_analysis.md#transform-normalized-counts-for-the-mov10-dataset) when we performed QC analysis. If you **do not see this in your environment**, run the following code:
 > 
 > ```
 > ### Transform counts for data visualization
