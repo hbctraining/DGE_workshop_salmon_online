@@ -151,8 +151,7 @@ Once the clustering is finished running, you will get your command prompt back i
 
 
 <p align="center">
-<img src="../img/degPatterns_figure.png
-" width="800">
+<img src="../img/degPatterns_figure.png" width="800">
 </p>
 
 
