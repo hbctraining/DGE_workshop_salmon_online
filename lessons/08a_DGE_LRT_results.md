@@ -111,7 +111,17 @@ We now have this list of ~7K significant genes that we know are changing in some
 
 A good next step is to identify groups of genes that share a pattern of expression change across the sample groups (levels). To do this we will be using a clustering tool called `degPatterns` from the 'DEGreport' package. The `degPatterns` tool uses a **hierarchical clustering approach based on pair-wise correlations** between genes, then cuts the hierarchical tree to generate groups of genes with similar expression profiles. The tool cuts the tree in a way to optimize the diversity of the clusters, such that the variability inter-cluster > the variability intra-cluster.
 
-Before we begin clustering, we will first subset our rlog transformed normalized counts to retain only the differentially expressed genes (padj < 0.05). In our case, it may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only the top 1000 genes sorted by p-adjusted value. 
+Before we begin clustering, we will **first subset our rlog transformed normalized counts** to retain only the differentially expressed genes (padj < 0.05). In our case, it may take some time to run the clustering on 7K genes, and so for class demonstration purposes we will subset to keep only the top 1000 genes sorted by p-adjusted value. 
+
+> ### Where do I get rlog transformed counts?
+> This rlog transformation was applied in an [earlier lesson](03_DGE_QC_analysis.md#transform-normalized-counts-for-the-mov10-dataset) when we performed QC analysis. If you do not see this in your environment, run the following code:
+> 
+> ```
+> ### Transform counts for data visualization
+> rld <- rlog(dds, blind=TRUE)
+> rld_mat <- assay(rld)
+> ```
+> 
 
 ```r
 # Subset results for faster cluster finding (for classroom demo purposes)
