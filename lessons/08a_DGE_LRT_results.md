@@ -23,7 +23,7 @@ Generally, this test will result in a larger number of genes than the individual
 
 To extract the results from our `dds_lrt` object we can use the same `results()` function we had used with the Wald test. _There is no need for contrasts since we are not making a pair-wise comparison._
 
-> **NOTE:** In an [earlier lesson](05a_hypothesis_testing.md#likelihood-ratio-test-lrt) on hypothesis testing, we had you create the object `dds_lrt`. If you are **having trouble finding `dds_lrt`**, please run the code: `dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1`
+> **NOTE:** In an [earlier lesson](05a_hypothesis_testing.md#likelihood-ratio-test-lrt) on hypothesis testing, we had you create the object `dds_lrt`. If you are **having trouble finding the object**, please run the code: `dds_lrt <- DESeq(dds, test="LRT", reduced = ~ 1`
 
 ```r
 # Extract results for LRT
