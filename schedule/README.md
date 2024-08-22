@@ -149,7 +149,7 @@ II. **Complete the exercises**:
              - Discussing other tools and resources for identifying genes of novel pathways or networks<br><br>
         </details>
 
-2. **There is no assignment submission**
+2. **There is no assignment submission, but please use this [Google form](https://forms.gle/QHPktomJZysJe7Zz8) to ask us questions!**
 
 ### Questions?
 * ***If you get stuck due to an error*** while runnning code in the lesson, [email us](mailto:hbctraining@hsph.harvard.edu) 
