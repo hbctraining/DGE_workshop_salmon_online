@@ -238,9 +238,9 @@ annotations_ahb$entrezid <- map(annotations_ahb$entrezid,1) %>%  unlist()
 > **NOTE:** Not all databases handle multiple mappings in the same way. For example, if we used the OrgDb instead of the EnsDb:
 > 
 > ```
-> human_orgdb <- query(ah, c("Homo sapiens", "OrgDb"))
-> human_orgdb <- human_ens[["AH75742"]]
-> annotations_orgdb <- select(human_orgdb, res_tableOE_tb$gene, c("SYMBOL", "GENENAME", "ENTREZID"), "ENSEMBL")
+> human_orgdb <- query(ah, c("org.Hs.eg.db.sqlite"))
+> human_orgdb <- human_orgdb[["AH116710"]]
+> annotations_orgdb <- AnnotationDbi::select(human_orgdb, res_tableOE_tb$gene, c("SYMBOL", "GENENAME", "ENTREZID"), "ENSEMBL")
 > ```
 > We would find that multiple mapping entries would be automatically reduced to one-to-one. We would also find that more than half of the input genes do not return any annotations. This is because the OrgDb family of database are primarily based on mapping using Entrez Gene identifiers. Since our data is based on Ensembl mappings, using the OrgDb would result in a loss of information.
 
