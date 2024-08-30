@@ -28,10 +28,11 @@ Download the most recent versions of R and RStudio for your laptop:
  - [R](http://lib.stat.cmu.edu/R/CRAN/) (version 4.0.0 or above)
  - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
  
-Note:  When installing the following packages, if you are asked to select (a/s/n) or (y/n), please select “a” or "y" as applicable.
+> **Note 1:**  When installing the following packages, if you are asked to select (a/s/n) or (y/n), please select “a” or "y" as applicable.
+
+> **Note 2**: If you have a Mac with an M1 chip, download and install this tool before intalling your packages: https://mac.r-project.org/tools/gfortran-12.2-universal.pkg 
 
 (1) Install the below packages on your laptop from CRAN. You DO NOT have to go to the CRAN webpage; you can use the following function to install them one by one:
-
 
 ```r
 install.packages("insert_package_name_in_quotations")
